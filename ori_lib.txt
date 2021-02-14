@@ -1095,5 +1095,4 @@ function BindValue:init(title, defaultVal)
 end
 
 -- End of Ori Lib
-win:selectTab("Main")
 --See Docs/How to use at https://virtuallization.com/ori_lib_docs.html
