@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-image: url('https://media.discordapp.net/attachments/808842232350113823/810324287453921330/caughtskidding.png');
+}
+</style>
+</head>
+</html>
