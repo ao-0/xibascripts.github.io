@@ -301,6 +301,8 @@ local notificate = function(data)
 	MainNotificationHolder:notificate(data)
 end
 
+--[[
+Notificating Sample
 notificate({
 	["text"] = "Hello world!",
 	["color"] = NotificationGreen,
@@ -313,6 +315,7 @@ notificate({
 	["duration"] = 6,
 	["height"] = 90,
 })
+]]
 
 ----
 
