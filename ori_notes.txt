@@ -1,4 +1,4 @@
--- Ori Notes v2.0.991.312 builders release, 92.html import, modified elements: 88 Lines Edited | 45 Lines Added | 5732 Characters Added | Since v2.0.991.201
+-- Ori Notes v2.0.991.423 builders release, 92.html import, modified elements: 23 Lines Edited | 33 Lines Added | 2512 Characters Added | Since v2.0.991.312
 --Loadstring version
 --If used remember to credit.
 --//By Ori-Lua Developer team, Branch of Virtualization Developer Team
@@ -29,7 +29,7 @@ _class = function(name, attr) local c = deep_copy(attr); _classes[c] = tostring(
 class._DESCRIPTION = '30 lines library for object orientation in Lua'; class._VERSION = '30log v1.2.0'; class._URL = 'http://github.com/Yonaba/30log'; class._LICENSE = 'MIT LICENSE <http://www.opensource.org/licenses/mit-license.php>' setmetatable(class,{__call = function(_,...) return _class(...) end })
 ----
 
----- 'new' function, (its not really skidded i just made it a long time ago)
+---- 'new' function
 local new = function(InstanceClass, InstanceParent, ...)
 	-- Check if the arguments are correct
 	local InstanceClassType = type(InstanceClass)
@@ -95,6 +95,7 @@ Notification = class("Notification", {
 	text = nil,
 	duration = 0,
 
+	fadeTime = 0,
 	fadeInTweens = {},
 	fadeOutTweens = {},
 	visible = false,
@@ -103,18 +104,22 @@ Notification = class("Notification", {
 function Notification:createTweens()
 	local ts = game:GetService("TweenService")
 
-	local animInfo = TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.In)
+	self.fadeTime = 0.2
+	local animInfo = TweenInfo.new(self.fadeInTime, Enum.EasingStyle.Sine, Enum.EasingDirection.In)
 
+		-- Create fade out tweens
 	table.insert(self.fadeOutTweens, ts:Create(self.frame, animInfo, {BackgroundTransparency = 1, Position = UDim2.fromOffset(0, 20)}))
 	table.insert(self.fadeOutTweens, ts:Create(self.text, animInfo, {TextTransparency = 1}))
 	table.insert(self.fadeOutTweens, ts:Create(self.colorbar, animInfo, {BackgroundTransparency = 1}))
 	
+		-- Create fade in tweens
 	table.insert(self.fadeInTweens, ts:Create(self.frame, animInfo, {BackgroundTransparency = 0, Position = UDim2.fromOffset(0, 0)}))
 	table.insert(self.fadeInTweens, ts:Create(self.text, animInfo, {TextTransparency = 0}))
 	table.insert(self.fadeInTweens, ts:Create(self.colorbar, animInfo, {BackgroundTransparency = 0}))
 end
 
 function Notification:reset()
+	-- Resets notification for a fade in
 	self.frame.BackgroundTransparency = 1
 	self.frame.Position = UDim2.fromOffset(0, 20)
 	
@@ -126,6 +131,7 @@ function Notification:reset()
 end
 
 function Notification:fadeOut()
+	-- Fades out notif
 	self.visible = false
 	for i, v in ipairs(self.fadeOutTweens) do
 		v:Play()
@@ -133,6 +139,7 @@ function Notification:fadeOut()
 end
 
 function Notification:fadeIn()
+	-- Fades in notif (:reset() should be called first)
 	self.visible = true
 	for i, v in ipairs(self.fadeInTweens) do
 		v:Play()
@@ -144,14 +151,22 @@ function Notification:setRadius(num)
 end
 
 function Notification:setColor(color)
+	-- Changes notif colorbar color
 	self.colorbar.BackgroundColor3 = color
 end
 
+function Notification:changeTheme(bgColor, textColor)
+	-- Changes bgColor and textColor
+	self.frame.BackgroundColor3 = bgColor
+	self.text.TextColor3 = textColor
+end
+
 function Notification:setHeight(num)
+	-- Changes notif height
 	self.bg.Size = UDim2.new(1, 0, 0, num or NotificationHeight)
 end
 
-function Notification:init(parent, color, text, height)
+function Notification:init(parent, color, text, height, bgcolor, textcolor)
 	self.parent = parent
 
 	-- Create bg
@@ -165,7 +180,7 @@ function Notification:init(parent, color, text, height)
 	self.frame = new("Frame", self.bg, {
 		Size = UDim2.new(1, 0, 1, 0),
 		BorderSizePixel = 0,
-		BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		BackgroundColor3 = bgcolor,
 	})
 	-- Add corner
 	self.framecorner = new("UICorner", self.frame, {
@@ -184,7 +199,7 @@ function Notification:init(parent, color, text, height)
 	self.text = new("TextLabel", self.frame, {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextColor3 = textcolor,
 		Text = text,
 	})
 	
@@ -202,6 +217,11 @@ NotificationHolder = class("NotificationHolder", {
 
 	frame = nil,
 	framelayout = nil,
+	
+	lastNotifRounded = false,
+	
+	notifsBGColor = nil,
+	notifsTextColor = nil,
 })
 
 function NotificationHolder:init(parent, data)
@@ -211,9 +231,16 @@ function NotificationHolder:init(parent, data)
 	  pos = UDim2.new(0, 5, 1, -60), -- pos of the notifs holder
 	  anchorPoint = Vector2.new(0, 1), -- anchor point of the notifs holder
 	  width = 200, -- width of notifications
+	  spacing = 3, -- space between notifs
+	  rounded = true, -- if last notification should be rounded
+	  bgColor = Color3.fromRGB(47, 47, 47), -- background color of notifs
+	  textColor = Color3.fromRGB(255, 255, 255), -- text color of notifs
 	}
 	]]--
 	self.parent = parent
+	self.lastNotifRounded = data.rounded
+	self.notifsBGColor = data.bgColor
+	self.notifsTextColor = data.textColor
 	
 	-- Create frame
 	self.frame = new("Frame", self.parent, {
@@ -226,7 +253,7 @@ function NotificationHolder:init(parent, data)
 	self.framelayout = new("UIListLayout", self.frame, {
 		SortOrder = Enum.SortOrder.LayoutOrder,
 		VerticalAlignment = Enum.VerticalAlignment.Bottom,
-		Padding = UDim.new(0, 3)
+		Padding = UDim.new(0, data.spacing)
 	})
 end
 
@@ -240,33 +267,38 @@ function NotificationHolder:notificate(data)
 	  height = 100, -- notification height (optional)
 	}
 	]]--
+	
+	-- Create notif
 	local notifId = self.aliveNotifications + 1
 	self.aliveNotifications = notifId
 	
-	local notif = Notification(self.frame, data.color, data.text, data.height)
+	local notif = Notification(self.frame, data.color, data.text, data.height, self.notifsBGColor, self.notifsTextColor)
 	table.insert(self.notifications, notif)
 	
-	if notifId == 1 then
+	-- Round if its last
+	if notifId == 1 and self.lastNotifRounded then
 		notif:setRadius(4)
 	end
 	
+	-- Fade in
 	notif:fadeIn()
 	
 	coroutine.wrap(function(self, duration, notif, id)
-		
+		-- Made so it disappears after data.duration seconds
 		wait(duration)
 		
-		notif:fadeOut()
+		notif:fadeOut() -- Make notif fade out
 		self.aliveNotifications = self.aliveNotifications - 1
 		
-		local nextNotif = self.notifications[id + 1]
+		wait(notif.fadeTime)
 		
-		wait(0.2)
+		local nextNotif = self.notifications[id + 1] -- Get the notif below this one
 		
-		if nextNotif then
+		if nextNotif and self.lastNotifRounded then -- Make so notif below this one gets round
 			nextNotif:setRadius(4)
 		end
 		
+			-- Destroy notif
 		if self.aliveNotifications == 0 then
 			for i, v in ipairs(self.notifications) do
 				v.bg:Destroy()
@@ -275,6 +307,16 @@ function NotificationHolder:notificate(data)
 		end
 		
 	end)(self, data.duration, notif, notifId)
+end
+
+function NotificationHandler:changeTheme(bgColor, textColor)
+	self.notifsBGColor = data.bgColor
+	self.notifsTextColor = data.textColor
+	
+	-- Change every notif theme
+	for i, v in ipairs(self.aliveNotifications) do
+		v:changeTheme(self.notifsBGColor, self.notifsTextColor)
+	end
 end
 
 --[[
