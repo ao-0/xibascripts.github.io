@@ -1,4 +1,4 @@
--- Ori Notes v2.0.991.423 builders release, 92.html import, modified elements: 4 Lines Edited | 33 Lines Added | 2512 Characters Added | Since v2.0.991.312
+-- Ori Notes v2.0.991.423 builders release, 92.html import, modified elements: 4 Lines Edited | 5 Lines Removed | 33 Lines Added | 2512 Characters Added | Since v2.0.991.312
 --Loadstring version
 --If used remember to credit.
 --//By Ori-Lua Developer team, Branch of Virtualization Developer Team
