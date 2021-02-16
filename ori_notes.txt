@@ -1,4 +1,4 @@
--- Ori Notes v2.0.991.423 builders release, 92.html import, modified elements: 4 Lines Edited | 5 Lines Removed | 33 Lines Added | 2512 Characters Added | Since v2.0.991.312
+-- Ori Notes v2.0.991.534 builders release, 92.html import, modified elements: 1 Line Edited | 2 Lines Removed | 36 Lines Added | 1102 Characters Added | Since v2.0.991.423
 --Loadstring version
 --If used remember to credit.
 --//By Ori-Lua Developer team, Branch of Virtualization Developer Team
@@ -98,6 +98,7 @@ Notification = class("Notification", {
 	fadeTime = 0,
 	fadeInTweens = {},
 	fadeOutTweens = {},
+	fadeOutTime = 0,
 	visible = false,
 })
 
@@ -116,6 +117,9 @@ function Notification:createTweens()
 	table.insert(self.fadeInTweens, ts:Create(self.frame, animInfo, {BackgroundTransparency = 0, Position = UDim2.fromOffset(0, 0)}))
 	table.insert(self.fadeInTweens, ts:Create(self.text, animInfo, {TextTransparency = 0}))
 	table.insert(self.fadeInTweens, ts:Create(self.colorbar, animInfo, {BackgroundTransparency = 0}))
+	
+		--
+	self.fadeOutTime = self.duration + self.fadeTime
 end
 
 function Notification:reset()
@@ -307,6 +311,8 @@ function NotificationHolder:notificate(data)
 		end
 		
 	end)(self, data.duration, notif, notifId)
+	
+	return notif
 end
 
 function NotificationHandler:changeTheme(bgColor, textColor)
@@ -320,11 +326,42 @@ function NotificationHandler:changeTheme(bgColor, textColor)
 end
 
 --[[
-Sample - Without Notificate
-local holder = NotificationHolder(GUI)
-local notif1 = Notification(holder.frame, NotificationRed, "._.XD")
-notif1:setRadius(4)
+-- Create the NotificationHolder for notifications, this is needed
+-- The NotificationHolder (obviously) handles every notifications and creates them
 
-wait(1)
-notif1:fadeOut()
+local holder = NotificationHolder(GUI, {
+	pos = UDim2.new(0, 5, 1, -60), -- pos of the notifs holder
+	anchorPoint = Vector2.new(0, 1), -- anchor point of the notifs holder
+	width = 200, -- width of notifications
+	spacing = 3, -- space between notifs
+	rounded = true, -- if last notification should be rounded
+	bgColor = Color3.fromRGB(47, 47, 47), -- background color of notifs
+	textColor = Color3.fromRGB(255, 255, 255), -- text color of notifs
+})
+
+-- Notificate something
+holder:notificate({
+	text = "Hello world", -- notification text
+	color = Color3.fromRGB(0, 0, 0), -- notification color
+	duration = 3, -- notification duration
+	height = 100, -- notification height (optional)
+})
+
+-- Lets notificate more!
+wait(4)
+
+for i = 1, 5 do
+	-- Create 5 notifications
+	
+	holder:notificate({
+		text = "Notification #" .. i,
+		color = NotificationGreen,
+		duration = 3,
+	})
+	wait(0.1)
+end
+]]
+
+--[[
+You can use NotificationGreen & NotificationRed for your notif color btw
 ]]
