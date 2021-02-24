@@ -1,0 +1,217 @@
+loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
+local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+
+local win = Window("Scythe Simulator", Enum.KeyCode.G)
+local main = win:addTab("Main")
+local esp = win:addTab("ESP")
+local oldie = game:GetService("Workspace").KingHills.King1.CFrame
+local oldie2 = game:GetService("Workspace").KingHills.King2.CFrame
+local oldie3 = game:GetService("Workspace").KingHills.King3.CFrame
+local oldie4 = game:GetService("Workspace").KingHills.King4.CFrame
+
+if Drawing then -- If drawing lib
+local toggle3 = esp:add(Toggle("ESP", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP:Toggle(true)
+notificate({
+	["text"] = "Enabled ESP",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP:Toggle(false)
+notificate({
+	["text"] = "Disabled ESP",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggledad = esp:add(Toggle("Team Color", false))
+
+toggledad.changed:Connect(function()
+    
+  if toggledad.value == true then
+ESP.TeamColor = true
+notificate({
+	["text"] = "Enabled Team Colors",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.TeamColor = false
+notificate({
+	["text"] = "Disabled Team Colors",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle2 = esp:add(Toggle("Tracers", false))
+
+toggle2.changed:Connect(function()
+    
+  if toggle2.value == true then
+ESP.Tracers = true
+notificate({
+	["text"] = "Enabled Tracers",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Tracers = false
+notificate({
+	["text"] = "Disabled Tracers",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggle3 = esp:add(Toggle("Boxes", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP.Boxes = true
+notificate({
+	["text"] = "Enabled Boxes",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Boxes = false
+notificate({
+	["text"] = "Disabled Boxes",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle4 = esp:add(Toggle("Names", false))
+
+toggle4.changed:Connect(function()
+    
+  if toggle4.value == true then
+ESP.Names = true
+notificate({
+	["text"] = "Enabled Names",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Names = false
+notificate({
+	["text"] = "Disabled Names",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+end
+
+local farm = main:add(Toggle("Auto Farm", false))
+
+farm.changed:Connect(function()
+	if farm.value == true then
+autofarm = game:GetService("RunService").RenderStepped:Connect(function()
+local kill = game:GetService("Workspace").EnemyContainer.Noob.Humanoid
+game:GetService("ReplicatedStorage").ScytheEvent:FireServer("DefaultScythe")
+game:GetService("ReplicatedStorage").DamageEvent:FireServer(kill)
+end)
+	else
+	autofarm:Disconnect()
+end
+end)
+
+local bossdeath = main:add(Toggle("Auto Kill Boss", false))
+
+bossdeath.changed:Connect(function()
+	if bossdeath.value == true then
+killboss = game:GetService("RunService").RenderStepped:Connect(function()
+local killboss = game:GetService("Workspace").EnemyContainer.Boss.Humanoid
+game:GetService("ReplicatedStorage").ScytheEvent:FireServer("DefaultScythe")
+game:GetService("ReplicatedStorage").DamageEvent:FireServer(killboss)
+end)
+	else
+killboss:Disconnect()
+end
+end)
+
+local killall = main:add(Toggle("Kill All", false))
+
+killall.changed:Connect(function()
+	if killall.value == true then
+Killall = game:GetService("RunService").RenderStepped:Connect(function()
+      for i,v in pairs(game.Workspace:GetChildren()) do
+            if v:FindFirstChild("Humanoid") then
+                local killem = v["Humanoid"]
+				if workspace[game.Players.LocalPlayer.Name] then
+				else
+game:GetService("ReplicatedStorage").ScytheEvent:FireServer("DefaultScythe")
+game:GetService("ReplicatedStorage").DamageEvent:FireServer(killem)
+            end
+      end
+      end
+      end)
+	else
+	Killall:Disconnect()
+  end
+end)
+
+local aura = main:add(Toggle("God Aura", false))
+
+aura.changed:Connect(function()
+	if aura.value == true then
+hat = game:GetService("RunService").RenderStepped:Connect(function()
+game:GetService("Workspace").KingHills.King1.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+game:GetService("Workspace").KingHills.King2.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+game:GetService("Workspace").KingHills.King4.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+game:GetService("Workspace").KingHills.King3.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end)
+	else
+hat:Disconnect()
+game:GetService("Workspace").KingHills.King1.CFrame = oldie
+game:GetService("Workspace").KingHills.King2.CFrame = oldie2
+game:GetService("Workspace").KingHills.King4.CFrame = oldie3
+game:GetService("Workspace").KingHills.King3.CFrame = oldie4
+end
+end)
+
+local egg = main:add(Toggle("Become Egg", false))
+
+egg.changed:Connect(function()
+	if egg.value == true then
+	eggel = game:GetService("RunService").RenderStepped:Connect(function()
+for i,v in pairs(game:GetService("Workspace").Eggs:GetChildren()) do
+            v["EggModel"].Egg.CFrame = game:GetService("Workspace").santip3000clone.Head.CFrame
+end
+end)
+	else
+eggel:Disconnect()
+	end
+end)
+
+local khillss = main:add(Button("Teleport to king hill"))
+khillss.clicked:Connect(function()
+game:GetService'Players'.LocalPlayer.Character:MoveTo(Vector3.new(23.7337036, 23.5918293, -1859.4502))
+game:GetService("Workspace").GoldArea.Throne:Destroy()
+end)
+
+local Remove = main:add(Button("Remove Strength Visual Indicators"))
+Remove.clicked:Connect(function()
+	game:GetService("Players").LocalPlayer.PlayerGui.StrengthVisual:Destroy()
+end)
+
+win:selectTab("Main")

