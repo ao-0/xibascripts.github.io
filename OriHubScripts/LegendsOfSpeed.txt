@@ -129,7 +129,7 @@ game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer("collectOrb", "
 end
 end)
 	else
-farmie:Disconnect()
+Darmie:Disconnect()
 	end
 end)
 

@@ -197,6 +197,8 @@ loader:registerGame(1938236522, "Scythe Simulator", "https://virtuallization.com
 loader:registerGame(719754874, "Ragdoll Engine", "https://virtuallization.com/OriHubScripts/RagdollEngine.txt")
 loader:registerGame(1198663082, "Pushing Simulator", "https://virtuallization.com/OriHubScripts/PushingSimulator.txt")
 loader:registerGame(2243257031, "Sleeping Simulator", "https://virtuallization.com/OriHubScripts/SleepingSimulator.txt")
+loader:registerGame(1168263273, "Bad Business", "https://virtuallization.com/OriHubScripts/BadBusiness.txt")
+loader:registerGame(1119466531, "Legends Of Speed", "https://virtuallization.com/OriHubScripts/LegendsOfSpeed.txt")
 
 	-- end
 loader:show()
