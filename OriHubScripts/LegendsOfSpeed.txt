@@ -124,8 +124,45 @@ local farm = main:add(Toggle("Auto Farm", false))
 farm.changed:Connect(function()
 	if farm.value == true then
 Darmie = game:GetService("RunService").RenderStepped:Connect(function()
-for i = 1,1000 do
-game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "City");
+for i = 1,500 do
+--Remote
+
+local args = {
+    [1] = "collectOrb",
+    [2] = "Orange Orb",
+    [3] = "City"
+}
+
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+--Remote
+
+local args = {
+    [1] = "collectOrb",
+    [2] = "Red Orb",
+    [3] = "City"
+}
+
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+--Remote
+
+local args = {
+    [1] = "collectOrb",
+    [2] = "Blue Orb",
+    [3] = "City"
+}
+
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+
+--Remote
+
+local args = {
+    [1] = "collectOrb",
+    [2] = "Yellow Orb",
+    [3] = "City"
+}
+
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+
 end
 end)
 	else
@@ -138,7 +175,12 @@ local rebirth = main:add(Toggle("Auto Rebirth", false))
 rebirth.changed:Connect(function()
 	if rebirth.value == true then
 rebirther = game:GetService("RunService").RenderStepped:Connect(function()
-game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer("rebirthRequest");
+
+local args = {
+    [1] = "rebirthRequest"
+}
+
+game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer(unpack(args))
 end)
 	else
 rebirther:Disconnect()
