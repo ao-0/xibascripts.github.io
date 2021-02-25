@@ -126,9 +126,21 @@ local farm = main:add(Toggle("Auto Farm", false))
 farm.changed:Connect(function()
 	if farm.value == true then
 autofarm = game:GetService("RunService").RenderStepped:Connect(function()
-local kill = game:GetService("Workspace").EnemyContainer.Noob.Humanoid
-game:GetService("ReplicatedStorage").ScytheEvent:FireServer("DefaultScythe")
-game:GetService("ReplicatedStorage").DamageEvent:FireServer(kill)
+
+local args = {
+    [1] = workspace.EnemyContainer.Noob.Humanoid
+}
+
+game:GetService("ReplicatedStorage").DamageEvent:FireServer(unpack(args))
+
+--Remote
+
+local args = {
+    [1] = "DefaultScythe"
+}
+
+game:GetService("ReplicatedStorage").ScytheEvent:FireServer(unpack(args))
+
 end)
 	else
 	autofarm:Disconnect()
@@ -152,22 +164,26 @@ end)
 local killall = main:add(Toggle("Kill All", false))
 
 killall.changed:Connect(function()
-	if killall.value == true then
-Killall = game:GetService("RunService").RenderStepped:Connect(function()
-      for i,v in pairs(game.Workspace:GetChildren()) do
-            if v:FindFirstChild("Humanoid") then
-                local killem = v["Humanoid"]
-				if workspace[game.Players.LocalPlayer.Name] then
-				else
-game:GetService("ReplicatedStorage").ScytheEvent:FireServer("DefaultScythe")
-game:GetService("ReplicatedStorage").DamageEvent:FireServer(killem)
+    if killall.value == true then
+        Killall = game:GetService("RunService").RenderStepped:Connect(
+        function()
+            local lp = game:GetService("Players").LocalPlayer
+            
+            for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+                local hum = v.Character and v.Character:FindFirstChild("Humanoid")
+                if hum and v ~= lp then
+                    game:GetService("ReplicatedStorage").ScytheEvent:FireServer("DefaultScythe")
+                    local args = {
+                        [1] = hum
+                    }
+                    
+                    game:GetService("ReplicatedStorage").DamageEvent:FireServer(unpack(args))
+                end
             end
-      end
-      end
-      end)
-	else
-	Killall:Disconnect()
-  end
+        end)
+    else
+        Killall:Disconnect()
+    end
 end)
 
 local aura = main:add(Toggle("God Aura", false))
