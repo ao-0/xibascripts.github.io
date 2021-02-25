@@ -23,7 +23,7 @@ game.ReplicatedStorage.ChangeGameValue:FireServer("Door Error",false)
 	end
 end)
 
-local testilini = main:add(Toggle("Add All Errors", false))
+local testilini = main:add(Toggle("Test Mode", false))
 testilini.changed:Connect(function()
 	if testilini.value == true then
 game.ReplicatedStorage.ChangeGameValue:FireServer("TestMode",true)
