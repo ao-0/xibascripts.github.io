@@ -195,7 +195,7 @@ egg.changed:Connect(function()
 	if egg.value == true then
 	eggel = game:GetService("RunService").RenderStepped:Connect(function()
 for i,v in pairs(game:GetService("Workspace").Eggs:GetChildren()) do
-            v["EggModel"].Egg.CFrame = game:GetService("Workspace").santip3000clone.Head.CFrame
+            v["EggModel"].Egg.CFrame = game:GetService("Workspace")[game:GetService("Players").LocalPlayer.Name].Head.CFrame
 end
 end)
 	else
