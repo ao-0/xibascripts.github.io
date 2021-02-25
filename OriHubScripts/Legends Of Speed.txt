@@ -1,0 +1,163 @@
+loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
+
+local win = Window("Legends of Speed", Enum.KeyCode.G)
+local main = win:addTab("Farming")
+
+if Drawing then -- If drawing lib
+local esp = win:addTab("ESP")
+
+    local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+
+local toggle3 = esp:add(Toggle("ESP", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP:Toggle(true)
+notificate({
+	["text"] = "Enabled ESP",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP:Toggle(false)
+notificate({
+	["text"] = "Disabled ESP",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggledad = esp:add(Toggle("Team Color", false))
+
+toggledad.changed:Connect(function()
+    
+  if toggledad.value == true then
+ESP.TeamColor = true
+notificate({
+	["text"] = "Enabled Team Colors",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.TeamColor = false
+notificate({
+	["text"] = "Disabled Team Colors",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle2 = esp:add(Toggle("Tracers", false))
+
+toggle2.changed:Connect(function()
+    
+  if toggle2.value == true then
+ESP.Tracers = true
+notificate({
+	["text"] = "Enabled Tracers",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Tracers = false
+notificate({
+	["text"] = "Disabled Tracers",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggle3 = esp:add(Toggle("Boxes", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP.Boxes = true
+notificate({
+	["text"] = "Enabled Boxes",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Boxes = false
+notificate({
+	["text"] = "Disabled Boxes",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle4 = esp:add(Toggle("Names", false))
+
+toggle4.changed:Connect(function()
+    
+  if toggle4.value == true then
+ESP.Names = true
+notificate({
+	["text"] = "Enabled Names",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Names = false
+notificate({
+	["text"] = "Disabled Names",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+end
+
+local farm = main:add(Toggle("Auto Farm", false))
+
+farm.changed:Connect(function()
+	if farm.value == true then
+Darmie = game:GetService("RunService").RenderStepped:Connect(function()
+for i = 1,1000 do
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "City");
+end
+end)
+	else
+farmie:Disconnect()
+	end
+end)
+
+local rebirth = main:add(Toggle("Auto Rebirth", false))
+
+rebirth.changed:Connect(function()
+	if rebirth.value == true then
+rebirther = game:GetService("RunService").RenderStepped:Connect(function()
+game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer("rebirthRequest");
+end)
+	else
+rebirther:Disconnect()
+end
+end)
+
+local gems = main:add(Toggle("Gem Farm", false))
+
+gems.changed:Connect(function()
+	if gems.value == true then
+gemso = game:GetService("RunService").RenderStepped:Connect(function()
+for i = 1,100 do
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer("collectOrb", "Gem", "City");
+end
+end)
+
+	else
+gemso:Disconnect()
+	end
+end)
+
+win:selectTab("Farming")
