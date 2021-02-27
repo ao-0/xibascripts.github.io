@@ -18,6 +18,18 @@ end
 return temp_bombs[math.random(1,#temp_bombs)]
 end
 
+local function getPushRemote()
+    for i, v in ipairs(game:GetService("Players"):GetPlayers()) do
+        local tool = v.Character and (v.Character:FindFirstChild("Push")) or v.Backpack:FindFirstChild("Push")
+        
+        if tool then
+            return tool.PushEvent
+        end
+    end
+end
+
+local function push(force)local r = getPushRemote(); for i = 1, force do r:FireServer();end;end;
+
 function BombAll()
 pcall(function()
 local ori = BombCreate()
@@ -205,34 +217,16 @@ notificate({
 	["color"] = NotificationGreen,
 	["duration"] = 1,
 })
-_G.forcefield = true
-
-while _G.forcefield do
-wait()
-local lp = game:GetService("Players").LocalPlayer
-local char = lp.Character
-
-local tool = char:FindFirstChild("Push") or lp.Backpack:FindFirstChild("Push")
-local remote = tool:FindFirstChild("PushEvent")
-    remote:FireServer()
-end
+forcefieldloop = game:GetService("RunService").RenderStepped:Connect(function()
+push(3)()
+end)
   else
 notificate({
 	["text"] = "Disabled Force Field",
 	["color"] = NotificationError,
 	["duration"] = 1,
 })
-_G.forcefield = false
-
-while _G.forcefield do
-wait()
-local lp = game:GetService("Players").LocalPlayer
-local char = lp.Character
-
-local tool = char:FindFirstChild("Push") or lp.Backpack:FindFirstChild("Push")
-local remote = tool:FindFirstChild("PushEvent")
-    remote:FireServer()
-end
+forcefieldloop:Disconnect()
   end
 end)
 
@@ -308,24 +302,12 @@ end)
 
 local megapush = main:add(BindValue("Mega Push", Enum.KeyCode.R))
 megapush.pressed:Connect(function()
-for i=1,54 do
-local lp = game:GetService("Players").LocalPlayer
-local char = lp.Character
-
-local tool = char:FindFirstChild("Push") or lp.Backpack:FindFirstChild("Push")
-local remote = tool:FindFirstChild("PushEvent")
-    remote:FireServer()
-end
+push(54)
 end)
 
 local push = main:add(BindValue("Push", Enum.KeyCode.E))
 push.pressed:Connect(function()
-local lp = game:GetService("Players").LocalPlayer
-local char = lp.Character
-
-local tool = char:FindFirstChild("Push") or lp.Backpack:FindFirstChild("Push")
-local remote = tool:FindFirstChild("PushEvent")
-    remote:FireServer()
+push(1)
 end)
 
 local bomball = fun:add(Button("Bomb All"))
