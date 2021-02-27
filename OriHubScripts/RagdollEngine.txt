@@ -218,7 +218,7 @@ notificate({
 	["duration"] = 1,
 })
 forcefieldloop = game:GetService("RunService").RenderStepped:Connect(function()
-push(3)()
+push(1)()
 end)
   else
 notificate({
