@@ -303,8 +303,8 @@ megapush.pressed:Connect(function()
 push(54)
 end)
 
-local push = main:add(BindValue("Push", Enum.KeyCode.E))
-push.pressed:Connect(function()
+local pushie = main:add(BindValue("Push", Enum.KeyCode.E))
+pushie.pressed:Connect(function()
 push(1)
 end)
 
