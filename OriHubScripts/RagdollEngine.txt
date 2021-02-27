@@ -45,15 +45,13 @@ local ori = BombCreate()
 end)
 end
 
-
 function InvisibleRemote()
-temp_bombs = {}
-for i,v in pairs(game:GetService('Players'):GetPlayers()) do
-    if v:FindFirstChild('Backpack') and v.Backpack:FindFirstChild('OddPotion') then
-        table.insert(temp_bombs,v.Backpack.OddPotion.TransEvent)
+    for i, v in ipairs(game:GetService('Players'):GetPlayers()) do
+        local tool = v.Backpack:FindFirstChild('OddPotion') or v.Character:FindFirstChild("OddPotion")
+        if tool then
+            return tool.TransEvent
+        end
     end
-end
-return temp_bombs[math.random(1,#temp_bombs)]
 end
 
 
