@@ -1,0 +1,206 @@
+loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
+
+ local win = Window("Vehicle Simulator", Enum.KeyCode.G)
+ local main = win:addTab("Main")
+
+if Drawing then -- If drawing lib
+local esp = win:addTab("ESP")
+
+    local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+
+local toggle3 = esp:add(Toggle("ESP", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP:Toggle(true)
+notificate({
+	["text"] = "Enabled ESP",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP:Toggle(false)
+notificate({
+	["text"] = "Disabled ESP",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggledad = esp:add(Toggle("Team Color", false))
+
+toggledad.changed:Connect(function()
+    
+  if toggledad.value == true then
+ESP.TeamColor = true
+notificate({
+	["text"] = "Enabled Team Colors",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.TeamColor = false
+notificate({
+	["text"] = "Disabled Team Colors",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle2 = esp:add(Toggle("Tracers", false))
+
+toggle2.changed:Connect(function()
+    
+  if toggle2.value == true then
+ESP.Tracers = true
+notificate({
+	["text"] = "Enabled Tracers",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Tracers = false
+notificate({
+	["text"] = "Disabled Tracers",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggle3 = esp:add(Toggle("Boxes", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP.Boxes = true
+notificate({
+	["text"] = "Enabled Boxes",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Boxes = false
+notificate({
+	["text"] = "Disabled Boxes",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle4 = esp:add(Toggle("Names", false))
+
+toggle4.changed:Connect(function()
+    
+  if toggle4.value == true then
+ESP.Names = true
+notificate({
+	["text"] = "Enabled Names",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Names = false
+notificate({
+	["text"] = "Disabled Names",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+end
+
+local carspeedddyesss = main:add(NumberValue("Car Speed", 0))
+carspeedddyesss.changed:Connect(function()
+for i=1,#workspace.Vehicles:GetChildren() do
+	if workspace.Vehicles:GetChildren()[i]:findFirstChild("owner") then
+		if workspace.Vehicles:GetChildren()[i].owner.Value == game.Players.LocalPlayer.Name then
+			myCar = workspace.Vehicles:GetChildren()[i]
+		end
+	end
+end
+myCar.Handling.MaxSpeed.Value = carspeedddyesss.value
+end)
+
+local cartorqueeeeyesss = main:add(NumberValue("Car Torque", 0))
+cartorqueeeeyesss.changed:Connect(function()
+for i=1,#workspace.Vehicles:GetChildren() do
+	if workspace.Vehicles:GetChildren()[i]:findFirstChild("owner") then
+		if workspace.Vehicles:GetChildren()[i].owner.Value == game.Players.LocalPlayer.Name then
+			myCar = workspace.Vehicles:GetChildren()[i]
+		end
+	end
+end
+myCar.Handling.Torque.Value = cartorqueeeeyesss.value
+end)
+
+local carSteeringyesss = main:add(NumberValue("Car Steering", 0))
+carSteeringyesss.changed:Connect(function()
+for i=1,#workspace.Vehicles:GetChildren() do
+	if workspace.Vehicles:GetChildren()[i]:findFirstChild("owner") then
+		if workspace.Vehicles:GetChildren()[i].owner.Value == game.Players.LocalPlayer.Name then
+			myCar = workspace.Vehicles:GetChildren()[i]
+		end
+	end
+end
+myCar.Handling.SteeringRadiusConstant.Value = carSteeringyesss.value
+end)
+
+local carfriccyfrictionyesss = main:add(NumberValue("Car Friction", 0))
+carfriccyfrictionyesss.changed:Connect(function()
+for i=1,#workspace.Vehicles:GetChildren() do
+	if workspace.Vehicles:GetChildren()[i]:findFirstChild("owner") then
+		if workspace.Vehicles:GetChildren()[i].owner.Value == game.Players.LocalPlayer.Name then
+			myCar = workspace.Vehicles:GetChildren()[i]
+		end
+	end
+end
+myCar.Handling.FrictionRoad.Value = carfriccyfrictionyesss.value
+end)
+
+local nitrospeedddd = main:add(NumberValue("Car Nitro Speed", 0))
+nitrospeedddd.changed:Connect(function()
+for i=1,#workspace.Vehicles:GetChildren() do
+	if workspace.Vehicles:GetChildren()[i]:findFirstChild("owner") then
+		if workspace.Vehicles:GetChildren()[i].owner.Value == game.Players.LocalPlayer.Name then
+			myCar = workspace.Vehicles:GetChildren()[i]
+		end
+	end
+end
+myCar.Handling.Nitro.NitroSpeed.Value = nitrospeedddd.value
+end)
+
+local nitroforceee = main:add(NumberValue("Car Nitro Force", 0))
+nitroforceee.changed:Connect(function()
+for i=1,#workspace.Vehicles:GetChildren() do
+	if workspace.Vehicles:GetChildren()[i]:findFirstChild("owner") then
+		if workspace.Vehicles:GetChildren()[i].owner.Value == game.Players.LocalPlayer.Name then
+			myCar = workspace.Vehicles:GetChildren()[i]
+		end
+	end
+end
+myCar.Handling.Nitro.NitroForce.Value = nitroforceee.value
+end)
+
+local turbojumpheightt = main:add(NumberValue("Car Turbo Jump Height", 0))
+turbojumpheightt.changed:Connect(function()
+for i=1,#workspace.Vehicles:GetChildren() do
+	if workspace.Vehicles:GetChildren()[i]:findFirstChild("owner") then
+		if workspace.Vehicles:GetChildren()[i].owner.Value == game.Players.LocalPlayer.Name then
+			myCar = workspace.Vehicles:GetChildren()[i]
+		end
+	end
+end
+myCar.Handling.TurboJump.TurboJumpHeight.Value = turbojumpheightt.value
+end)
+
+win:selectTab("Main")

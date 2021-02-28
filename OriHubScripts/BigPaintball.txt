@@ -1,0 +1,164 @@
+loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
+
+ local win = Window("Big Paintball", Enum.KeyCode.F)
+ local main = win:addTab("Main")
+if Drawing then -- If drawing lib
+local esp = win:addTab("ESP")
+
+    local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+
+local toggle3 = esp:add(Toggle("ESP", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP:Toggle(true)
+notificate({
+	["text"] = "Enabled ESP",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP:Toggle(false)
+notificate({
+	["text"] = "Disabled ESP",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggledad = esp:add(Toggle("Team Color", false))
+
+toggledad.changed:Connect(function()
+    
+  if toggledad.value == true then
+ESP.TeamColor = true
+notificate({
+	["text"] = "Enabled Team Colors",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.TeamColor = false
+notificate({
+	["text"] = "Disabled Team Colors",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle2 = esp:add(Toggle("Tracers", false))
+
+toggle2.changed:Connect(function()
+    
+  if toggle2.value == true then
+ESP.Tracers = true
+notificate({
+	["text"] = "Enabled Tracers",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Tracers = false
+notificate({
+	["text"] = "Disabled Tracers",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+
+local toggle3 = esp:add(Toggle("Boxes", false))
+
+toggle3.changed:Connect(function()
+    
+  if toggle3.value == true then
+ESP.Boxes = true
+notificate({
+	["text"] = "Enabled Boxes",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Boxes = false
+notificate({
+	["text"] = "Disabled Boxes",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+
+local toggle4 = esp:add(Toggle("Names", false))
+
+toggle4.changed:Connect(function()
+    
+  if toggle4.value == true then
+ESP.Names = true
+notificate({
+	["text"] = "Enabled Names",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+  else
+ESP.Names = false
+notificate({
+	["text"] = "Disabled Names",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+  end
+end)
+end
+
+local button = main:add(Button("Unlock All Weapons"))
+
+button.clicked:Connect(function() --Modified, improvised
+    local n = require(game.ReplicatedStorage:WaitForChild("Framework"):WaitForChild("Library"))
+    n.GunCmds.DoesOwnGun = function()
+        return true
+    end
+    local m = getrawmetatable(game)
+    local runservice = game:GetService("RunService")
+    local uis = game:GetService("UserInputService")
+    setreadonly(m, false)
+    local on = false
+    local namecall = m.__namecall
+    local function namecallfunction(self, ...)
+        local args = {...}
+        if getnamecallmethod() == "FireServer" then
+            if tostring(self) == "request respawn" then
+                if args[1] then
+                    if args[1][1] then
+                        args[1][1][1] = "1"
+                    end
+                end
+            end
+        end
+        return namecall(self, unpack(args))
+    end
+    m.__namecall = namecallfunction
+    setreadonly(m, true)
+end)
+
+
+local bindValue = main:add(BindValue("Mod Gun", Enum.KeyCode.E))
+
+bindValue.pressed:Connect(function()
+for i,v in pairs(game:GetService("ReplicatedStorage").Framework.Modules["1 | Directory"].Guns:GetChildren()) do
+pcall(function()
+require(v)[tostring(i)].firerate = -math.huge
+require(v)[tostring(i)].additionalSpeed = 10
+require(v)[tostring(i)].automatic = true
+end)
+end
+end)
+
+win:selectTab("Main")

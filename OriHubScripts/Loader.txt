@@ -195,6 +195,14 @@ loader:registerGame(1198663082, "Pushing Simulator", "https://virtuallization.co
 loader:registerGame(2243257031, "Sleeping Simulator", "https://virtuallization.com/OriHubScripts/SleepingSimulator.txt")
 loader:registerGame(1168263273, "Bad Business", "https://virtuallization.com/OriHubScripts/BadBusiness.txt")
 loader:registerGame(1119466531, "Legends Of Speed", "https://virtuallization.com/OriHubScripts/LegendsOfSpeed.txt")
+loader:registerGame(81762198, "Vehicle Simulator", "https://virtuallization.com/OriHubScripts/VehicleSimulator.txt")
+loader:registerGame(1883423040, "LGBTQ+ Hangout", "https://virtuallization.com/OriHubScripts/LGBTQHangout.txt")
+loader:registerGame(1119466531, "RPG World", "https://virtuallization.com/OriHubScripts/RPGWorld.txt")
+loader:registerGame(252473722, "Craft Wars Retro", "https://virtuallization.com/OriHubScripts/CraftWarsRetro.txt")
+loader:registerGame(10533488, "Craft Wars", "https://virtuallization.com/OriHubScripts/CraftWars.txt")
+loader:registerGame(1247975681, "Big Paintball", "https://virtuallization.com/OriHubScripts/BigPaintball.txt")
+loader:registerGame(1895958909, "Science Simulator", "https://virtuallization.com/OriHubScripts/ScienceSimulator.txt")
+
 
 	-- end
 loader:show()
