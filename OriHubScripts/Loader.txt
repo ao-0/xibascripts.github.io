@@ -1,7 +1,3 @@
---
--- The loader for Ori Hub
---
-
 	-- Create UI
 local loader = {
 	GUI = Instance.new("ScreenGui"),
@@ -207,5 +203,16 @@ wait(3)
 loader:hide()
 
 if detectedGame then
+-- Detect if exploit has proper Drawing lib
+	if not ({pcall(function()
+			local Elements = {"Line", "Text", "Image", "Circle", "Square", "Quad", "Triangle"}
+			for i, v in ipairs(Elements) do
+				Drawing.new(v):Remove()
+			end
+		end)})[1] then
+		
+		Drawing = nil
+	end
+--
 	loadstring(game:HttpGet(detectedGame.loadstring))()
 end
