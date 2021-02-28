@@ -1,18 +1,19 @@
 loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
-local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
-ESP.Names = false
-ESP.Boxes = false
-ESP.Tracers = false
 
 local win = Window("Scythe Simulator", Enum.KeyCode.G)
 local main = win:addTab("Main")
-local esp = win:addTab("ESP")
 local oldie = game:GetService("Workspace").KingHills.King1.CFrame
 local oldie2 = game:GetService("Workspace").KingHills.King2.CFrame
 local oldie3 = game:GetService("Workspace").KingHills.King3.CFrame
 local oldie4 = game:GetService("Workspace").KingHills.King4.CFrame
 
 if Drawing then -- If drawing lib
+local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+local esp = win:addTab("ESP")
+
 local toggle3 = esp:add(Toggle("ESP", false))
 
 toggle3.changed:Connect(function()
