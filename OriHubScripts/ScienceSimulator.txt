@@ -122,7 +122,10 @@ local farm = main:add(Toggle("Auto Click", false))
 farm.changed:Connect(function()
 	if farm.value == true then
 farmerss = game:GetService("RunService").RenderStepped:Connect(function()
-game:GetService("ReplicatedStorage")["rbxts_include"]["node_modules"].net.NetManagedInstances["acbe8f16-4b45-493e-8626-e401eba6e95b"]:FireServer()
+--Remote
+
+game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged["19d7b766-eacf-4c22-a734-8c9e317b42f5"]:FireServer()
+
 end)
 	else
 farmerss:Disconnect()
