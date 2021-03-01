@@ -303,6 +303,11 @@ megapush.pressed:Connect(function()
 push(54)
 end)
 
+local isanitypush = main:add(BindValue("Insane Push", Enum.KeyCode.Y))
+isanitypush.pressed:Connect(function()
+push(540)
+end)
+
 local pushie = main:add(BindValue("Push", Enum.KeyCode.E))
 pushie.pressed:Connect(function()
 push(1)
