@@ -175,6 +175,19 @@ local remote = tool:FindFirstChild("PushEvent")
 end
 end)
 
+
+local insanopushio = main:add(BindValue("Insane Push", Enum.KeyCode.T))
+insanopushio.pressed:Connect(function()
+for i=1,540 do
+local lp = game:GetService("Players").LocalPlayer
+local char = lp.Character
+
+local tool = char:FindFirstChild("Push") or lp.Backpack:FindFirstChild("Push")
+local remote = tool:FindFirstChild("PushEvent")
+    remote:FireServer()
+end
+end)
+
 local toggle3 = main:add(BindValue("Push", Enum.KeyCode.E))
 toggle3.pressed:Connect(function()
 local lp = game:GetService("Players").LocalPlayer
