@@ -204,6 +204,16 @@ end)
 end
 
 
+local speedas = main:add(NumberValue("Walk Speed", 0))
+speedas.changed:Connect(function()
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speedas.value
+end)
+
+local jumpowerions = main:add(NumberValue("Jump Power", 0))
+jumpowerions.changed:Connect(function()
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = jumpowerions.value
+end)
+
 
 local toggle = main:add(Toggle("Force Field", false))
 
@@ -389,6 +399,51 @@ end)
 local edge = tps:add(Button("Edge"))
 edge.clicked:Connect(function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(613, 3, 1004)
+end)
+
+local kyss = fun:add(Button("Commit Suicide"))
+kyss.clicked:Connect(function()
+--Remote
+
+local args = {
+    [1] = false
+}
+
+game:GetService("ReplicatedStorage").Events.RagdollState:FireServer(unpack(args))
+
+game:GetService'Players'.LocalPlayer.Character:MoveTo(Vector3.new(109.18293, 1015.20001, -20.5298214))
+--Remote
+
+local args = {
+    [1] = "IM DONE",
+    [2] = "All"
+}
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+
+local New_CFrame = CFrame.new(104.966644, 1021.66974, -19.595808)
+
+local ts = game:GetService("TweenService")
+
+local char = game.Players.LocalPlayer.Character
+
+local part = char.HumanoidRootPart
+local ti = TweenInfo.new(0.1, Enum.EasingStyle.Linear)
+local tp = {CFrame = New_CFrame}
+wait(4)
+        --Remote
+
+local args = {
+    [1] = true
+}
+
+game:GetService("ReplicatedStorage").Events.RagdollState:FireServer(unpack(args))
+
+        ts:Create(part, ti, tp):Play()
+wait(0.1)
+wait(3.2)
+        game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
+
 end)
 
 win:selectTab("Main")
