@@ -202,6 +202,7 @@ loader:registerGame(252473722, "Craft Wars Retro", "https://virtuallization.com/
 loader:registerGame(10533488, "Craft Wars", "https://virtuallization.com/OriHubScripts/CraftWars.txt")
 loader:registerGame(1247975681, "Big Paintball", "https://virtuallization.com/OriHubScripts/BigPaintball.txt")
 loader:registerGame(1895958909, "Science Simulator", "https://virtuallization.com/OriHubScripts/ScienceSimulator.txt")
+loader:registerGame(66654135, "Murder Mystery 2", "https://virtuallization.com/OriHubScripts/MurderMystery.txt")
 
 
 	-- end
