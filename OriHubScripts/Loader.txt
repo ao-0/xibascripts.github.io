@@ -1,5 +1,3 @@
-_G.Debug = false
-
 if _G.Debug == true then
 _G.orJXyQYJKvSmOuJlbASz = true
 rconsolename("Ori Hub Debugger")
