@@ -1,3 +1,19 @@
+_G.Debug = false
+
+if _G.Debug == true then
+_G.orJXyQYJKvSmOuJlbASz = true
+rconsolename("Ori Hub Debugger")
+rconsolewarn("Welcome!")
+wait(1)
+rconsolewarn("Checking For Ori Hub...")
+if _G.orJXyQYJKvSmOuJlbASz == true then
+    rconsolewarn("Ori Hub has Already been executed.")
+    else
+        loadstring(game:HttpGet('https://virtuallization.com/OriHubMain.txt'))()
+        rconsolewarn("Ori Hub has been executed")
+end	
+end
+	
 	-- Create UI
 local loader = {
 	GUI = Instance.new("ScreenGui"),
