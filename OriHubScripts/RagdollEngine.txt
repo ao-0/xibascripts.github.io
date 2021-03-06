@@ -307,7 +307,7 @@ notificate({
 })
 local remote = InvisibleRemote()
             local v1 = game.Players.LocalPlayer.Character.Head
-            local v2 = 1
+            local v2 = 0.999
             remote:FireServer(v1, v2)
   else
 notificate({
