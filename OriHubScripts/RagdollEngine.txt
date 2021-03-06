@@ -295,6 +295,32 @@ local remote = InvisibleRemote()
 end
 end)
 
+local headlesssss = invis:add(Toggle("Headless", false))
+
+headlesssss.changed:Connect(function()
+    
+  if headlesssss.value == true then
+notificate({
+	["text"] = "Enabled Headless",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+local remote = InvisibleRemote()
+            local v1 = game.Players.LocalPlayer.Character.Head
+            local v2 = 1
+            remote:FireServer(v1, v2)
+  else
+notificate({
+	["text"] = "Disabled Headless",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+local remote = InvisibleRemote()
+            local v1 = game.Players.LocalPlayer.Character.Head
+            local v2 = 0
+            remote:FireServer(v1, v2)
+end
+end)
 
 local meltappartlmaop = invis:add(Toggle("Slowly Melt", false))
 
