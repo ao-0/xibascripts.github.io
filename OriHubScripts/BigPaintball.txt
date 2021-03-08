@@ -152,13 +152,7 @@ end)
 local bindValue = main:add(BindValue("Mod Gun", Enum.KeyCode.E))
 
 bindValue.pressed:Connect(function()
-for i,v in pairs(game:GetService("ReplicatedStorage").Framework.Modules["1 | Directory"].Guns:GetChildren()) do
-pcall(function()
-require(v)[tostring(i)].firerate = -math.huge
-require(v)[tostring(i)].additionalSpeed = 10
-require(v)[tostring(i)].automatic = true
-end)
-end
+print("gun modded 😎😎😎") --made the joke more clear
 end)
 
 win:selectTab("Main")
