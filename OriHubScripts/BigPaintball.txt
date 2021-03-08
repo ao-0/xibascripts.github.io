@@ -152,6 +152,8 @@ end)
 local bindValue = main:add(BindValue("Mod Gun", Enum.KeyCode.E))
 
 bindValue.pressed:Connect(function()
+print("Modded Gun 😎😎😎") --New Joke
+--[[
 for i,v in pairs(game:GetService("ReplicatedStorage").Framework.Modules["1 | Directory"].Guns:GetChildren()) do
 pcall(function()
 require(v)[tostring(i)].firerate = -math.huge
@@ -165,6 +167,7 @@ require(v)[tostring(i)].InstantDeath10times = math.huge
 require(v)[tostring(i)].NukeGameOnFired = true
 end)
 end
+]] --Original Joke
 end)
 
 win:selectTab("Main")
