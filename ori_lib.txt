@@ -115,7 +115,6 @@ NotificationGold = Color3.fromRGB(184, 151, 46)
 NotificationWhite = Color3.fromRGB(255, 255, 255)
 NotificationBlack = Color3.fromRGB(0, 0, 0)
 
-
 Notification = class("Notification", {
 	parent = nil, -- : UIInstance
 
@@ -651,7 +650,7 @@ function Window:init(title, key)
 		Size = UDim2.fromOffset(375, 0),
 		Position = UDim2.fromScale(0.5, 0.5),
 		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = Color3.fromRGB(31, 31, 31),
+		BackgroundColor3 = Color3.fromRGB(50, 50, 50),
 		ClipsDescendants = true,
 	})
 	-- Add corner
@@ -665,7 +664,7 @@ function Window:init(title, key)
 		BackgroundTransparency = 1,
 		Size = UDim2.new(0, 370, 0, 25),
 		Font = Enum.Font.Code,
-		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextColor3 = Color3.fromRGB(190, 190, 190),
 		TextSize = 14,
 		TextXAlignment = Enum.TextXAlignment.Left,
 	})
@@ -677,7 +676,7 @@ function Window:init(title, key)
 
 	-- Tabs
 	self.TabsBG = new("ScrollingFrame",  self.BG, {
-		BackgroundColor3 = Color3.fromRGB(43, 43, 43),
+		BackgroundColor3 = Color3.fromRGB(85, 85, 85),
 		Position = UDim2.fromOffset(6, 24),
 		CanvasSize = UDim2.new(0, 5, 0, 0),
 		ScrollingDirection = Enum.ScrollingDirection.X,
@@ -705,7 +704,7 @@ function Window:init(title, key)
 
 	-- Window
 	self.Window = new("Frame", self.BG, {
-		BackgroundColor3 = Color3.fromRGB(43, 43, 43),
+		BackgroundColor3 = Color3.fromRGB(85, 85, 85),
 		Position = UDim2.fromOffset(6, 56),
 		Size = UDim2.new(0, 363, 0, 286), -- HARDCODED VALUES BRUHHH
 	})
@@ -745,7 +744,7 @@ end
 function Button:init(text)
 	-- Create button
 	self.button = new("TextButton", nil, {
-		BackgroundColor3 = Color3.fromRGB(54, 53, 53),
+		BackgroundColor3 = Color3.fromRGB(61, 61, 61),
 		TextColor3 = Color3.fromRGB(255, 255, 255),
 		BorderSizePixel = 0,
 		Size = UDim2.new(1, 0, 0, 32),
@@ -794,12 +793,12 @@ function Toggle:createTweens()
 	local animInfo = TweenInfo.new(0.2, Enum.EasingStyle.Sine)
 
 	self.onAnim = ts:Create(self.button, animInfo, {
-		BackgroundColor3 = Color3.fromRGB(49, 177, 49),
+		BackgroundColor3 = Color3.fromRGB(40, 150, 40),
 		Rotation = 180,
 	})
 
 	self.offAnim = ts:Create(self.button, animInfo, {
-		BackgroundColor3 = Color3.fromRGB(223, 69, 69),
+		BackgroundColor3 = Color3.fromRGB(150, 20, 20),
 		Rotation = 0,
 	})
 end
@@ -814,10 +813,10 @@ function Toggle:set(value, instant, dontFire)
 
 	if instant then
 		if self.value then
-			self.button.BackgroundColor3 = Color3.fromRGB(49, 177, 49)
+			self.button.BackgroundColor3 = Color3.fromRGB(40, 150, 40)
 			self.button.Rotation = 180
 		else
-			self.button.BackgroundColor3 = Color3.fromRGB(223, 69, 69)
+			self.button.BackgroundColor3 = Color3.fromRGB(150, 20, 20)
 			self.button.Rotation = 0
 		end
 	else
