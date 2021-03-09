@@ -212,6 +212,8 @@ loader:registerGame(1895958909, "Science Simulator", "https://virtuallization.co
 loader:registerGame(66654135, "Murder Mystery 2", "https://virtuallization.com/OriHubScripts/MurderMystery.txt")
 loader:registerGame(185639929, "Glue Piece", "https://virtuallization.com/OriHubScripts/GluePiece.txt")
 loader:registerGame(1701623492, "Tower of Misery", "https://virtuallization.com/OriHubScripts/TowerofMisery.txt")
+loader:registerGame(2293506912, "Happy Runner", "https://virtuallization.com/OriHubScripts/HappyRunner.txt")
+loader:registerGame(2203488982, "Rage Runner", "https://virtuallization.com/OriHubScripts/RageRunner.txt")
 
 
 	-- end
