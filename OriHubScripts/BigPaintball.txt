@@ -163,4 +163,13 @@ for i,v in pairs(getgc(true)) do
 end
 end)
 
+local speedas = main:add(NumberValue("Walk Speed", 0))
+speedas.changed:Connect(function()
+for i,v in pairs(getgc(true)) do 
+    if type(v) == 'table' and rawget(v, 'additionalSpeed') then
+        v.additionalSpeed = speedas.value
+    end
+end
+end)
+
 win:selectTab("Main")
