@@ -1,8 +1,4 @@
-if _G.Dark == true then
-loadstring(game:HttpGet('https://virtuallization.com/ori_lib_dark.txt'))()
-else
 loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
-end
 
  local win = Window("LGBTQ+ Hangout", Enum.KeyCode.F)
  local main = win:addTab("Main")
