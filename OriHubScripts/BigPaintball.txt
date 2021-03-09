@@ -152,22 +152,15 @@ end)
 local bindValue = main:add(BindValue("Mod Gun", Enum.KeyCode.E))
 
 bindValue.pressed:Connect(function()
-print("Modded Gun 😎😎😎") --New Joke
---[[
-for i,v in pairs(game:GetService("ReplicatedStorage").Framework.Modules["1 | Directory"].Guns:GetChildren()) do
-pcall(function()
-require(v)[tostring(i)].firerate = -math.huge
-require(v)[tostring(i)].additionalSpeed = 10
-require(v)[tostring(i)].automatic = true
-require(v)[tostring(i)].xibaiscute = true
-require(v)[tostring(i)].BulletSize = math.huge
-require(v)[tostring(i)].PrisonLifeGunMod = true
-require(v)[tostring(i)].isthisajoke = true
-require(v)[tostring(i)].InstantDeath10times = math.huge
-require(v)[tostring(i)].NukeGameOnFired = true
-end)
+print("Modded Gun 😎😎😎")
+for i,v in pairs(getgc(true)) do 
+    if type(v) == 'table' and rawget(v, 'velocity', 'damage', 'shotrate') then
+        v.automatic = true
+        v.velocity = 1000000000000
+        v.damage = 1000000000000
+        v.shotrate = -math.huge
+    end
 end
-]] --Original Joke
 end)
 
 win:selectTab("Main")
