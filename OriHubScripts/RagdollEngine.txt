@@ -476,11 +476,13 @@ local maptransparency = invis:add(NumberValue("Map Transparency", 0))
 maptransparency.changed:Connect(function()
 local remote = InvisibleRemote()
 for i,v in pairs(game.Workspace:GetDescendants()) do
+if v.Name ~= 'HumanoidRootPart' then
     if v:IsA('Part') or v:IsA('BasePart') then
         local v1 = v
         local v2 = maptransparency.value
         remote:FireServer(v1, v2)
     end
+end
 end
 end)
 
@@ -529,9 +531,11 @@ for i,v in pairs(game:GetService("Workspace").NewerMap.Obstacles.Minefield.Mines
             v.CanCollide = false
             local minesolderpos = v.CFrame
             v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            v.Transparency = 1
             wait()
              v.CFrame = minesolderpos
              v.CanCollide = true
+             v.Transparency = 0
         end
          end
 end)
@@ -551,11 +555,13 @@ local visiblew = invis:add(Button("Make Map Visible"))
 visiblew.clicked:Connect(function()
 local remote = InvisibleRemote()
 for i,v in pairs(game.Workspace:GetDescendants()) do
+if v.Name ~= 'HumanoidRootPart' then
     if v:IsA('Part') or v:IsA('BasePart') then
         local v1 = v
         local v2 = 0
         remote:FireServer(v1, v2)
     end
+end
 end
 end)
 
