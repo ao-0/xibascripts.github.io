@@ -522,6 +522,20 @@ fling.clicked:Connect(function()
 FlingAll()
 end)
 
+local triggerminess = fun:add(Button("Trigger Mines"))
+triggerminess.clicked:Connect(function()
+for i,v in pairs(game:GetService("Workspace").NewerMap.Obstacles.Minefield.Mines:GetDescendants()) do
+        if v.Name == 'Hitbox' then
+            v.CanCollide = false
+            local minesolderpos = v.CFrame
+            v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            wait()
+             v.CFrame = minesolderpos
+             v.CanCollide = true
+        end
+         end
+end)
+
 local crash = fun:add(Button("Lag Server"))
 crash.clicked:Connect(function()
 notificate({
