@@ -659,6 +659,7 @@ duiashdyuasduiasd.changed:Connect(function()
 for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 if v.Character:FindFirstChild("RightUpperArm") and v.Character:FindFirstChild("RightLowerArm") or v.Character:FindFirstChild("RightHand") then
                 local hum = v.Character
+                local remote = InvisibleRemote()
             local v1 = hum.RightUpperArm
             local v2 = duiashdyuasduiasd.value
             remote:FireServer(v1, v2)
