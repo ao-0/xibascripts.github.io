@@ -6,6 +6,9 @@ local main = win:addTab("Main")
 local invis = win:addTab("Invis")
 local fun = win:addTab("Fun")
 local tps = win:addTab("Teleports")
+local editsssdsd = win:addTab("Editors")
+local plr = game.Players.LocalPlayer
+local mouse = plr:GetMouse()
 
 --Functions
 function BombCreate()
@@ -472,6 +475,26 @@ shininbodyalad:Disconnect()
 end
 end)
 
+local ctpss = invis:add(NumberValue("Click Transparency Strenght", 1))
+
+local klikinvis = invis:add(BindValue("Click Transparency", Enum.KeyCode.X))
+klikinvis.pressed:Connect(function()
+local remote = InvisibleRemote()
+local t = mouse.Target
+local v1 = t
+local v2 = ctpss.value
+remote:FireServer(v1, v2)
+end)
+
+local mkevisibledf = invis:add(BindValue("Click Visible", Enum.KeyCode.C))
+mkevisibledf.pressed:Connect(function()
+local remote = InvisibleRemote()
+local t = mouse.Target
+local v1 = t
+local v2 = 0
+remote:FireServer(v1, v2)
+end)
+
 local maptransparency = invis:add(NumberValue("Map Transparency", 0))
 maptransparency.changed:Connect(function()
 local remote = InvisibleRemote()
@@ -498,6 +521,234 @@ local remote = InvisibleRemote()
 end
 end)
 
+local plrtrnaspasdae = invis:add(NumberValue("Players Transparency", 0))
+plrtrnaspasdae.changed:Connect(function()
+local remote = InvisibleRemote()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+if v.Character:FindFirstChild("LeftLowerLeg") and v.Character:FindFirstChild("LeftUpperLeg") and v.Character:FindFirstChild("LeftFoot") and v.Character:FindFirstChild("RightLowerLeg") and v.Character:FindFirstChild("RightUpperLeg") and v.Character:FindFirstChild("RightFoot") and v.Character:FindFirstChild("UpperTorso") and v.Character:FindFirstChild("LowerTorso") and v.Character:FindFirstChild("LeftUpperArm") and v.Character:FindFirstChild("LeftLowerArm") and v.Character:FindFirstChild("LeftHand") and v.Character:FindFirstChild("RightUpperArm") and v.Character:FindFirstChild("RightLowerArm") and v.Character:FindFirstChild("RightHand") then
+local hum = v.Character
+            local v2 = plrtrnaspasdae.value
+             local v1 = hum.UpperTorso
+            remote:FireServer(v1, v2)
+            local v1 = hum.LowerTorso
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftUpperArm
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftLowerArm
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftHand
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightUpperArm
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightLowerArm
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightHand
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightUpperLeg
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightLowerLeg
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightFoot
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftUpperLeg
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftLowerLeg
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftFoot
+            remote:FireServer(v1, v2)
+            local v1 = hum.Head
+            remote:FireServer(v1, v2)
+            end
+            end
+end)
+
+local enablewrokssss = editsssdsd:add(Button("Open Workspace Transparency Editor"))
+enablewrokssss.clicked:Connect(function()
+if _G.EnabledWS == true then
+notificate({
+	["text"] = "You Already have that editor open",
+	["duration"] = 3, -- 3 seconds
+	["color"] = NotificationCoral, 
+})
+else
+local workspaceeditors = win:addTab("Workspace")
+for i,v in pairs(game.Workspace:GetDescendants()) do
+if v.Name == "Landmine" or v.Name == "CannonBarrel" or v.Name == "CannonPart" or v.Name == "Sign"  or v.Name == "Information" or v.Name == "InfoFrame" or v.Name == "SpawnLocation" then
+local upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+local lowerCase = "abcdefghijklmnopqrstuvwxyz"
+local numbers = "a"
+local symbols = "_"
+
+local characterSet = upperCase .. lowerCase .. numbers .. symbols
+
+local keyLength = 32
+local output = ""
+ _G.EnabledWS = true
+
+for	i = 1, keyLength do
+	local rand = math.random(#characterSet)
+	output = output .. string.sub(characterSet, rand, rand)
+end
+
+local output = workspaceeditors:add(NumberValue(v.Name.." Transparency", 0))
+output.changed:Connect(function()
+local remote = InvisibleRemote()
+            local v1 = v
+            local v2 = output.value
+            remote:FireServer(v1, v2)
+end)
+end
+end
+end
+end)
+
+local enableserverdeid2 = editsssdsd:add(Button("Open Players Transparency Editor"))
+enableserverdeid2.clicked:Connect(function()
+if _G.Enabled == true then
+notificate({
+	["text"] = "You Already have that editor open",
+	["duration"] = 3, -- 3 seconds
+	["color"] = NotificationCoral, 
+})
+else
+local playertranspartedita2 = win:addTab("Players")
+local sadasd = playertranspartedita2:add(NumberValue("Head", 0))
+sadasd.changed:Connect(function()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+                local hum = v.Character
+local remote = InvisibleRemote()
+            local v1 = hum.Head
+            local v2 = sadasd.value
+            remote:FireServer(v1, v2)
+            end
+end)
+local sadasd22 = playertranspartedita2:add(NumberValue("Left Leg", 0))
+sadasd22.changed:Connect(function()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+if v.Character:FindFirstChild("LeftLowerLeg") and v.Character:FindFirstChild("LeftUpperLeg") or v.Character:FindFirstChild("LeftFoot") then
+                local hum = v.Character
+local remote = InvisibleRemote()
+            local v1 = hum.LeftUpperLeg
+            local v2 = sadasd22.value
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftLowerLeg
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftFoot
+            remote:FireServer(v1, v2)
+            end
+            end
+end)
+local sbeurguhdsd = playertranspartedita2:add(NumberValue("Right Leg", 0))
+sbeurguhdsd.changed:Connect(function()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+if v.Character:FindFirstChild("RightLowerLeg") and v.Character:FindFirstChild("RightUpperLeg") or v.Character:FindFirstChild("RightFoot") then
+                local hum = v.Character
+local remote = InvisibleRemote()
+            local v1 = hum.RightUpperLeg
+            local v2 = sbeurguhdsd.value
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightLowerLeg
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightFoot
+            remote:FireServer(v1, v2)
+            end
+            end
+end)
+local duiashdyuasduiasd = playertranspartedita2:add(NumberValue("Right Arm", 0))
+duiashdyuasduiasd.changed:Connect(function()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+if v.Character:FindFirstChild("RightUpperArm") and v.Character:FindFirstChild("RightLowerArm") or v.Character:FindFirstChild("RightHand") then
+                local hum = v.Character
+            local v1 = hum.RightUpperArm
+            local v2 = duiashdyuasduiasd.value
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightLowerArm
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightHand
+            remote:FireServer(v1, v2)
+            end
+            end
+end)
+--Left Arm, Sorry for the names lmao
+local asdasdasdadsdwdwdw = playertranspartedita2:add(NumberValue("Left Arm", 0))
+asdasdasdadsdwdwdw.changed:Connect(function()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+if v.Character:FindFirstChild("LeftUpperArm") and v.Character:FindFirstChild("LeftLowerArm") or v.Character:FindFirstChild("LeftHand") then
+                local hum = v.Character
+local remote = InvisibleRemote()
+            local v1 = hum.LeftUpperArm
+            local v2 = asdasdasdadsdwdwdw.value
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftLowerArm
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftHand
+            remote:FireServer(v1, v2)
+            end
+            end
+end)
+--Torso
+local uuuuuuuuuuasdad = playertranspartedita2:add(NumberValue("Torso", 0))
+uuuuuuuuuuasdad.changed:Connect(function()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+if v.Character:FindFirstChild("UpperTorso") and v.Character:FindFirstChild("LowerTorso") then
+                local hum = v.Character
+local remote = InvisibleRemote()
+            local v2 = uuuuuuuuuuasdad.value
+             local v1 = hum.UpperTorso
+            remote:FireServer(v1, v2)
+            local v1 = hum.LowerTorso
+            remote:FireServer(v1, v2)
+            end
+            end
+end)
+local setsdsd = playertranspartedita2:add(Button("Re-do"))
+setsdsd.clicked:Connect(function()
+local remote = InvisibleRemote()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+if v.Character:FindFirstChild("LeftLowerLeg") and v.Character:FindFirstChild("LeftUpperLeg") and v.Character:FindFirstChild("LeftFoot") and v.Character:FindFirstChild("RightLowerLeg") and v.Character:FindFirstChild("RightUpperLeg") and v.Character:FindFirstChild("RightFoot") and v.Character:FindFirstChild("UpperTorso") and v.Character:FindFirstChild("LowerTorso") and v.Character:FindFirstChild("LeftUpperArm") and v.Character:FindFirstChild("LeftLowerArm") and v.Character:FindFirstChild("LeftHand") and v.Character:FindFirstChild("RightUpperArm") and v.Character:FindFirstChild("RightLowerArm") and v.Character:FindFirstChild("RightHand") then
+local hum = v.Character
+            local v2 = uuuuuuuuuuasdad.value
+             local v1 = hum.UpperTorso
+            remote:FireServer(v1, v2)
+            local v1 = hum.LowerTorso
+            remote:FireServer(v1, v2)
+                        local v1 = hum.LeftUpperArm
+            local v2 = asdasdasdadsdwdwdw.value
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftLowerArm
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftHand
+            remote:FireServer(v1, v2)
+                        local v1 = hum.RightUpperArm
+            local v2 = duiashdyuasduiasd.value
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightLowerArm
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightHand
+            remote:FireServer(v1, v2)
+                        local v1 = hum.RightUpperLeg
+            local v2 = sbeurguhdsd.value
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightLowerLeg
+            remote:FireServer(v1, v2)
+            local v1 = hum.RightFoot
+            remote:FireServer(v1, v2)
+ local v1 = hum.LeftUpperLeg
+            local v2 = sadasd22.value
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftLowerLeg
+            remote:FireServer(v1, v2)
+            local v1 = hum.LeftFoot
+            remote:FireServer(v1, v2)
+            local v1 = hum.Head
+            local v2 = sadasd.value
+            remote:FireServer(v1, v2)
+            end
+            end
+end)
+_G.Enabled = true
+end
+end)
 
 local megapush = main:add(BindValue("Mega Push", Enum.KeyCode.R))
 megapush.pressed:Connect(function()
@@ -513,6 +764,8 @@ local pushie = main:add(BindValue("Push", Enum.KeyCode.E))
 pushie.pressed:Connect(function()
 push(1)
 end)
+
+
 
 local bomball = fun:add(Button("Bomb All"))
 bomball.clicked:Connect(function()
