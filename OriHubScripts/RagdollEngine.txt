@@ -483,6 +483,7 @@ local remote = InvisibleRemote()
 local t = mouse.Target
 local v1 = t
 local v2 = ctpss.value
+t.CanCollide = false
 remote:FireServer(v1, v2)
 end)
 
@@ -492,6 +493,7 @@ local remote = InvisibleRemote()
 local t = mouse.Target
 local v1 = t
 local v2 = 0
+t.CanCollide = true
 remote:FireServer(v1, v2)
 end)
 
