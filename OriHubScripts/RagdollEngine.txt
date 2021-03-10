@@ -477,14 +477,22 @@ end)
 
 local ctpss = invis:add(NumberValue("Click Transparency Strenght", 1))
 
+local asdasdasdasdsdqww = invis:add(Toggle("Make Click Transparency items Noclip", false))
+
 local klikinvis = invis:add(BindValue("Click Transparency", Enum.KeyCode.X))
 klikinvis.pressed:Connect(function()
 local remote = InvisibleRemote()
 local t = mouse.Target
 local v1 = t
 local v2 = ctpss.value
-t.CanCollide = false
+	if asdasdasdasdsdqww.value == true then
+  if t.Name ~= 'Baseplate' then
+		t.CanCollide = false
+    end
 remote:FireServer(v1, v2)
+	else
+remote:FireServer(v1, v2)
+  end
 end)
 
 local mkevisibledf = invis:add(BindValue("Click Visible", Enum.KeyCode.C))
