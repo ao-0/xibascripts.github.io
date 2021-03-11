@@ -21,6 +21,16 @@ end
 return temp_bombs[math.random(1,#temp_bombs)]
 end
 
+function BombCframe() --This goes unused, for testing
+temp_bombs = {}
+for i,v in pairs(game:GetService('Players'):GetPlayers()) do
+    if v:FindFirstChild('Backpack') and v.Backpack:FindFirstChild('ImpulseGrenade') then
+        table.insert(temp_bombs,v.Backpack.ImpulseGrenade)
+    end
+end
+return temp_bombs[math.random(1,#temp_bombs)]
+end
+
 local function getPushRemote()
     for i, v in ipairs(game:GetService("Players"):GetPlayers()) do
         local tool = v.Character and (v.Character:FindFirstChild("Push")) or v.Backpack:FindFirstChild("Push")
@@ -503,6 +513,14 @@ local v1 = t
 local v2 = 0
 t.CanCollide = true
 remote:FireServer(v1, v2)
+end)
+
+local adasdawdwadawdawdsdad = fun:add(BindValue("Spawn Bomb", Enum.KeyCode.V))
+adasdawdwadawdawdsdad.pressed:Connect(function()
+local remote = BombCreate()
+v1 = Vector3.new(1, 1, 1)
+v2 = mouse.Hit
+remote:FireServer(v1,v2)
 end)
 
 local maptransparency = invis:add(NumberValue("Map Transparency", 0))
