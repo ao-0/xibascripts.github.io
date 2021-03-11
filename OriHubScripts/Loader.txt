@@ -214,6 +214,7 @@ loader:registerGame(185639929, "Glue Piece", "https://virtuallization.com/OriHub
 loader:registerGame(1701623492, "Tower of Misery", "https://virtuallization.com/OriHubScripts/TowerofMisery.txt")
 loader:registerGame(2293506912, "Happy Runner", "https://virtuallization.com/OriHubScripts/HappyRunner.txt")
 loader:registerGame(2203488982, "Rage Runner", "https://virtuallization.com/OriHubScripts/RageRunner.txt")
+loader:registerGame(83858907, "Speedrun 4", "https://virtuallization.com/OriHubScripts/Speedrun4.txt")
 
 
 	-- end
@@ -236,3 +237,4 @@ if detectedGame then
 --
 	loadstring(game:HttpGet(detectedGame.loadstring))()
 end
+
