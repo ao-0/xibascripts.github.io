@@ -1,0 +1,20 @@
+loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
+
+local win = Window("Basically Friday Night Funkin", Enum.KeyCode.F)
+local main = win:addTab("Main")
+
+		local A_2 = workspace.Match
+local S_R = game:GetService("ReplicatedStorage")
+local A_1 = 0.088808059692383
+local infinitepointss = main:add(Toggle("Infinite Points", false))
+
+infinitepointss.changed:Connect(function()
+	if infinitepointss.value == true then
+infoscordes = game:GetService("RunService").RenderStepped:Connect(function()
+  S_R.Battle:FireServer(A_1, A_2)
+end)
+	else
+		infoscordes:Disconnect()
+	end
+end)
+win:selectTab("Main")

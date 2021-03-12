@@ -215,6 +215,7 @@ loader:registerGame(1701623492, "Tower of Misery", "https://virtuallization.com/
 loader:registerGame(2293506912, "Happy Runner", "https://virtuallization.com/OriHubScripts/HappyRunner.txt")
 loader:registerGame(2203488982, "Rage Runner", "https://virtuallization.com/OriHubScripts/RageRunner.txt")
 loader:registerGame(83858907, "Speedrun 4", "https://virtuallization.com/OriHubScripts/Speedrun4.txt")
+loader:registerGame(2387288336, "Basically FNF", "https://virtuallization.com/OriHubScripts/BasicallyFNF.txt")
 
 
 	-- end
