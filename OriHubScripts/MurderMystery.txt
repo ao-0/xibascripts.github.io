@@ -10,6 +10,23 @@ local esp = win:addTab("ESP")
 ESP.Names = false
 ESP.Boxes = false
 ESP.Tracers = false
+ESP:AddObjectListener(workspace, {
+    Name = "GunDrop",
+    CustomName = "Gun",
+    Color = Color3.fromRGB(67, 79, 255),
+    IsEnabled = "DroppedGun"
+})
+--some toggle:
+ESP.DroppedGun = true
+
+ESP:AddObjectListener(workspace, {
+    Name = "Knife",
+    CustomName = "Knife",
+    Color = Color3.fromRGB(255, 73, 76),
+    IsEnabled = "Knife"
+})
+--some toggle:
+ESP.Knife = true
 
 local toggle3 = esp:add(Toggle("ESP", false))
 
