@@ -217,6 +217,7 @@ loader:registerGame(2203488982, "Rage Runner", "https://virtuallization.com/OriH
 loader:registerGame(83858907, "Speedrun 4", "https://virtuallization.com/OriHubScripts/Speedrun4.txt")
 loader:registerGame(2387288336, "Basically FNF", "https://virtuallization.com/OriHubScripts/BasicallyFNF.txt")
 loader:registerGame(279565647, "Lucky Block Battlegrounds", "https://virtuallization.com/OriHubScripts/LuckyBlockBG.txt")
+loader:registerGame(1671731888, "Pistol 1v1", "https://virtuallization.com/OriHubScripts/Pistol1v1.txt")
 
 
 	-- end
