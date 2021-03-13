@@ -1,6 +1,6 @@
 loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
 
- local win = Window("Bee Simulator", Enum.KeyCode.F)
+ local win = Window("Universal", Enum.KeyCode.F)
  local main = win:addTab("Main")
  local plr = game.Players.LocalPlayer.Name
 
