@@ -528,10 +528,23 @@ local asdasdasdasdsa = fun:add(NumberValue("Spawn Bomb Amount", 1))
 
 local adasdawdwadawdawdsdad = fun:add(BindValue("Spawn Bomb", Enum.KeyCode.V))
 adasdawdwadawdawdsdad.pressed:Connect(function()
+local amount=asdasdasdasdsa.value
+for i=1,amount do
 local remote = BombCreate()
 v1 = Vector3.new(1, 1, 1)
 v2 = mouse.Hit
 remote:FireServer(v1,v2)
+end
+end)
+
+local dasdadasdasdasdasds = fun:add(BindValue("Spawn Nuke", Enum.KeyCode.N))
+dasdadasdasdasdasds.pressed:Connect(function()
+for i=1,100 do
+local remote = BombCreate()
+v1 = Vector3.new(1, 1, 1)
+v2 = mouse.Hit
+remote:FireServer(v1,v2)
+end
 end)
 
 local maptransparency = invis:add(NumberValue("Map Transparency", 0))
