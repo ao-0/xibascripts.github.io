@@ -1,17 +1,10 @@
---requested by many here ya go fatties
+loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))()
 
---commence shitty hitbox extender/poopie silent aim i made in 0.2 seconds. enjoy festing!
---i actually like this game so i hesitated :kek:
---oh wow im actually documenting for the first time
---cheez
---ok here da script
-
-loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))() --UI Lib
-
- local win = Window("Pistol 1v1", Enum.KeyCode.F) --Creating a window and thats all im documenting for ui
+ local win = Window("Bee Simulator", Enum.KeyCode.F)
  local main = win:addTab("Main")
+ local plr = game.Players.LocalPlayer.Name
 
-if Drawing then -- If drawing lib/checking if it has drawing, we run 2 checks. 1 on start up and one here, some explotis decide to make a drawing lib that has like 2 functions
+if Drawing then -- If drawing lib
 local esp = win:addTab("ESP")
 
     local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
@@ -149,19 +142,5 @@ v.Character.HumanoidRootPart.Size = Vector3.new(14.2559, 1272.56, -97.7442) --uh
     end
 end
 end)
-
-local numberValue = main:add(NumberValue("Hitbox Size", 0))
-numberValue.changed:Connect(function()
-for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-    if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then
-v.Character.HumanoidRootPart.CanCollide = false --Makes it go thru
-v.Character.HumanoidRootPart.Size = Vector3.new(numberValue.value,numberValue.value,numberValue.value)
-    end
-    end
-end)
-
-
---Here i stop documenting
-
 
 win:selectTab("Main")

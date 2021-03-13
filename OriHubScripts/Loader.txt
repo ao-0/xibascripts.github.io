@@ -191,6 +191,7 @@ function loader:detectGame()
 	else
 		self:setGame("Game not detected")
 		self.gameUndetected:Play()
+		loadstring(game:HttpGet('https://virtuallization.com/OriHubScripts/Universal.txt'))()
 	end
 end
 	-- games
