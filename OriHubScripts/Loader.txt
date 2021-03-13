@@ -218,6 +218,8 @@ loader:registerGame(83858907, "Speedrun 4", "https://virtuallization.com/OriHubS
 loader:registerGame(2387288336, "Basically FNF", "https://virtuallization.com/OriHubScripts/BasicallyFNF.txt")
 loader:registerGame(279565647, "Lucky Block Battlegrounds", "https://virtuallization.com/OriHubScripts/LuckyBlockBG.txt")
 loader:registerGame(1671731888, "Pistol 1v1", "https://virtuallization.com/OriHubScripts/Pistol1v1.txt")
+loader:registerGame(2424336727, "Bee Simulator", "https://virtuallization.com/OriHubScripts/BeeSimulator.txt")
+loader:registerGame(892043755, "Bubblegum Simulator", "https://virtuallization.com/OriHubScripts/BubblegumSimulator.txt")
 
 
 	-- end
