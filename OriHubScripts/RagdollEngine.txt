@@ -68,6 +68,15 @@ function InvisibleRemote()
 end
 
 
+function PotionEvent()
+    for i, v in ipairs(game:GetService('Players'):GetPlayers()) do
+        local tool = v.Backpack:FindFirstChild('OddPotion') or v.Character:FindFirstChild("OddPotion")
+        if tool then
+            return tool.PotionEvent
+        end
+    end
+end
+
 function FlingAll()
 pcall(function()
 local fling = BombCreate()
@@ -515,6 +524,8 @@ t.CanCollide = true
 remote:FireServer(v1, v2)
 end)
 
+local asdasdasdasdsa = fun:add(NumberValue("Spawn Bomb Amount", 1))
+
 local adasdawdwadawdawdsdad = fun:add(BindValue("Spawn Bomb", Enum.KeyCode.V))
 adasdawdwadawdawdsdad.pressed:Connect(function()
 local remote = BombCreate()
@@ -813,10 +824,8 @@ for i,v in pairs(game:GetService("Workspace").NewerMap.Obstacles.Minefield.Mines
             v.CanCollide = false
             local minesolderpos = v.CFrame
             v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-            v.Transparency = 1
             wait()
              v.CFrame = minesolderpos
-             v.CanCollide = true
              v.Transparency = 0
         end
          end
@@ -890,6 +899,13 @@ end)
 local edge = tps:add(Button("Edge"))
 edge.clicked:Connect(function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(613, 3, 1004)
+end)
+
+
+local dasdasdbackupdancersnutasdasd = fun:add(Button("Drink R15 Potion"))
+dasdasdbackupdancersnutasdasd.clicked:Connect(function()
+local remote = PotionEvent()
+remote:FireServer()
 end)
 
 local kyss = fun:add(Button("Commit Suicide"))
