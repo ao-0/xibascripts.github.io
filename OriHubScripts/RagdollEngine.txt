@@ -547,6 +547,31 @@ remote:FireServer(v1,v2)
 end
 end)
 
+local dddddsadsadasduduayiduyiasd = fun:add(Toggle("Cursor Bomb Trail", false))
+
+dddddsadsadasduduayiduyiasd.changed:Connect(function()
+    
+  if dddddsadsadasduduayiduyiasd.value == true then
+notificate({
+	["text"] = "Enabled Bomb Trail",
+	["color"] = NotificationGreen,
+	["duration"] = 1,
+})
+local remote = BombCreate()
+bomberladsds = game:GetService("RunService").RenderStepped:Connect(function()
+v1 = Vector3.new(1, 1, 1)
+v2 = mouse.Hit
+remote:FireServer(v1,v2)
+    end)
+  else
+notificate({
+	["text"] = "Disabled Bomb Trail",
+	["color"] = NotificationError,
+	["duration"] = 1,
+})
+bomberladsds:Disconnect()
+end
+end)
 
 local maptransparency = invis:add(NumberValue("Map Transparency", 0))
 maptransparency.changed:Connect(function()
