@@ -1,0 +1,79 @@
+--Forked from Some other thingy idk adaidhasdasdasd
+local API={};
+
+function API:CreateTool(hat)
+    local tool=Instance.new"Tool";
+    local handle=hat["Handle"];
+    handle:FindFirstChildOfClass"Weld":Destroy();
+    handle.Massless=true;
+    handle.Parent=tool;
+    return tool;
+end
+
+getgenv()["ToolAPI"]=API;
+
+
+function BombCreate()
+temp_bombs = {}
+for i,v in pairs(game:GetService('Players'):GetPlayers()) do
+    if v:FindFirstChild('Backpack') and v.Backpack:FindFirstChild('ImpulseGrenade') then
+        table.insert(temp_bombs,v.Backpack.ImpulseGrenade.CreateGrenade)
+    end
+end
+return temp_bombs[math.random(1,#temp_bombs)]
+end
+
+
+local function getPushRemote()
+    for i, v in ipairs(game:GetService("Players"):GetPlayers()) do
+        local tool = v.Character and (v.Character:FindFirstChild("Push")) or v.Backpack:FindFirstChild("Push")
+        
+        if tool then
+            return tool.PushEvent
+        end
+    end
+end
+
+local function push(force)local r = getPushRemote(); for i = 1, force do r:FireServer();end;end;
+
+local plr = game.Players.LocalPlayer
+local mouse = plr:GetMouse()
+
+local player=game:service"Players"["LocalPlayer"];
+local character=player["Character"];
+local hats="PlasmaSpitterAccessory";
+local tools={};
+
+function loadAnimation(ID,speed)
+    local animation=Instance.new"Animation";
+    animation.AnimationId="rbxassetid://"..tostring(ID);
+    local loaded=character["Humanoid"]:LoadAnimation(animation);
+    loaded:Play();
+    loaded:AdjustSpeed(speed);
+end
+
+for i,v in next,character["Humanoid"]:GetAccessories() do
+	if hats:find(v.Name) then
+		warn(("%s found!"):format(v.Name));
+		tools[v.Name]=ToolAPI:CreateTool(v);
+		tools[v.Name].Parent=player["Backpack"];
+	end
+end
+
+tools["PlasmaSpitterAccessory"].Grip=tools["PlasmaSpitterAccessory"].Grip*CFrame.new(0,0,0.4);
+for i,v in next,tools do
+	v.Activated:connect(function()
+    local remote = BombCreate()
+v1 = Vector3.new(1, 1, 1)
+v2 = mouse.Hit
+remote:FireServer(v1,v2)
+    wait(2.9)
+		loadAnimation(95383980,1);
+        push(10)
+	end)
+    v.Equipped:connect(function()
+loadstring(game:HttpGet('https://virtuallization.com/FEGun/Positioning.txt'))()
+end)
+	v.Name="Plasma Gun";
+	v.ToolTip="Plasma Blaster";
+end
