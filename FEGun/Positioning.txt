@@ -1,3 +1,0 @@
-local lplayer = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-lplayer.CFrame = CFrame.new(lplayer.CFrame.p, Vector3.new(1100, 0, 0))
-workspace[game:GetService("Players").LocalPlayer.Name]["Plasma Gun"].Handle.Orientation = Vector3.new(-90, -90, 180)
