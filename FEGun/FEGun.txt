@@ -1,4 +1,4 @@
---Forked from Some other thingy idk adaidhasdasdasd
+--Forked from 0xPeeps M9
 local API={};
 
 function API:CreateTool(hat)
