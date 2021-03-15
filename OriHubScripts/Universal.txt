@@ -119,6 +119,7 @@ notificate({
   end
 end)
 end
+
 local speedas = main:add(NumberValue("Walk Speed", 0))
 speedas.changed:Connect(function()
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speedas.value
@@ -144,6 +145,7 @@ end)
 	else
 noclipstuffzss:Disconnect()
 end
+end)
 
 local eeeeeefsdf = main:add(Toggle("Silent Aim", false)) --oem gee
 
@@ -164,9 +166,10 @@ for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 v.Character.HumanoidRootPart.CanCollide = true
 v.Character.HumanoidRootPart.Size = Vector3.new(14.2559, 1272.56, -97.7442) --uh default size ig
     end
-    end
+end
 end
 end)
+
 
 local numberValue = main:add(NumberValue("Hitbox Size", 0))
 numberValue.changed:Connect(function()
