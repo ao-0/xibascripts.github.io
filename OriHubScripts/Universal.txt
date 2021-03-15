@@ -119,6 +119,31 @@ notificate({
   end
 end)
 end
+local speedas = main:add(NumberValue("Walk Speed", 0))
+speedas.changed:Connect(function()
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speedas.value
+end)
+
+local jumpowerions = main:add(NumberValue("Jump Power", 0))
+jumpowerions.changed:Connect(function()
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = jumpowerions.value
+end)
+
+local gravitationalpullwho = main:add(NumberValue("Gravity", 0))
+gravitationalpullwho.changed:Connect(function()
+workspace.Gravity = gravitationalpullwho.value
+end)
+
+
+local noclipstuffzs = main:add(Toggle("Noclip", false))
+noclipstuffzs.changed:Connect(function()
+	if noclipstuffzs.value == true then
+noclipstuffzss = game:GetService("RunService").RenderStepped:Connect(function()
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end)
+	else
+noclipstuffzss:Disconnect()
+end
 
 local eeeeeefsdf = main:add(Toggle("Silent Aim", false)) --oem gee
 
@@ -141,6 +166,16 @@ v.Character.HumanoidRootPart.Size = Vector3.new(14.2559, 1272.56, -97.7442) --uh
     end
     end
 end
+end)
+
+local numberValue = main:add(NumberValue("Hitbox Size", 0))
+numberValue.changed:Connect(function()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then
+v.Character.HumanoidRootPart.CanCollide = false --Makes it go thru
+v.Character.HumanoidRootPart.Size = Vector3.new(numberValue.value,numberValue.value,numberValue.value)
+    end
+    end
 end)
 
 win:selectTab("Main")
