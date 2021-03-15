@@ -1,4 +1,70 @@
 --Forked from 0xPeeps M9
+--UI
+local PLASMA_GUN_V20 = Instance.new("ScreenGui")
+local INGUI = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local Divider = Instance.new("Frame")
+local RepositionGun = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local CopyDiscord = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+PLASMA_GUN_V20.Name = "PLASMA_GUN_V2.0"
+PLASMA_GUN_V20.Parent = game.CoreGui
+INGUI.Name = "INGUI"
+INGUI.Parent = PLASMA_GUN_V20
+INGUI.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+INGUI.Position = UDim2.new(0.777589142, 0, 0.856972575, 0)
+INGUI.Size = UDim2.new(0, 245, 0, 108)
+INGUI.Visible = false
+UICorner.CornerRadius = UDim.new(0, 2)
+UICorner.Parent = INGUI
+TextLabel.Parent = INGUI
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0.5, -122, 0, 0)
+TextLabel.Size = UDim2.new(0, 245, 0, 25)
+TextLabel.Font = Enum.Font.Arial
+TextLabel.Text = "Plasma Gun"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 16.000
+TextLabel.TextWrapped = true
+Divider.Name = "Divider"
+Divider.Parent = INGUI
+Divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Divider.BorderSizePixel = 0
+Divider.Position = UDim2.new(0, 0, 0.234674588, 0)
+Divider.Size = UDim2.new(0, 245, 0, 1)
+RepositionGun.Name = "RepositionGun"
+RepositionGun.Parent = INGUI
+RepositionGun.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+RepositionGun.Position = UDim2.new(0.5, -114, 0.423690915, -13)
+RepositionGun.Size = UDim2.new(0, 228, 0, 27)
+RepositionGun.Font = Enum.Font.SourceSans
+RepositionGun.Text = "Reposition Gun"
+RepositionGun.TextColor3 = Color3.fromRGB(255, 255, 255)
+RepositionGun.TextSize = 14.000
+RepositionGun.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet('https://virtuallization.com/FEGun/Positioning.txt'))()
+end)
+UICorner_2.CornerRadius = UDim.new(0, 2)
+UICorner_2.Parent = RepositionGun
+CopyDiscord.Name = "CopyDiscord"
+CopyDiscord.Parent = INGUI
+CopyDiscord.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+CopyDiscord.Position = UDim2.new(0.5, -114, 0.766283512, -13)
+CopyDiscord.Size = UDim2.new(0, 228, 0, 27)
+CopyDiscord.Font = Enum.Font.SourceSans
+CopyDiscord.Text = "Copy Discord"
+CopyDiscord.TextColor3 = Color3.fromRGB(255, 255, 255)
+CopyDiscord.TextSize = 14.000
+CopyDiscord.MouseButton1Down:connect(function()
+setclipboard('https://virtuallization.com/discord')
+end)
+UICorner_3.CornerRadius = UDim.new(0, 2)
+UICorner_3.Parent = CopyDiscord
+
+
 local API={};
 
 function API:CreateTool(hat)
@@ -72,8 +138,15 @@ remote:FireServer(v1,v2)
         push(10)
 	end)
     v.Equipped:connect(function()
+    INGUI.Visible = true
+    game:GetService("Players").LocalPlayer.Character["Local Ragdoll"].Disabled = true
 loadstring(game:HttpGet('https://virtuallization.com/FEGun/Positioning.txt'))()
 end)
+  v.Unequipped:connect(function()
+  INGUI.Visible = false
+  game:GetService("Players").LocalPlayer.Character["Local Ragdoll"].Disabled = false
+  end)
+
 	v.Name="Plasma Gun";
-	v.ToolTip="Plasma Blaster";
+	v.ToolTip="Plasma Gun By Xiba";
 end
