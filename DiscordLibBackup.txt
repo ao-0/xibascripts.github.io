@@ -660,7 +660,7 @@ function DiscordLib:Window(text)
 	ChangeAvatarText.BackgroundTransparency = 1.000
 	ChangeAvatarText.Size = UDim2.new(0, 71, 0, 71)
 	ChangeAvatarText.Font = Enum.Font.GothamBold
-	ChangeAvatarText.Text = "CHAGNE    AVATAR"
+	ChangeAvatarText.Text = "CHANGE    AVATAR"
 	ChangeAvatarText.TextColor3 = Color3.fromRGB(255, 255, 255)
 	ChangeAvatarText.TextSize = 11.000
 	ChangeAvatarText.TextWrapped = true
@@ -792,7 +792,7 @@ function DiscordLib:Window(text)
 		Text2.Position = UDim2.new(-0.000594122568, 0, 0.141587839, 0)
 		Text2.Size = UDim2.new(0, 346, 0, 63)
 		Text2.Font = Enum.Font.Gotham
-		Text2.Text = "Enter your new profile in a Roblox decal ID
+		Text2.Text = "Enter your new profile in a Roblox decal id."
 		Text2.TextColor3 = Color3.fromRGB(171, 172, 176)
 		Text2.TextSize = 14.000
 
