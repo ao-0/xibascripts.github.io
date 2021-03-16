@@ -860,7 +860,7 @@ function DiscordLib:Window(text)
 		end)
 
 		ChangeBtn.MouseButton1Click:Connect(function()
-			pfp = tostring(AvatarTextbox.Text)
+			pfp = "http://www.roblox.com/asset/?id=".. AvatarTextbox.Text .."&width=420&height=420&format=png"
 			UserImage.Image = pfp 
 			UserPanelUserImage.Image = pfp
 			SaveInfo()
