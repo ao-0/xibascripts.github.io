@@ -792,7 +792,7 @@ function DiscordLib:Window(text)
 		Text2.Position = UDim2.new(-0.000594122568, 0, 0.141587839, 0)
 		Text2.Size = UDim2.new(0, 346, 0, 63)
 		Text2.Font = Enum.Font.Gotham
-		Text2.Text = "Enter your new profile in a Roblox decal id."
+		Text2.Text = "Enter your new profile in a Roblox decal asset link."
 		Text2.TextColor3 = Color3.fromRGB(171, 172, 176)
 		Text2.TextSize = 14.000
 
@@ -859,8 +859,6 @@ function DiscordLib:Window(text)
 		end)
 
 		ChangeBtn.MouseButton1Click:Connect(function()
-local OldText = AvatarTextbox.Text
-AvatarTextbox.Text = "http://www.roblox.com/asset/?id="..OldText
 			pfp = tostring(AvatarTextbox.Text)
 			UserImage.Image = pfp 
 			UserPanelUserImage.Image = pfp
