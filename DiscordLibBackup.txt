@@ -831,6 +831,7 @@ function DiscordLib:Window(text)
 		AvatarTextbox.TextSize = 14.000
 		AvatarTextbox.TextXAlignment = Enum.TextXAlignment.Left
 
+
 		ChangeBtn.Name = "ChangeBtn"
 		ChangeBtn.Parent = AvatarChange
 		ChangeBtn.BackgroundColor3 = Color3.fromRGB(114, 137, 228)
@@ -878,6 +879,7 @@ function DiscordLib:Window(text)
 			wait(.2)
 			NotificationHolder:Destroy()
 		end)
+
 
 		
 
