@@ -1,4 +1,4 @@
---New
+getgenv().Sick = nil
 local DiscordLib = loadstring(game:HttpGet"https://virtuallization.com/DiscordLibBackup.txt")()
 
 local win = DiscordLib:Window("Ori Hub v2")
@@ -16,9 +16,16 @@ end)
 noclipstuffzss:Disconnect()
 end
 end)
-
-local drop = tgls:Dropdown("Mode",{"Legit","Rage"}, function(bool)
-local mode = bool
+local drop = tgls:Dropdown("Mode",{"Bad","Good","Sick"}, function(bool)
+if bool == "Sick" then
+getgenv().Sick = true
+else
+if bool == "Good" then getgenv().Sick = false
+else
+getgenv().Ok = true
+getgenv().Sick = nil
+end
+end
 end)
 tgls:Toggle("Auto Play",false, function(bool)
 if bool == true then --Modded Wally's auto player, credits to him 😚
@@ -83,7 +90,15 @@ while runService.RenderStepped:wait() do
             if distance >= 95 then
                 marked[arrow] = true;
                 fastSpawn(function()
-                    if mode == Legit then wait(Random.new():NextNumber(0.02, maxdelay)) else end
+               if getgenv().Sick == true then
+                   wait(Random.new():NextNumber(0.001, maxdelay))
+                   else
+                    if getgenv().Sick == false then wait(Random.new():NextNumber(0.1, maxdelay))
+                    else
+                    if getgenv().Ok == true then wait(Random.new():NextNumber(0.365, maxdelay))
+                    end
+                    end
+                    end
                     funcs.KeyDown(position)
                     if arrow.Data.Length > 0 then
                         fastWait(arrow.Data.Length)
