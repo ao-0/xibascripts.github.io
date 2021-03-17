@@ -38,10 +38,6 @@ local args = {
     [2] = 5600423690
 }
 game:GetService("ReplicatedStorage").PunchServer:FireServer(unpack(args))
-local args = {
-    [1] = true
-}
-game:GetService("ReplicatedStorage").Guard:FireServer(unpack(args))
 end
 until(v.Health == 0)
 end
