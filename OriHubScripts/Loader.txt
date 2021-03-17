@@ -1,10 +1,26 @@
 if _G.Debug == true then
-rconsolename("Ori Hub Debugger")
+rconsolename("Ori Hub v2 Debugger")
 rconsolewarn("Welcome!")
 wait(1)
 rconsolewarn("Coming Soon!")
 end
-	
+green   = Color3.new(0, 1, 0.498039)
+yellow  = Color3.new(1, 1, 0.498039)
+
+	game.StarterGui:SetCore("ChatMakeSystemMessage", {
+		Text = "Welcome Ori Hub v2, "..game:GetService("Players").LocalPlayer.Name.."!",
+		Color = green,
+	})
+	game.StarterGui:SetCore("ChatMakeSystemMessage", {
+		Text = "Join the discord for more!",
+		Color = green,
+	})
+	game.StarterGui:SetCore("ChatMakeSystemMessage", {
+		Text = "https://virtuallization.com/discord",
+		Color = yellow,
+	})
+
+	--haha i made ui invis bumfart
 	-- Create UI
 local loader = {
 	GUI = Instance.new("ScreenGui"),
@@ -30,6 +46,7 @@ loader.BG.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
 loader.BG.Position = UDim2.new(0.5, 0, 0.5, 0)
 loader.BG.Size = UDim2.new(0, 263, 0, 84)
 loader.BG.BorderSizePixel = 0
+loader.BG.Visible = false
 
 loader.BGCorner.CornerRadius = UDim.new(0, 5)
 loader.BGCorner.Name = "BGCorner"
@@ -187,11 +204,11 @@ function loader:detectGame()
 	if detectedGame then
 		self:setGame(("Game detected: %s"):format(detectedGame.name))
 		self.gameDetected:Play()
+		self.gameUndetected.Completed:Play()
 		return detectedGame
 	else
 		self:setGame("Game not detected")
 		self.gameUndetected:Play()
-		wait(3)
 		loadstring(game:HttpGet('https://virtuallization.com/OriHubScripts/Universal.txt'))()
 	end
 end
@@ -222,13 +239,10 @@ loader:registerGame(279565647, "Lucky Block Battlegrounds", "https://virtualliza
 loader:registerGame(1671731888, "Pistol 1v1", "https://virtuallization.com/OriHubScripts/Pistol1v1.txt")
 loader:registerGame(2424336727, "Bee Simulator", "https://virtuallization.com/OriHubScripts/BeeSimulator.txt")
 loader:registerGame(892043755, "Bubblegum Simulator", "https://virtuallization.com/OriHubScripts/BubblegumSimulator.txt")
-
+loader:registerGame(1959840877, "Psycho 100: Infinity", "https://virtuallization.com/OriHubScripts/Psycho100Infinity.txt")
 
 	-- end
-loader:show()
 local detectedGame = loader:detectGame()
-wait(3)
-loader:hide()
 
 if detectedGame then
 -- Detect if exploit has proper Drawing lib

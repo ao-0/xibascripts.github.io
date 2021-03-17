@@ -1,136 +1,24 @@
---requested by many here ya go fatties
+--New
+local DiscordLib = loadstring(game:HttpGet"https://virtuallization.com/DiscordLibBackup.txt")()
 
---commence shitty hitbox extender/poopie silent aim i made in 0.2 seconds. enjoy festing!
---i actually like this game so i hesitated :kek:
---oh wow im actually documenting for the first time
---cheez
---ok here da script
+local win = DiscordLib:Window("Ori Hub v2")
 
-loadstring(game:HttpGet('https://virtuallization.com/ori_lib.txt'))() --UI Lib
+local serv = win:Server("Pistol 1v1", "")
 
- local win = Window("Pistol 1v1", Enum.KeyCode.F) --Creating a window and thats all im documenting for ui
- local main = win:addTab("Main")
+local tgls = serv:Channel("Main")
 
-if Drawing then -- If drawing lib/checking if it has drawing, we run 2 checks. 1 on start up and one here, some explotis decide to make a drawing lib that has like 2 functions
-local esp = win:addTab("ESP")
-
-    local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
-ESP.Names = false
-ESP.Boxes = false
-ESP.Tracers = false
-
-local toggle3 = esp:add(Toggle("ESP", false))
-
-toggle3.changed:Connect(function()
-    
-  if toggle3.value == true then
-ESP:Toggle(true)
-notificate({
-	["text"] = "Enabled ESP",
-	["color"] = NotificationGreen,
-	["duration"] = 1,
-})
-  else
-ESP:Toggle(false)
-notificate({
-	["text"] = "Disabled ESP",
-	["color"] = NotificationError,
-	["duration"] = 1,
-})
-  end
+tgls:Toggle("Noclip",false, function(bool)
+if bool == true then
+noclipstuffzss = game:GetService("RunService").RenderStepped:Connect(function()
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
 end)
-
-
-local toggledad = esp:add(Toggle("Team Color", false))
-
-toggledad.changed:Connect(function()
-    
-  if toggledad.value == true then
-ESP.TeamColor = true
-notificate({
-	["text"] = "Enabled Team Colors",
-	["color"] = NotificationGreen,
-	["duration"] = 1,
-})
-  else
-ESP.TeamColor = false
-notificate({
-	["text"] = "Disabled Team Colors",
-	["color"] = NotificationError,
-	["duration"] = 1,
-})
-  end
-end)
-
-local toggle2 = esp:add(Toggle("Tracers", false))
-
-toggle2.changed:Connect(function()
-    
-  if toggle2.value == true then
-ESP.Tracers = true
-notificate({
-	["text"] = "Enabled Tracers",
-	["color"] = NotificationGreen,
-	["duration"] = 1,
-})
-  else
-ESP.Tracers = false
-notificate({
-	["text"] = "Disabled Tracers",
-	["color"] = NotificationError,
-	["duration"] = 1,
-})
-  end
-end)
-
-
-local toggle3 = esp:add(Toggle("Boxes", false))
-
-toggle3.changed:Connect(function()
-    
-  if toggle3.value == true then
-ESP.Boxes = true
-notificate({
-	["text"] = "Enabled Boxes",
-	["color"] = NotificationGreen,
-	["duration"] = 1,
-})
-  else
-ESP.Boxes = false
-notificate({
-	["text"] = "Disabled Boxes",
-	["color"] = NotificationError,
-	["duration"] = 1,
-})
-  end
-end)
-
-local toggle4 = esp:add(Toggle("Names", false))
-
-toggle4.changed:Connect(function()
-    
-  if toggle4.value == true then
-ESP.Names = true
-notificate({
-	["text"] = "Enabled Names",
-	["color"] = NotificationGreen,
-	["duration"] = 1,
-})
-  else
-ESP.Names = false
-notificate({
-	["text"] = "Disabled Names",
-	["color"] = NotificationError,
-	["duration"] = 1,
-})
-  end
-end)
+	else
+noclipstuffzss:Disconnect()
 end
+end)
 
-local eeeeeefsdf = main:add(Toggle("Silent Aim", false)) --oem gee
-
-eeeeeefsdf.changed:Connect(function()
-	if eeeeeefsdf.value == true then
+tgls:Toggle("Silent Aim",false, function(bool)
+if bool == true then
 silentaimomgee = game:GetService("RunService").RenderStepped:Connect(function()
 for i, v in pairs(game:GetService("Players"):GetPlayers()) do
     if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then --checks if its the user
@@ -143,25 +31,100 @@ v.Character.HumanoidRootPart.Size = Vector3.new(40,40,40) --Makes it the size 40
 silentaimomgee:Disconnect()
 for i, v in pairs(game:GetService("Players"):GetPlayers()) do
     if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then
-v.Character.HumanoidRootPart.CanCollide = true
 v.Character.HumanoidRootPart.Size = Vector3.new(14.2559, 1272.56, -97.7442) --uh default size ig
     end
+end
+end
+end)
+
+tgls:Seperator()
+
+local sldr = tgls:Slider("Gravity", 0, 1000, 0, function(b)
+workspace.Gravity = b
+end)
+
+local sldr = tgls:Slider("Hitbox Size", 0, 100, 0, function(h)
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then
+v.Character.HumanoidRootPart.CanCollide = false --Makes it go thru
+v.Character.HumanoidRootPart.Size = Vector3.new(h,h,h)
+    end
+    end
+end)
+local GunMods = serv:Channel("Gun Mods")
+
+local sldr = GunMods:Slider("Ammo", 0, 100000, 0, function(h)
+for _, v in next, getgc(true) do
+  if (type(v) == 'table' and rawget(v, 'Ammo')) then
+v.Ammo = h
     end
 end
 end)
 
-local numberValue = main:add(NumberValue("Hitbox Size", 0))
-numberValue.changed:Connect(function()
-for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-    if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then
-v.Character.HumanoidRootPart.CanCollide = false --Makes it go thru
-v.Character.HumanoidRootPart.Size = Vector3.new(numberValue.value,numberValue.value,numberValue.value)
+local sldr = GunMods:Slider("Max Ammo", 0, 100000, 0, function(h)
+for _, v in next, getgc(true) do
+  if (type(v) == 'table' and rawget(v, 'Ammo')) then
+v.ClipSize = h
     end
+end
+end)
+
+local sldr = GunMods:Slider("Recoil", 0, 1000, 0, function(h)
+for _, v in next, getgc(true) do
+  if (type(v) == 'table' and rawget(v, 'Ammo')) then
+v.recoilMult = h
     end
+end
+end)
+
+if Drawing then
+local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+
+local esptab = serv:Channel("ESP")
+
+
+esptab:Toggle("ESP",false, function(bool)
+if bool == true then
+ESP:Toggle(true)
+  else
+ESP:Toggle(false)
+end
+end)
+
+esptab:Toggle("Team Colors",true, function(bool)
+if bool == true then
+ESP.TeamColor = true
+  else
+ESP.TeamColor = false
+end
 end)
 
 
---Here i stop documenting
+esptab:Toggle("Boxes",true, function(bool)
+if bool == true then
+ESP.Boxes = true
+  else
+ESP.Boxes = false
+end
+end)
 
+esptab:Toggle("Tracers",false, function(bool)
+if bool == true then
+ESP.Tracers = true
+  else
+ESP.Tracers = false
+end
+end)
 
-win:selectTab("Main")
+esptab:Toggle("Names",false, function(bool)
+if bool == true then
+ESP.Names = true
+  else
+ESP.Names = false
+end
+end)
+
+end
