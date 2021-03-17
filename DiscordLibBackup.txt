@@ -337,6 +337,33 @@ function DiscordLib:Window(text)
 			minimized = not minimized
 		end
 	)
+local hotkey = _G.ToggleKeyBind
+local mouse = game.Players.LocalPlayer:GetMouse()
+
+local hotkeyminiz = false
+mouse.KeyDown:Connect(function(key)
+if key == hotkey then
+if hotkeyminiz == false then
+				MainFrame:TweenSize(
+					UDim2.new(0, 681, 0, 22),
+					Enum.EasingDirection.Out,
+					Enum.EasingStyle.Quart,
+					.3,
+					true
+				)
+hotkeyminiz = true
+			else
+				MainFrame:TweenSize(
+					UDim2.new(0, 681, 0, 396),
+					Enum.EasingDirection.Out,
+					Enum.EasingStyle.Quart,
+					.3,
+					true
+				)
+hotkeyminiz = false
+			end
+end
+end)
 	
 	local SettingsOpenBtn = Instance.new("TextButton")
 	local SettingsOpenBtnIco = Instance.new("ImageLabel")
