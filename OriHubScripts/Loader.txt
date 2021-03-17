@@ -236,6 +236,7 @@ loader:registerGame(1671731888, "Pistol 1v1", "https://virtuallization.com/OriHu
 loader:registerGame(2424336727, "Bee Simulator", "https://virtuallization.com/OriHubScripts/BeeSimulator.txt")
 loader:registerGame(892043755, "Bubblegum Simulator", "https://virtuallization.com/OriHubScripts/BubblegumSimulator.txt")
 loader:registerGame(1959840877, "Psycho 100: Infinity", "https://virtuallization.com/OriHubScripts/Psycho100Infinity.txt")
+loader:registerGame(2272767413, "Zero Two Dance", "https://virtuallization.com/OriHubScripts/ZeroTwoDance.txt")
 
 	-- end
 loader:show()

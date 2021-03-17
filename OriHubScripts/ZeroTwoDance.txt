@@ -1,0 +1,132 @@
+--New
+local DiscordLib = loadstring(game:HttpGet"https://virtuallization.com/DiscordLibBackup.txt")()
+
+local win = DiscordLib:Window("Ori Hub v2")
+
+local serv = win:Server("Zero Two Dance", "")
+
+local tgls = serv:Channel("Main")
+local tfun = serv:Channel("Fun")
+
+tgls:Toggle("Noclip",false, function(bool)
+if bool == true then
+noclipstuffzss = game:GetService("RunService").RenderStepped:Connect(function()
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end)
+	else
+noclipstuffzss:Disconnect()
+end
+end)
+
+tgls:Seperator()
+local sldr = tgls:Slider("WalkSpeed", 0, 1000, 0, function(t)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
+end)
+
+local sldr = tgls:Slider("JumpPower", 0, 1000, 0, function(n)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = n
+end)
+
+local sldr = tgls:Slider("Gravity", 0, 1000, 0, function(b)
+workspace.Gravity = b
+end)
+
+tfun:Toggle("Private Server",false, function(bool)
+if bool == true then
+autokickallstuffz = game:GetService("RunService").RenderStepped:Connect(function()
+local lp = game:GetService("Players").LocalPlayer
+            
+            for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+                local hum = v
+                if hum and v ~= lp then
+local args = {
+    [1] = hum.Name,
+    [2] = "Ori Hub v2"
+}
+
+game:GetService("ReplicatedStorage").KickPlayer:FireServer(unpack(args))
+end
+end
+end)
+	else
+autokickallstuffz:Disconnect()
+end
+end)
+
+tfun:Textbox("Kick Player", "Username", true, function(t)
+local args = {
+    [1] = t,
+    [2] = "Ori Hub v2"
+}
+
+game:GetService("ReplicatedStorage").KickPlayer:FireServer(unpack(args))
+end)
+
+tfun:Button("Kick all", function()
+DiscordLib:Notification("Ori Hub v2", "Kicked everyone!", "Okay!")
+local lp = game:GetService("Players").LocalPlayer
+            
+            for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+                local hum = v
+                if hum and v ~= lp then
+local args = {
+    [1] = hum.Name,
+    [2] = "Ori Hub v2"
+}
+
+game:GetService("ReplicatedStorage").KickPlayer:FireServer(unpack(args))
+end
+end
+end)
+
+if Drawing then
+local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))()
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+
+local esptab = serv:Channel("ESP")
+
+
+esptab:Toggle("ESP",false, function(bool)
+if bool == true then
+ESP:Toggle(true)
+  else
+ESP:Toggle(false)
+end
+end)
+
+esptab:Toggle("Team Colors",true, function(bool)
+if bool == true then
+ESP.TeamColor = true
+  else
+ESP.TeamColor = false
+end
+end)
+
+
+esptab:Toggle("Boxes",false, function(bool)
+if bool == true then
+ESP.Boxes = true
+  else
+ESP.Boxes = false
+end
+end)
+
+esptab:Toggle("Tracers",false, function(bool)
+if bool == true then
+ESP.Tracers = true
+  else
+ESP.Tracers = false
+end
+end)
+
+esptab:Toggle("Names",false, function(bool)
+if bool == true then
+ESP.Names = true
+  else
+ESP.Names = false
+end
+end)
+
+end
