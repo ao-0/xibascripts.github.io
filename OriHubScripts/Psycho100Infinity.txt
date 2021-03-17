@@ -1,3 +1,4 @@
+
 ---------------------------------------------------------------------------------------------
 --New
 local DiscordLib = loadstring(game:HttpGet"https://virtuallization.com/DiscordLibBackup.txt")()
@@ -7,7 +8,7 @@ local win = DiscordLib:Window("Ori Hub v2")
 local serv = win:Server("Psycho 100: Inifnity", "")
 
 local tgls = serv:Channel("Main")
-local tcomb = serv:Channel("Combat")
+local tautos = serv:Channel("Automatization")
 local taura = serv:Channel("Auras")
 
 --Main Tab
@@ -21,17 +22,33 @@ noclipstuffzss:Disconnect()
 end
 end)
 
-tgls:Toggle("Auto Train",false, function(bool)
-if bool == true then
-autotrainer = game:GetService("RunService").RenderStepped:Connect(function()
-game:GetService("ReplicatedStorage").Remotes.Train:FireServer(1)
-end)
-	else
-autotrainer:Disconnect()
+--Auto Tab
+
+local farmisenabled = false
+tautos:Toggle("Auto Farm",false, function(bool)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+farmisenabled = bool
+if v.Name == 'Humanoid' and v.Parent:FindFirstChild("NPC") then
+ repeat
+          wait()
+     if farmisenabled == true then
+     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.HumanoidRootPart.CFrame
+local args = {
+    [1] = 4,
+    [2] = 5600423690
+}
+game:GetService("ReplicatedStorage").PunchServer:FireServer(unpack(args))
+local args = {
+    [1] = true
+}
+game:GetService("ReplicatedStorage").Guard:FireServer(unpack(args))
+end
+until(v.Health == 0)
+end
 end
 end)
 
-tgls:Toggle("Auto Collect Chests",false, function(bool)
+tautos:Toggle("Auto Collect Chests",false, function(bool)
 if bool == true then
 farmuie = game:GetService("RunService").RenderStepped:Connect(function()
 for i,v in pairs(game:GetService("Workspace").Chests:GetDescendants()) do
@@ -46,48 +63,19 @@ farmuie:Disconnect()
 end
 end)
 
-
-tgls:Seperator()
-local sldr = tgls:Slider("WalkSpeed", 0, 1000, 0, function(t)
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
+tautos:Toggle("Auto Train",false, function(bool)
+if bool == true then
+autotrainer = game:GetService("RunService").RenderStepped:Connect(function()
+game:GetService("ReplicatedStorage").Remotes.Train:FireServer(1)
 end)
-
-local sldr = tgls:Slider("JumpPower", 0, 1000, 0, function(n)
-game.Players.LocalPlayer.Character.Humanoid.JumpPower = n
-end)
-
-local sldr = tgls:Slider("Gravity", 0, 1000, 0, function(b)
-workspace.Gravity = b
-end)
-tgls:Bind("Drain Stamina", Enum.KeyCode.RightBracket, function()
-local args = {
-    [1] = math.huge
-}
-game:GetService("ReplicatedStorage").DoubleJEvent:FireServer(unpack(args))
-end)
-tgls:Seperator()
-tgls:Bind("Start Quest", Enum.KeyCode.L, function()
-for i,v in pairs(game.Workspace:GetDescendants()) do
-if v.Name == 'QuestGiver' then
-game:GetService("ReplicatedStorage").newQuest:FireServer(v.Parent.Name)
-end
+	else
+autotrainer:Disconnect()
 end
 end)
 
-tgls:Bind("Open All Chests", Enum.KeyCode.LeftBracket, function()
-local oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-for i,v in pairs(game:GetService("Workspace").Chests:GetDescendants()) do
-    if v.Name == 'ClickDetector' then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
-fireclickdetector(v)
-end
-end
-wait(0.5)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
-end)
+tautos:Seperator()
 
---Combat Tab
-tcomb:Toggle("Auto Attack",false, function(bool)
+tautos:Toggle("Auto Attack",false, function(bool)
 if bool == true then
 autocakaka = game:GetService("RunService").RenderStepped:Connect(function()
 --Remote
@@ -104,7 +92,7 @@ autocakaka:Disconnect()
 end
 end)
 
-tcomb:Toggle("Auto Guard",false, function(bool)
+tautos:Toggle("Auto Guard",false, function(bool)
 if bool == true then
 
 autguaridjasd = game:GetService("RunService").RenderStepped:Connect(function()
@@ -121,6 +109,65 @@ local args = {
 game:GetService("ReplicatedStorage").Guard:FireServer(unpack(args))
 end
 end)
+
+
+tautos:Toggle("Auto Equip Combat",false, function(bool)
+if bool == true then
+autoequipts = game:GetService("RunService").RenderStepped:Connect(function()
+for i, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+if v:FindFirstChild("Combat") and v.Name == 'Combat' then 
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+end
+end)
+else
+autoequipts:Disconnect()
+end
+end)
+
+tautos:Seperator()
+
+tautos:Bind("Open All Chests", Enum.KeyCode.LeftBracket, function()
+local oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+for i,v in pairs(game:GetService("Workspace").Chests:GetDescendants()) do
+    if v.Name == 'ClickDetector' then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
+fireclickdetector(v)
+end
+end
+wait(0.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
+end)
+
+tgls:Seperator()
+--Main
+local sldr = tgls:Slider("WalkSpeed", 0, 1000, 0, function(t)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
+end)
+
+local sldr = tgls:Slider("JumpPower", 0, 1000, 0, function(n)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = n
+end)
+
+local sldr = tgls:Slider("Gravity", 0, 1000, 0, function(b)
+workspace.Gravity = b
+end)
+
+tgls:Seperator()
+tgls:Bind("Drain Stamina", Enum.KeyCode.RightBracket, function()
+local args = {
+    [1] = math.huge
+}
+game:GetService("ReplicatedStorage").DoubleJEvent:FireServer(unpack(args))
+end)
+tgls:Bind("Start Quest", Enum.KeyCode.L, function()
+for i,v in pairs(game.Workspace:GetDescendants()) do
+if v.Name == 'QuestGiver' then
+game:GetService("ReplicatedStorage").newQuest:FireServer(v.Parent.Name)
+end
+end
+end)
+
 
 
 --Aura Tab
