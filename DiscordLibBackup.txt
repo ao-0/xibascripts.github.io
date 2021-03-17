@@ -345,7 +345,7 @@ mouse.KeyDown:Connect(function(key)
 if key == hotkey then
 if hotkeyminiz == false then
 				MainFrame:TweenSize(
-					UDim2.new(0, 681, 0, 22),
+					UDim2.new(0, 681, 0, 0),
 					Enum.EasingDirection.Out,
 					Enum.EasingStyle.Quart,
 					.3,
