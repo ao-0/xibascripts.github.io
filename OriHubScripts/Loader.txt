@@ -1,9 +1,7 @@
-if _G.Debug == true then
-rconsolename("Ori Hub v2 Debugger")
-rconsolewarn("Welcome!")
-wait(1)
-rconsolewarn("Coming Soon!")
-end
+--
+-- The loader for Ori Hub
+--
+
 green   = Color3.new(0, 1, 0.498039)
 yellow  = Color3.new(1, 1, 0.498039)
 
@@ -19,8 +17,6 @@ yellow  = Color3.new(1, 1, 0.498039)
 		Text = "https://virtuallization.com/discord",
 		Color = yellow,
 	})
-
-	--haha i made ui invis bumfart
 	-- Create UI
 local loader = {
 	GUI = Instance.new("ScreenGui"),
@@ -204,7 +200,6 @@ function loader:detectGame()
 	if detectedGame then
 		self:setGame(("Game detected: %s"):format(detectedGame.name))
 		self.gameDetected:Play()
-		self.gameUndetected.Completed:Play()
 		return detectedGame
 	else
 		self:setGame("Game not detected")
@@ -242,11 +237,12 @@ loader:registerGame(892043755, "Bubblegum Simulator", "https://virtuallization.c
 loader:registerGame(1959840877, "Psycho 100: Infinity", "https://virtuallization.com/OriHubScripts/Psycho100Infinity.txt")
 
 	-- end
+loader:show()
 local detectedGame = loader:detectGame()
+loader:hide()
 
 if detectedGame then
--- Detect if exploit has proper Drawing lib
-	if not ({pcall(function()
+if not ({pcall(function()
 			local Elements = {"Line", "Text", "Image", "Circle", "Square", "Quad", "Triangle"}
 			for i, v in ipairs(Elements) do
 				Drawing.new(v):Remove()
@@ -258,4 +254,3 @@ if detectedGame then
 --
 	loadstring(game:HttpGet(detectedGame.loadstring))()
 end
-
