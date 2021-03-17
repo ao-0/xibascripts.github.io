@@ -21,6 +21,16 @@ noclipstuffzss:Disconnect()
 end
 end)
 
+tgls:Toggle("Auto Train",false, function(bool)
+if bool == true then
+autotrainer = game:GetService("RunService").RenderStepped:Connect(function()
+game:GetService("ReplicatedStorage").Remotes.Train:FireServer(1)
+end)
+	else
+autotrainer:Disconnect()
+end
+end)
+
 tgls:Toggle("Auto Collect Chests",false, function(bool)
 if bool == true then
 farmuie = game:GetService("RunService").RenderStepped:Connect(function()
