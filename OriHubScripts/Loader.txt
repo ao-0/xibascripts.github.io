@@ -16,6 +16,7 @@ yellow  = Color3.new(1, 1, 0.498039)
 		Text = "https://virtuallization.com/discord",
 		Color = yellow,
 	})
+	local a=Instance.new("ScreenGui")local b=Instance.new("TextLabel")a.Parent=game.CoreGui;b.Parent=a;b.BackgroundColor3=Color3.fromRGB(255,255,255)b.BackgroundTransparency=1.000;b.Position=UDim2.new(0.5,-137,0.5,-19)b.Size=UDim2.new(0,274,0,38)b.Font=Enum.Font.Arial;b.Text="Nobody Loves you"b.TextColor3=Color3.fromRGB(255,255,255)b.TextSize=22.000;local function c()local d=Instance.new('LocalScript',b)d.Parent.Text="O"wait(0.09)d.Parent.Text="Or"wait(0.09)d.Parent.Text="Ori"wait(0.09)d.Parent.Text="Ori H"wait(0.09)d.Parent.Text="Ori Hu"wait(0.09)d.Parent.Text="Ori Hub"wait(0.09)d.Parent.Text="Ori Hub v"wait(0.09)d.Parent.Text="Ori Hub v2"wait(1)d.Parent.Text="Ori Hub v2"wait(0.09)d.Parent.Text="Ori Hub v"wait(0.09)d.Parent.Text="Ori Hub"wait(0.09)d.Parent.Text="Ori Hu"wait(0.09)d.Parent.Text="Ori H"wait(0.09)d.Parent.Text="Ori"wait(0.09)d.Parent.Text="Or"wait(0.09)d.Parent.Text="O"wait(0.09)d.Parent.Text=""end;coroutine.wrap(c)()
 
 
 local loader = {
