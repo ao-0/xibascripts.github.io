@@ -1,3 +1,19 @@
+--for people snoopin around here is some info
+--loader from ori hub v1, just made bg not visible to save time :troll:
+--no this is not ori hub :bruh:
+--for more info look at: https://virtuallization.com/InoriaB/Note_from_owner.txt
+--if you are the owner what ever the fuck your name is, aye congrats you scammed alot of people surprisingly
+--your code sucks ass
+--my code is so bad but compared to you where you would even know what repeat until v.health == 0 is. :door:
+--if you want it taken down from my discord feel free to dm me but i will give it to anyone that wants it, logs exists alot of people already have the crack
+--this will still stay up as this is now my code according to your logic
+--"i credited so i can sell"
+--well i modded ur shit and hosted it :ez: i also gave credits to the right people :troll:
+--i see your in aztup secure, a good wl doesnt mean good hub fyi
+--nah im not being toxic im just saying the truth since no one wants to
+--at the end of the day your just a clown
+--credits to djSkoop for the crack
+--honestly, save your self and do me a favor, dont use it lol
 
 green   = Color3.new(0, 1, 0.498039)
 yellow  = Color3.new(1, 1, 0.498039)
