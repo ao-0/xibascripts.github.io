@@ -19,14 +19,66 @@ end)
 local drop = tgls:Dropdown("Mode",{"Bad","Good","Sick"}, function(bool)
 if bool == "Sick" then
 getgenv().Sick = true
+getgenv().Ok = nil
 else
 if bool == "Good" then getgenv().Sick = false
+getgenv().Ok = nil
 else
 getgenv().Ok = true
 getgenv().Sick = nil
 end
 end
 end)
+
+tgls:Toggle("Legit Mode",false, function(bool)
+if bool == true then
+getgenv().Sick = nil
+getgenv().Ok = nil
+getgenv().Randomizer = true
+while getgenv().Randomizer == true do
+getgenv().Ok = true
+getgenv().Sick = nil
+wait(0.6)
+getgenv().Sick = true
+getgenv().Ok = nil
+wait(2)
+getgenv().Sick = false
+getgenv().Ok = nil
+wait(3)
+getgenv().Sick = true
+getgenv().Ok = nil
+wait(1)
+getgenv().Ok = true
+getgenv().Sick = nil
+wait(0.6)
+end
+--end Randomizer
+	else
+getgenv().Sick = nil
+getgenv().Ok = nil
+
+getgenv().Randomizer = false
+while getgenv().Randomizer == true do
+getgenv().Ok = true
+getgenv().Sick = nil
+wait(0.6)
+getgenv().Sick = true
+getgenv().Ok = nil
+wait(2)
+getgenv().Sick = false
+getgenv().Ok = nil
+wait(3)
+getgenv().Sick = true
+getgenv().Ok = nil
+wait(1)
+getgenv().Ok = true
+getgenv().Sick = nil
+wait(0.6)
+end
+--end Randomizer
+end
+end)
+
 tgls:Toggle("Auto Play",false, function(bool)
 if bool == true then --Modded Wally's auto player, credits to him 😚
 ToggleAuto = true
