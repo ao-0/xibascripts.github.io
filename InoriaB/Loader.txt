@@ -209,7 +209,15 @@ loader:registerGame(73885730, "Prison Life", "https://virtuallization.com/Inoria
 loader:registerGame(1168263273, "Bad Business", "https://virtuallization.com/InoriaB/Bad_Business.txt")
 loader:registerGame(81762198, "Vehicle Simulator", "https://virtuallization.com/InoriaB/Vehicle_Simulator.txt")
 loader:registerGame(1247975681, "Big Paintball", "https://virtuallization.com/InoriaB/Big_Paintball.txt")
-
+--e
+loader:registerGame(648454481, "Grand Piece Online", "https://virtuallization.com/InoriaB/Grand_Piece.txt")
+loader:registerGame(1451439645, "King Piece", "https://virtuallization.com/InoriaB/King_Piece.txt")
+loader:registerGame(1511883870, "Shindo Life", "https://virtuallization.com/InoriaB/Shindo_Life.txt")
+loader:registerGame(1298329910, "Dungeon Slayer", "https://virtuallization.com/InoriaB/Dungeon_Slayer.txt")
+loader:registerGame(703124385, "Tower of hell", "https://virtuallization.com/InoriaB/Tower_Of_Hell.txt")
+loader:registerGame(1077961373, "Giant Simulator", "https://virtuallization.com/InoriaB/Giant_Simulator.txt")
+loader:registerGame(210213771, "Final Stand", "https://virtuallization.com/InoriaB/Final_Stand.txt")
+loader:registerGame(2265532481, "Project XL", "https://virtuallization.com/InoriaB/Project_XL.txt")
 
 	-- end
 loader:show()
