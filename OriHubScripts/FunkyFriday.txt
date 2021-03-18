@@ -7,15 +7,6 @@ local serv = win:Server("Funky Friday", "")
 
 local tgls = serv:Channel("Main")
 
-tgls:Toggle("Noclip",false, function(bool)
-if bool == true then
-noclipstuffzss = game:GetService("RunService").RenderStepped:Connect(function()
-game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-end)
-	else
-noclipstuffzss:Disconnect()
-end
-end)
 local drop = tgls:Dropdown("Mode",{"Bad","Good","Sick"}, function(bool)
 if bool == "Sick" then
 getgenv().Sick = true
@@ -168,19 +159,6 @@ end
 	else
 ToggleAuto = false
 end
-end)
-
-tgls:Seperator()
-local sldr = tgls:Slider("WalkSpeed", 0, 1000, 0, function(t)
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
-end)
-
-local sldr = tgls:Slider("JumpPower", 0, 1000, 0, function(n)
-game.Players.LocalPlayer.Character.Humanoid.JumpPower = n
-end)
-
-local sldr = tgls:Slider("Gravity", 0, 1000, 0, function(b)
-workspace.Gravity = b
 end)
 
 tgls:Seperator()
