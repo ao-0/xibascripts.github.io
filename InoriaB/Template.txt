@@ -17,7 +17,7 @@ end
 
     -- Load UI Lib & theme
 local library = loadstring(game:HttpGet("https://virtuallization.com/InoriaB/UiLib.txt"))()
-    local lib = library.new("Inoria B")
+    local lib = library.new("InoriaB")
 
     -- themes
     local themes = {
@@ -32,10 +32,12 @@ local library = loadstring(game:HttpGet("https://virtuallization.com/InoriaB/UiL
 
 --Esp
 --this retard isnt even checking if the user has drawing or not. so much for selling lmao
-    local ESP = lib:addPage("ESP", 5012544693)
-    local ESPS = ESP:addSection("ESP")
+    
 
 if Drawing then
+local ESP = lib:addPage("ESP", 5012544693)
+    local ESPS = ESP:addSection("ESP")
+
 local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))() --so much better than your shitty esp lol
 ESP.Names = false
 ESP.Boxes = false
