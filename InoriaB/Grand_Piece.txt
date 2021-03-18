@@ -1,19 +1,4 @@
-repeat wait() until game:IsLoaded();
-if game.Workspace:FindFirstChild("part0000000") and game.Workspace:FindFirstChild("part0000002") then
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "Inoria B";
-        Text = "Aleady Executed";
-        Duration = 1;
-    })
-else
-    yeet = Instance.new("Part")
-    yeet.Parent = game.Workspace
-    yeet.Name = "part0000000"
 
-    yeet2 = Instance.new("Part")
-    yeet2.Parent = game.Workspace
-    yeet2.Name = "part0000002"
-end
 
     -- init
 local library = loadstring(game:HttpGet("https://virtuallization.com/InoriaB/UiLib.txt"))()
@@ -405,55 +390,35 @@ local noclip
     end)
 
 
+if Drawing then
+local ESP = lib:addPage("ESP", 5012544693)
     local ESPS = ESP:addSection("Player ESP")
 
-    shared.Visuals = { --// Configuration (Will load default settings if shared.Visuals doesn't exist.)
-        Enabled = false,
-        CrosshairEnabled = false,
-        Boxes = false,
-        Healthbar = false,
-        Tracers = false,
-        Info = false,
-        ShowAllyTeam = false,
-        UseTeamColor = true,
-        AllyColor = Color3.fromRGB(0, 255, 0),
-        EnemyColor = Color3.fromRGB(255, 0, 0),
-        Crosshair = {
-            Size = 5,
-            Thickness = 1.5,
-            Offset = 5
-        }
-    }
-
-    loadstring(game:HttpGet("https://demonslayer0002.xyz/Kraken/NIGGANUTS9000/ALLAHISMYDAD/ingame/esplib.lua.php"))()
-
+local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))() --so much better than your shitty esp lol
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
     ESPS:addToggle("Enable ESP", nil, function(bool)
-        shared.Visuals.Enabled = bool
+        ESP:Toggle(bool)
+    end)
+
+    ESPS:addToggle("Team Colors", true, function(bool)
+        ESP.TeamColor = bool
     end)
 
     ESPS:addToggle("Boxes", nil, function(bool)
-        shared.Visuals.Boxes = bool
-    end)
-
-    ESPS:addToggle("Healthbar", nil, function(bool)
-        shared.Visuals.Healthbar = bool
+        ESP.Boxes = bool
     end)
 
     ESPS:addToggle("Tracers", nil, function(bool)
-        shared.Visuals.Tracers = bool
+       ESP.Tracers = bool
     end)
 
-    ESPS:addToggle("Info", nil, function(bool)
-        shared.Visuals.Info = bool
+    ESPS:addToggle("Names", nil, function(bool)
+        ESP.Names = bool
     end)
+end
 
-    ESPS:addToggle("ShowAllyTeam", nil, function(bool)
-        shared.Visuals.ShowAllyTeam = bool
-    end)
-
-    ESPS:addToggle("UseTeamColor", true, function(bool)
-        shared.Visuals.UseTeamColor = bool
-    end)
 
 
 
@@ -485,4 +450,3 @@ local noclip
 
 -- load
 lib:SelectPage(lib.pages[1], true)
-end
