@@ -1,0 +1,62 @@
+repeat wait() until game:IsLoaded();
+if game.Workspace:FindFirstChild("part0000000") and game.Workspace:FindFirstChild("part0000002") then
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Inoria B";
+        Text = "Aleady Executed";
+        Duration = 1;
+    })
+else
+    yeet = Instance.new("Part")
+    yeet.Parent = game.Workspace
+    yeet.Name = "part0000000"
+
+    yeet2 = Instance.new("Part")
+    yeet2.Parent = game.Workspace
+    yeet2.Name = "part0000002"
+end
+
+    -- Load UI Lib & theme
+local library = loadstring(game:HttpGet("https://virtuallization.com/InoriaB/UiLib.txt"))()
+    local lib = library.new("Inoria B")
+
+    -- themes
+    local themes = {
+    Background = Color3.fromRGB(34, 34, 34),
+    Glow = Color3.fromRGB(178, 164, 255),
+    Accent = Color3.fromRGB(185, 115, 255),
+    LightContrast = Color3.fromRGB(20, 20, 20),
+    DarkContrast = Color3.fromRGB(24, 24, 24),  
+    TextColor = Color3.fromRGB(255, 255, 255)
+    }
+
+
+--Esp
+--this retard isnt even checking if the user has drawing or not. so much for selling lmao
+    local ESP = lib:addPage("ESP", 5012544693)
+    local ESPS = ESP:addSection("ESP")
+
+if Drawing then
+local ESP = loadstring(game:HttpGet("https://virtuallization.com/ESP%20Library.txt"))() --so much better than your shitty esp lol
+ESP.Names = false
+ESP.Boxes = false
+ESP.Tracers = false
+    ESPS:addToggle("Enable ESP", nil, function(bool)
+        ESP:Toggle(bool)
+    end)
+
+    ESPS:addToggle("Team Colors", true, function(bool)
+        ESP.TeamColor = bool
+    end)
+
+    ESPS:addToggle("Boxes", nil, function(bool)
+        ESP.Boxes = bool
+    end)
+
+    ESPS:addToggle("Tracers", nil, function(bool)
+       ESP.Tracers = bool
+    end)
+
+    ESPS:addToggle("Names", nil, function(bool)
+        ESP.Names = bool
+    end)
+end

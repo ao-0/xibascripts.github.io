@@ -1,0 +1,296 @@
+repeat wait() until game:IsLoaded();
+if game.Workspace:FindFirstChild("part0000000") and game.Workspace:FindFirstChild("part0000002") then
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Inoria B";
+        Text = "Aleady Executed";
+        Duration = 1;
+    })
+else
+    yeet = Instance.new("Part")
+    yeet.Parent = game.Workspace
+    yeet.Name = "part0000000"
+
+    yeet2 = Instance.new("Part")
+    yeet2.Parent = game.Workspace
+    yeet2.Name = "part0000002"
+end
+
+    -- init
+local library = loadstring(game:HttpGet("https://virtuallization.com/InoriaB/UiLib.txt"))()
+    local lib = library.new("Inoria B")
+
+    -- themes
+    local themes = {
+    Background = Color3.fromRGB(34, 34, 34),
+    Glow = Color3.fromRGB(178, 164, 255),
+    Accent = Color3.fromRGB(185, 115, 255),
+    LightContrast = Color3.fromRGB(20, 20, 20),
+    DarkContrast = Color3.fromRGB(24, 24, 24),  
+    TextColor = Color3.fromRGB(255, 255, 255)
+    }
+
+    --// Setup & services.
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local UserInputService = game:GetService("UserInputService")
+
+        local Players = game:GetService("Players")
+        local LocalPlayer = Players.LocalPlayer
+
+        if not shared.SilentAim then
+            shared.SilentAim = {
+                Enabled = false
+            }
+        end
+
+        if not shared.Chance then
+            shared.Chance = {
+                HeadshotChance = 0
+            }
+        end
+
+        local TS = nil
+        for Index, Value in pairs(getgc(true)) do
+            if typeof(Value) == "table" and rawget(Value, "InitProjectile") then
+                if Value.TS then
+                    TS = Value.TS
+                    break
+                end
+            end
+        end
+
+        local function OnClientTeam(Player)
+            if TS.Teams:ArePlayersFriendly(Player, LocalPlayer) then
+                return true
+            end
+
+            return false
+        end
+
+        local function GetHeadPart(Player)
+            local Character = TS.Characters:GetCharacter(Player)
+            local Body = (Character and Character:FindFirstChild("Body"))
+
+            if Character and Body then
+                return Body:FindFirstChild("Head")
+            end
+        end 
+
+        local function GetClosestPlayerCharacterToCursor()
+            local ClosestPlayer = nil
+            local FarthestDistance = math.huge
+
+            for Index, Player in pairs(Players:GetPlayers()) do
+                if Player == LocalPlayer then end
+                if OnClientTeam(Player) then end 
+
+                local HeadPart = GetHeadPart(Player)
+
+                if HeadPart then
+                    local HeadPosition, OnScreen = Workspace.CurrentCamera:WorldToViewportPoint(HeadPart.Position)
+
+                    if OnScreen then 
+                        local MouseDistanceFromPlayer = (Vector2.new(HeadPosition.X, HeadPosition.Y) - UserInputService:GetMouseLocation()).Magnitude 
+                        
+                        if MouseDistanceFromPlayer < FarthestDistance then
+                            FarthestDistance = MouseDistanceFromPlayer 
+                            ClosestPlayer = Player 
+                        end
+                    end
+                end
+            end
+
+            return TS.Characters:GetCharacter(ClosestPlayer) 
+        end
+
+        local OldFireProjectile = TS.Projectiles.InitProjectile 
+        TS.Projectiles.InitProjectile = function(self, ...)
+            local Arguments = {...} 
+            
+            if shared.SilentAim.Enabled and Arguments[4] == LocalPlayer then
+                local ClosestPlayer = GetClosestPlayerCharacterToCursor()
+                local HeadshotChance = math.random(shared.Chance.HeadshotChance, 10)
+
+               
+
+                if ClosestPlayer and (ClosestPlayer.Health.Value > 0) then 
+                    if HeadshotChance == 10 then 
+                        Arguments[2] = (ClosestPlayer.Hitbox.Head.Position - Arguments[3])
+                    else
+                        Arguments[2] = (ClosestPlayer.Hitbox.Chest.Position - Arguments[3]) 
+                    end
+
+                  
+                end
+            end
+            
+            return OldFireProjectile(self, unpack(Arguments)) 
+    end
+
+    --// Second Setup
+    local oldmult = 1.8;
+    local ok = false;
+    local players = game:GetService("Players");
+    local runservice = game:GetService("RunService");
+    local uis = game:GetService("UserInputService");
+    local camera = workspace.CurrentCamera;
+    local localplayer = players.LocalPlayer;
+    local mouse = localplayer:GetMouse();
+    local isholding = false;
+    local chamsholder = Instance.new("Folder", game:GetService("CoreGui"));
+
+
+    math.randomseed(tick());
+    local modules, controlfunc;
+    for i,v in next, getgc(true) do
+        if type(v) == "table" then
+            if rawget(v, "Version") and rawget(v, "Kitty") then
+                local mt = getrawmetatable(v);
+                modules = select(2, pcall(getupvalue, mt.__index, 1)); --gets the ts module (haha totally not stolen from kiriot :p)
+            elseif rawget(v, "Control") and type(rawget(v, "Control")) == "function" then
+                controlfunc = rawget(v, "Control"); --control function used for walkspeed mult
+            end
+        end
+        if modules and controlfunc then break; end
+    end
+
+    if not modules or (modules and not rawget(modules, "Network")) then
+        print("Failed To Get TS Module"); -- :(
+        return;
+    end
+
+    if not controlfunc then
+        print("Failed To Get Control Function"); -- :(
+        return;
+    end
+
+
+
+    local toggles = {
+        fov = 0,
+        norecoil = false,
+        nospread = false,
+        alwaysauto = false,
+        fastfirerate = false,
+    };
+
+    do
+        local oldinit = modules.Projectiles.InitProjectile; 
+        local oldfire = modules.Network.Fire;
+        local oldlookvector = modules.Input.Reticle.LookVector;
+        local oldwait = modules.Timer.Wait;
+        local stopchanging = false;
+        local originalfuncs = {}; 
+        modules.Projectiles.InitProjectile = function(self, ...)
+            local args = {...};
+            if args[4] == localplayer and toggles.silentaim and math.random(1, 100) <= toggles.hitchance then
+                local char = getupvalue(modules.Characters.GetCharacter, 1)[getclosesttocursor()];
+                local chosenpart = (char and char:FindFirstChild("Hitbox") and char.Hitbox:FindFirstChild(toggles.bodypart));
+                if chosenpart then
+                    args[2] = chosenpart.Position - args[3];
+                    return oldinit(self, unpack(args));
+                end
+            end
+            return oldinit(self, ...);
+        end
+        modules.Network.Fire = function(self, ...)
+            local args = {...};
+            if args[1] == "Item_Paintball" and args[2] == "Shoot" then
+                if not stopchanging then
+                    originalfuncs[8], originalfuncs[9], originalfuncs[10] = getupvalue(2, 8), getupvalue(2, 9), getupvalue(2, 10);
+                    stopchanging = true;
+                end
+                setupvalue(2, 8, function(...) if toggles.norecoil then return; end return originalfuncs[8](...); end);
+                setupvalue(2, 9, function(...) if toggles.norecoil then return; end return originalfuncs[9](...); end);
+                setupvalue(2, 10, function(...) if toggles.norecoil then return; end return originalfuncs[10](...); end);
+                
+            end
+            return oldfire(self, ...);
+        end
+        modules.Input.Reticle.LookVector = function(...)
+            return (toggles.nospread and camera.CFrame.LookVector or oldlookvector(...));
+        end
+        modules.Timer.Wait = function(self, time)
+            local Upvals = getupvalues(2);
+            if toggles.fastfirerate then
+                if type(Upvals[1]) == "table" and rawget(Upvals[1], "Equipped") and typeof(Upvals[7]) == "Instance" and Upvals[7]:IsA("IntValue") then
+                    return oldwait(self, 0);
+                end
+            end
+            return oldwait(self, time);
+        end
+    end
+
+
+
+
+    -- first page
+    local Main = lib:addPage("Silent Aim", 5012544693)
+    local SilentAim = Main:addSection("Silent Aim")
+
+
+    SilentAim:addSlider("Headshot Chance", 0, 0, 10, function(value)
+        shared.Chance.HeadshotChance = value
+    end)
+
+    SilentAim:addToggle("Silent Aim", nil, function(value2)
+        if value2 == true then
+            shared.SilentAim.Enabled = value2
+        else
+            shared.SilentAim.Enabled = value2
+        end
+    end)
+
+    -- second page
+    local Weapons = lib:addPage("Weapons", 5012544693)
+    local WSection = Weapons:addSection("Weapons")
+
+    WSection:addToggle("No Recoil", nil, function(bool)
+        toggles.norecoil = bool;
+    end)
+
+    WSection:addToggle("No Spread", nil, function(bool)
+        toggles.nospread = bool;
+    end)
+
+    WSection:addToggle("Fast Firerate", nil, function(bool)
+        toggles.fastfirerate = bool;
+    end)
+
+
+    local Movement = lib:addPage("Movement", 5012544693)
+    local MSection = Movement:addSection("Movement")
+
+    MSection:addSlider("Sprint Multiplier", 0, 0, 10, function(value)
+            setconstant(controlfunc, table.find(getconstants(controlfunc), oldmult), value);
+            oldmult = value;
+    end)
+
+
+    -- last page
+    local theme = lib:addPage("Settings", 5012544693)
+    local colors = theme:addSection("Colors")
+    local settings = theme:addSection("Settings")
+
+    for theme, color in pairs(themes) do -- all in one theme changer, i know, im cool
+    colors:addColorPicker(theme, color, function(color3)
+    lib:setTheme(theme, color3)
+    end)
+    end
+
+    settings:addKeybind("Toggle Keybind", Enum.KeyCode.RightControl, function()
+        lib:toggle()
+        end, function()
+    end)
+
+    settings:addButton("Destroy UI", function()
+        if game.CoreGui:FindFirstChild("Kraken") then
+            game:GetService("CoreGui").Kraken:Destroy();
+            game.Workspace.part0000000:Destroy();
+            game.Workspace.part00000002:Destroy();
+        end
+    end)
+
+
+    -- load
+    lib:SelectPage(lib.pages[1], true)
+end

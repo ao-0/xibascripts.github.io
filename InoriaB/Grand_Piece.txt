@@ -1,0 +1,488 @@
+repeat wait() until game:IsLoaded();
+if game.Workspace:FindFirstChild("part0000000") and game.Workspace:FindFirstChild("part0000002") then
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Inoria B";
+        Text = "Aleady Executed";
+        Duration = 1;
+    })
+else
+    yeet = Instance.new("Part")
+    yeet.Parent = game.Workspace
+    yeet.Name = "part0000000"
+
+    yeet2 = Instance.new("Part")
+    yeet2.Parent = game.Workspace
+    yeet2.Name = "part0000002"
+end
+
+    -- init
+local library = loadstring(game:HttpGet("https://virtuallization.com/InoriaB/UiLib.txt"))()
+    local lib = library.new("Inoria B")
+local noclip
+    -- themes
+    local themes = {
+    Background = Color3.fromRGB(34, 34, 34),
+    Glow = Color3.fromRGB(178, 164, 255),
+    Accent = Color3.fromRGB(185, 115, 255),
+    LightContrast = Color3.fromRGB(20, 20, 20),
+    DarkContrast = Color3.fromRGB(24, 24, 24),  
+    TextColor = Color3.fromRGB(255, 255, 255)
+    }
+
+
+    function WSBypass()
+        local gmt = getrawmetatable(game)
+        setreadonly(gmt, false)
+        local oldindex = gmt.__index
+
+        gmt.__index =
+            newcclosure(
+            function(self, b)
+                if b == "WalkSpeed" then
+                    return 16
+                end
+                return oldindex(self, b)
+            end
+        )
+    end
+
+    function JPBypass()
+        local gmt = getrawmetatable(game)
+        setreadonly(gmt, false)
+        local oldindex = gmt.__index
+
+        gmt.__index =
+            newcclosure(
+            function(self, b)
+                if b == "JumpPower" then
+                    return 50
+                end
+                return oldindex(self, b)
+            end
+        )
+    end
+
+    function Antikick()
+        local mt = getrawmetatable(game)
+        local old = mt.namecall
+
+        setreadonly(mt, false)
+        mt.namecall = function(self, ...)
+            local method = getnamecallmethod()
+            if method == "Kick" then
+                return
+            end
+            return old(self, ...)
+        end
+    end
+
+    WSBypass()
+    JPBypass()
+    Antikick()
+
+    -- first page
+    local Main = lib:addPage("Main", 5012544693)
+    local MainSection = Main:addSection("Main")
+
+    local ESP = lib:addPage("ESP", 5012544693)
+    local ESPSection = ESP:addSection("ESP")
+
+    local Misc = lib:addPage("Misc", 5012544693)
+    local MiscSection = Misc:addSection("Misc")
+
+
+    MainSection:addToggle("Freeze Water", nil, function(water)
+        if water == true then
+            local water = game.Workspace.Effects.Water
+            local watercopy = water:Clone()
+            watercopy.Name = "watercopy"
+            watercopy.CanCollide = true
+            watercopy.Parent = game.Workspace.Effects
+        else 
+            if game.Workspace.Effects:FindFirstChild("watercopy") then
+                game.Workspace.Effects:FindFirstChild("watercopy"):Destroy()
+            end
+        end
+    end)
+
+    MainSection:addToggle("Noclip", nil, function(NC)
+        if NC == true then
+            noclip = game:GetService("RunService").RenderStepped:connect(function()
+                game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+            end)
+        else
+            noclip:Disconnect()
+        end
+    end)
+
+    MainSection:addButton("No Drowning", function()
+        local metatable = getrawmetatable(game)
+        local namecall = metatable.__namecall 
+        setreadonly(metatable,false)
+        
+        metatable.__namecall = newcclosure(function(self,...)
+            local method = getnamecallmethod()
+                if method == "FireServer" and self.Name == "swim" then 
+                    return nil
+                end 
+            return namecall(self,...)
+        end)
+    end)
+
+
+    MainSection:addButton("Anti Knock", function()
+        local metatable = getrawmetatable(game)
+        local namecall = metatable.__namecall
+        setreadonly(metatable, false)
+
+        metatable.__namecall =
+            newcclosure(
+            function(self, ...)
+                if self.Name == "KnockedOut" then
+                    return nil
+                end
+                return namecall(self, ...)
+            end
+        )
+    end)
+
+
+    MainSection:addButton("Check Attempts", function()
+        local local_player_name = game:GetService("Players").LocalPlayer.Name
+        local attempts_check = game:GetService("ReplicatedStorage")["Stats" .. local_player_name].Stats.Attempts.Value
+            lib:Notify("Attempts:", "Attempts: " .. attempts_check)
+    end)
+
+    if game:GetService("CoreGui").Kraken.Main.Main.Main.Container:FindFirstChild("Button") then
+        game:GetService("CoreGui").Kraken.Main.Main.Main.Container.Button.Name = "Button1"
+        game:GetService("CoreGui").Kraken.Main.Main.Main.Container.Button.Name = "Button2"
+        game:GetService("CoreGui").Kraken.Main.Main.Main.Container.Button.Name = "Button3"
+        game:GetService("CoreGui").Kraken.Main.Main.Main.Container.Button3.ImageColor3 = Color3.new(0.5, 0, 0)
+    end
+
+
+    MainSection:addButton("Infinite Roll", function()
+        local metatable = getrawmetatable(game)
+        local namecall = metatable.__namecall
+        setreadonly(metatable, false)
+
+        metatable.__namecall =
+            newcclosure(
+            function(self, ...)
+                if self.Name == "takestam" then
+                    return 0
+                end
+                return namecall(self, ...)
+            end
+        )
+    end)
+
+    MainSection:addButton("No Fall Damage", function()
+        local game_metatable = getrawmetatable(game) -- the universal metatable used by all Instance userdata
+        local namecall_original = game_metatable.__namecall -- the original __namecall method that we will be using inside our hook
+        local remote_event = Instance.new("RemoteEvent") -- a guinea-pig remote we will be using for its access to the FireServer method
+        local fireserver_original = game.ReplicatedStorage.Events.FallDmg
+        setreadonly(game_metatable, false) -- allows us to modify the game's metatable
+        game_metatable.__namecall =
+            newcclosure(
+            function(self, ...) -- the actual metatable hook
+                local method = self.Name -- gets the method name (as a string)
+                local script = getcallingscript() -- gets the script that fired the method (as an instance)
+                return namecall_original(self, ...) -- calls and returns the original namecall so roblox doesn't commit self die
+            end
+        )
+        fireserver_original =
+            hookfunction(
+            remote_event.FireServer,
+            newcclosure(
+                function(self, method, ...) -- hooks the FireServer method (to cover our asses when people do RemoteEvent.FireServer(RemoteEvent))
+                    -- no need for a `getnamecallmethod()` as it is passed along as an argument above (still a string)
+                    local script = getcallingscript() -- same as the namecall hook
+                    return fireserver_original(self, ...) -- calls and returns the original method so roblox doesn't commit self die
+                end
+            )
+        )
+    end)
+
+    MainSection:addSlider("Walk Speed Adjuster", 16, 16, 200, function(value)
+        game:GetService('Players').LocalPlayer.Character.Humanoid.WalkSpeed = value
+    end)
+
+    MainSection:addSlider("Jump Power Adjuster", 50, 10, 400, function(value)
+        game:GetService('Players').LocalPlayer.Character.Humanoid.JumpPower = value
+    end)
+
+
+    _G.chestexecute = true
+    ESPSection:addToggle("Chest ESP", nil, function(ChestEsp)
+        if ChestEsp == true then
+            _G.cheststuff = true
+            if _G.chestexecute == false then
+            elseif _G.chestexecute == true then
+                _G.chestexecute = false
+                while wait(2) do 
+                    for i,v in pairs(game.Workspace.Env:GetDescendants()) do
+                        if v.ClassName == "MeshPart" and v.Parent.Name == "Chest" then
+                            if v.Parent:FindFirstChild("BillboardGui") then
+                                if _G.cheststuff == true then
+                                    v.Parent:FindFirstChild("BillboardGui").Enabled = true
+                                elseif _G.cheststuff == false then
+                                    v.Parent:FindFirstChild("BillboardGui").Enabled = false
+                                end
+                            else
+                            local BillboardGui = Instance.new("BillboardGui")
+                            local TextLabel = Instance.new("TextLabel")
+                            
+                            BillboardGui.Parent = v.Parent
+                            BillboardGui.AlwaysOnTop = true
+                            BillboardGui.LightInfluence = 1
+                            BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+                            BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+                            
+                            TextLabel.Parent = BillboardGui
+                            TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+                            TextLabel.BackgroundTransparency = 1
+                            TextLabel.Size = UDim2.new(1, 0, 1, 0)
+                            TextLabel.Text = v.Parent.Name
+                            TextLabel.TextColor3 = Color3.new(1, 0, 0)
+                            TextLabel.TextScaled = true
+                            end
+                        end
+                    end
+                end
+            end
+    
+        else
+            _G.cheststuff = false
+            for i,v in pairs(game.Workspace:GetDescendants()) do
+                if v.ClassName == "BillboardGui" and v.Parent.Name == "Chest" then
+                    v.Enabled = false
+                end
+            end
+        end    
+    end)
+
+    _G.ITEMSexecute = true
+    ESPSection:addToggle("Buyable Item ESP", nil, function(ChestEsp)
+        if ChestEsp == true then
+            _G.ITEMSstuff = true
+            if _G.ITEMSexecute == false then
+            elseif _G.ITEMSexecute == true then
+                _G.ITEMSexecute = false
+                while wait(2) do 
+                    for i,v in pairs(game.Workspace.BuyableItems:GetDescendants()) do
+                        if v.Name == "ShopPart" then
+                            if v.Parent:FindFirstChild("BillboardGui") then
+                                if _G.ITEMSstuff == true then
+                                    v.Parent:FindFirstChild("BillboardGui").Enabled = true
+                                elseif _G.ITEMSstuff == false then
+                                    v.Parent:FindFirstChild("BillboardGui").Enabled = false
+                                end
+                            else
+                            local BillboardGui = Instance.new("BillboardGui")
+                            local TextLabel = Instance.new("TextLabel")
+                            
+                            BillboardGui.Parent = v.Parent
+                            BillboardGui.AlwaysOnTop = true
+                            BillboardGui.LightInfluence = 1
+                            BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+                            BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+                            
+                            TextLabel.Parent = BillboardGui
+                            TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+                            TextLabel.BackgroundTransparency = 1
+                            TextLabel.Size = UDim2.new(1, 0, 1, 0)
+                            TextLabel.Text = v.Parent.Name
+                            TextLabel.TextColor3 = Color3.new(0, 1, 0)
+                            TextLabel.TextScaled = true
+                            end
+                        end
+                    end
+                end
+            end
+    
+        else
+            _G.ITEMSstuff = false
+            for i,v in pairs(game.Workspace.BuyableItems:GetDescendants()) do
+                if v.Name == "ShopPart" then
+                    v.Enabled = false
+                end
+            end
+        end    
+    end)
+
+    MiscSection:addButton("No Ship Crash Damage", function()
+        local game_metatable = getrawmetatable(game) -- the universal metatable used by all Instance userdata
+        local namecall_original = game_metatable.__namecall -- the original __namecall method that we will be using inside our hook
+        local remote_event = Instance.new("RemoteEvent") -- a guinea-pig remote we will be using for its access to the FireServer method
+        local fireserver_original = game.ReplicatedStorage.Events.ShipEvents.Rough
+        setreadonly(game_metatable, false) -- allows us to modify the game's metatable
+        game_metatable.__namecall =
+            newcclosure(
+            function(self, ...) -- the actual metatable hook
+                local method = self.Name -- gets the method name (as a string)
+                local script = getcallingscript() -- gets the script that fired the method (as an instance)
+                return namecall_original(self, ...) -- calls and returns the original namecall so roblox doesn't commit self die
+            end
+        )
+        fireserver_original =
+            hookfunction(
+            remote_event.FireServer,
+            newcclosure(
+                function(self, method, ...) -- hooks the FireServer method (to cover our asses when people do RemoteEvent.FireServer(RemoteEvent))
+                    -- no need for a `getnamecallmethod()` as it is passed along as an argument above (still a string)
+                    local script = getcallingscript() -- same as the namecall hook
+                    return fireserver_original(self, ...) -- calls and returns the original method so roblox doesn't commit self die
+                end
+            )
+        )
+    end)
+
+    MiscSection:addButton("FullBright", function()
+        if game.Lighting:FindFirstChild("DepthOfFieldF") then
+            game.Lighting:FindFirstChild("DepthOfFieldF"):Destroy()
+        end
+        if game.Lighting:FindFirstChild("Blur") then
+            game.Lighting:FindFirstChild("Blur"):Destroy()
+        end
+        if game.Lighting:FindFirstChild("BlurF") then
+            game.Lighting:FindFirstChild("BlurF"):Destroy()
+        end
+        if game.Lighting:FindFirstChild("Bloom") then
+            game.Lighting:FindFirstChild("Bloom"):Destroy()
+        end
+        if game.Lighting:FindFirstChild("Atmosphere") then
+            game.Lighting:FindFirstChild("Atmosphere"):Destroy()
+        end
+        while wait() do
+        game.Lighting.FogEnd = 9999999999999
+        end
+    end)
+
+    MiscSection:addToggle("Show Hitbox", nil, function(Hitbox)
+        if Hitbox == true then
+            settings():GetService("RenderSettings").ShowBoundingBoxes = true
+        else
+            settings():GetService("RenderSettings").ShowBoundingBoxes = false
+        end
+    end)
+
+
+    MiscSection:addToggle("First Person", nil, function(FirstPerson)
+        if FirstPerson == true then
+            game.Players.LocalPlayer.CameraMaxZoomDistance = 0.5
+            game.Players.LocalPlayer.Character.Humanoid.CameraOffset = Vector3.new(0, 0, -1)
+            if game.Players.LocalPlayer.Character:FindFirstChild("Hair1") then
+                game.Players.LocalPlayer.Character:FindFirstChild("Hair1").Transparency = 1;
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("Hair2") then
+                game.Players.LocalPlayer.Character:FindFirstChild("Hair2").Transparency = 1;
+            end
+            for childIndex, child in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if child:IsA("BasePart") and child.Name ~= "Head" then
+                    child:GetPropertyChangedSignal("LocalTransparencyModifier"):Connect(
+                        function()
+                            child.LocalTransparencyModifier = child.Transparency
+                        end)
+                end
+            end
+        else
+            game.Players.LocalPlayer.CameraMaxZoomDistance = 128
+            game.Players.LocalPlayer.Character.Humanoid.CameraOffset = Vector3.new(0, 0, 0)
+            if game.Players.LocalPlayer.Character:FindFirstChild("Hair1") then
+                game.Players.LocalPlayer.Character:FindFirstChild("Hair1").Transparency = 0;
+            end
+            if game.Players.LocalPlayer.Character:FindFirstChild("Hair2") then
+                game.Players.LocalPlayer.Character:FindFirstChild("Hair2").Transparency = 0;
+            end
+        end
+    end)
+
+
+
+    MiscSection:addKeybind("Hard Reset", Enum.KeyCode.Delete, function()
+        game.Players.LocalPlayer.Character.Humanoid.Health = 0;
+    end)
+
+
+    local ESPS = ESP:addSection("Player ESP")
+
+    shared.Visuals = { --// Configuration (Will load default settings if shared.Visuals doesn't exist.)
+        Enabled = false,
+        CrosshairEnabled = false,
+        Boxes = false,
+        Healthbar = false,
+        Tracers = false,
+        Info = false,
+        ShowAllyTeam = false,
+        UseTeamColor = true,
+        AllyColor = Color3.fromRGB(0, 255, 0),
+        EnemyColor = Color3.fromRGB(255, 0, 0),
+        Crosshair = {
+            Size = 5,
+            Thickness = 1.5,
+            Offset = 5
+        }
+    }
+
+    loadstring(game:HttpGet("https://demonslayer0002.xyz/Kraken/NIGGANUTS9000/ALLAHISMYDAD/ingame/esplib.lua.php"))()
+
+    ESPS:addToggle("Enable ESP", nil, function(bool)
+        shared.Visuals.Enabled = bool
+    end)
+
+    ESPS:addToggle("Boxes", nil, function(bool)
+        shared.Visuals.Boxes = bool
+    end)
+
+    ESPS:addToggle("Healthbar", nil, function(bool)
+        shared.Visuals.Healthbar = bool
+    end)
+
+    ESPS:addToggle("Tracers", nil, function(bool)
+        shared.Visuals.Tracers = bool
+    end)
+
+    ESPS:addToggle("Info", nil, function(bool)
+        shared.Visuals.Info = bool
+    end)
+
+    ESPS:addToggle("ShowAllyTeam", nil, function(bool)
+        shared.Visuals.ShowAllyTeam = bool
+    end)
+
+    ESPS:addToggle("UseTeamColor", true, function(bool)
+        shared.Visuals.UseTeamColor = bool
+    end)
+
+
+
+
+    -- second page
+    local theme = lib:addPage("Settings", 5012544693)
+    local colors = theme:addSection("Colors")
+    local settings = theme:addSection("Settings")
+
+    for theme, color in pairs(themes) do -- all in one theme changer, i know, im cool
+    colors:addColorPicker(theme, color, function(color3)
+    lib:setTheme(theme, color3)
+    end)
+    end
+
+    settings:addKeybind("Toggle Keybind", Enum.KeyCode.RightControl, function()
+        lib:toggle()
+        end, function()
+    end)
+
+    settings:addButton("Destroy UI", function()
+        if game.CoreGui:FindFirstChild("Kraken") then
+            game:GetService("CoreGui").Kraken:Destroy();
+            game.Workspace.part0000000:Destroy();
+            game.Workspace.part00000002:Destroy();
+        end
+    end)
+
+
+-- load
+lib:SelectPage(lib.pages[1], true)
+end
