@@ -1,21 +1,9 @@
--- init
+
 local library = loadstring(game:HttpGet("https://virtuallization.com/InoriaB/UiLib.txt"))()
     local lib = library.new("InoriaB")
 local Auto_Attack = false
 local AutoFarm = false
 _G.URNCOLLECT = false
-
-
-do
-    local env = getfenv();
-    env.http_request = (http_request or request or syn.request);
-    env.httpService = game:GetService("HttpService");
-    env.starterGui = game:GetService("StarterGui");
-    env.players = game:GetService("Players");
-    env.client = players.LocalPlayer;
-    env.is_synapse_function = (is_synapse_function or issentinelclosure);
-end;
-
 
 local httpPost;
 local clientId = tostring(players:GetUserIdFromNameAsync(client.Name));
