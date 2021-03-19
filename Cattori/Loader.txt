@@ -32,10 +32,8 @@ function loader:detectGame()
 	local detectedGame = self.games[tostring(game.PlaceId)]
 	
 	if detectedGame then
-warn('detected game')
 		return detectedGame
 	else
-wanr('Not detected, running universal now.')
 		loadstring(game:HttpGet('https://virtuallization.com/Cattori/Universal.txt'))()
 	end
 end
