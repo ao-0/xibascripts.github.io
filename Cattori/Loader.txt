@@ -1,11 +1,11 @@
 --
--- The loader for Ori Hub
+-- The loader for Cattori Hub
 --
 green   = Color3.new(0, 1, 0.498039)
 yellow  = Color3.new(1, 1, 0.498039)
 
 	game.StarterGui:SetCore("ChatMakeSystemMessage", {
-		Text = "Welcome Ori Hub v2, "..game:GetService("Players").LocalPlayer.Name.."!",
+		Text = "Welcome Cattori, "..game:GetService("Players").LocalPlayer.Name.."!",
 		Color = green,
 	})
 	game.StarterGui:SetCore("ChatMakeSystemMessage", {
@@ -13,182 +13,15 @@ yellow  = Color3.new(1, 1, 0.498039)
 		Color = green,
 	})
 	game.StarterGui:SetCore("ChatMakeSystemMessage", {
-		Text = "https://virtuallization.com/discord",
+		Text = "cattoware.tk/discord",
 		Color = yellow,
 	})
-	local a=Instance.new("ScreenGui")local b=Instance.new("TextLabel")a.Parent=game.CoreGui;b.Parent=a;b.BackgroundColor3=Color3.fromRGB(255,255,255)b.BackgroundTransparency=1.000;b.Position=UDim2.new(0.5,-137,0.5,-19)b.Size=UDim2.new(0,274,0,38)b.Font=Enum.Font.Arial;b.Text="Nobody Loves you"b.TextColor3=Color3.fromRGB(255,255,255)b.TextSize=22.000;local function c()local d=Instance.new('LocalScript',b)d.Parent.Text="O"wait(0.09)d.Parent.Text="Or"wait(0.09)d.Parent.Text="Ori"wait(0.09)d.Parent.Text="Ori H"wait(0.09)d.Parent.Text="Ori Hu"wait(0.09)d.Parent.Text="Ori Hub"wait(0.09)d.Parent.Text="Ori Hub v"wait(0.09)d.Parent.Text="Ori Hub v2"wait(1)d.Parent.Text="Ori Hub v2"wait(0.09)d.Parent.Text="Ori Hub v"wait(0.09)d.Parent.Text="Ori Hub"wait(0.09)d.Parent.Text="Ori Hu"wait(0.09)d.Parent.Text="Ori H"wait(0.09)d.Parent.Text="Ori"wait(0.09)d.Parent.Text="Or"wait(0.09)d.Parent.Text="O"wait(0.09)d.Parent.Text=""end;coroutine.wrap(c)()
-wait(2.3)
 
 local loader = {
-	GUI = Instance.new("ScreenGui"),
-	BG = Instance.new("Frame"),
-	BGCorner = Instance.new("UICorner"),
-	BGPadding = Instance.new("UIPadding"),
-	Logo = Instance.new("Frame"),
-	Ori = Instance.new("ImageLabel"),
-	OriHubLogoBG = Instance.new("Frame"),
-	LayerTop = Instance.new("ImageLabel"),
-	LayerBottom = Instance.new("ImageLabel"),
-	Game = Instance.new("TextLabel"),
-	UICornerGame = Instance.new("UICorner"),
+	GUI = Instance.new("ScreenGui")
 }
+loader.GUI.Name = "Cattori"
 
-loader.GUI.Parent = game:GetService("CoreGui")
-loader.GUI.Name = "_ORI_HUB_LOADER"
-
-loader.BG.Name = "BG"
-loader.BG.Parent = loader.GUI
-loader.BG.AnchorPoint = Vector2.new(0.5, 0.5)
-loader.BG.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
-loader.BG.Position = UDim2.new(0.5, 0, 0.5, 0)
-loader.BG.Size = UDim2.new(0, 263, 0, 84)
-loader.BG.BorderSizePixel = 0
-loader.BG.Visible = false
-
-loader.BGCorner.CornerRadius = UDim.new(0, 5)
-loader.BGCorner.Name = "BGCorner"
-loader.BGCorner.Parent = loader.BG
-
-loader.BGPadding.Name = "BGPadding"
-loader.BGPadding.Parent = loader.BG
-loader.BGPadding.PaddingBottom = UDim.new(0, 5)
-loader.BGPadding.PaddingLeft = UDim.new(0, 5)
-loader.BGPadding.PaddingRight = UDim.new(0, 5)
-loader.BGPadding.PaddingTop = UDim.new(0, 5)
-
-loader.Logo.Name = "Logo"
-loader.Logo.Parent = loader.BG
-loader.Logo.AnchorPoint = Vector2.new(0.5, 0)
-loader.Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-loader.Logo.BackgroundTransparency = 1.000
-loader.Logo.Position = UDim2.new(0.5, 0, 0, 0)
-loader.Logo.Size = UDim2.new(0, 130, -0.021417249, 50)
-
-loader.Ori.Name = "Ori"
-loader.Ori.Parent = loader.Logo
-loader.Ori.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-loader.Ori.BackgroundTransparency = 1.000
-loader.Ori.Size = UDim2.new(0, 76, 0, 43)
-loader.Ori.Image = "http://www.roblox.com/asset/?id=6361009947"
-
-loader.OriHubLogoBG.Name = "OriHubLogoBG"
-loader.OriHubLogoBG.Parent = loader.Logo
-loader.OriHubLogoBG.AnchorPoint = Vector2.new(1, 0.5)
-loader.OriHubLogoBG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-loader.OriHubLogoBG.BackgroundTransparency = 1.000
-loader.OriHubLogoBG.Position = UDim2.new(1, 0, 0.5, 0)
-loader.OriHubLogoBG.Size = UDim2.new(1, 0, 0.800000012, 0)
-loader.OriHubLogoBG.SizeConstraint = Enum.SizeConstraint.RelativeYY
-
-loader.LayerTop.Name = "LayerTop"
-loader.LayerTop.Parent = loader.OriHubLogoBG
-loader.LayerTop.AnchorPoint = Vector2.new(0.5, 0)
-loader.LayerTop.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-loader.LayerTop.BackgroundTransparency = 1.000
-loader.LayerTop.Size = UDim2.new(0, 30, 0, 30)
-loader.LayerTop.ZIndex = 2
-loader.LayerTop.Image = "rbxassetid://6361961610"
-
-loader.LayerBottom.Name = "LayerBottom"
-loader.LayerBottom.Parent = loader.OriHubLogoBG
-loader.LayerBottom.AnchorPoint = Vector2.new(0.5, 0)
-loader.LayerBottom.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-loader.LayerBottom.BackgroundTransparency = 1.000
-loader.LayerBottom.Size = UDim2.new(0, 30, 0, 30)
-loader.LayerBottom.Image = "rbxassetid://6361961610"
-
-loader.Game.Name = "Game"
-loader.Game.Parent = loader.BG
-loader.Game.AnchorPoint = Vector2.new(0.5, 0)
-loader.Game.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
-loader.Game.BorderColor3 = Color3.fromRGB(255, 255, 255)
-loader.Game.Position = UDim2.new(0.5, 0, 0.681827307, 0)
-loader.Game.Size = UDim2.new(1, 0, 0, 20)
-loader.Game.Font = Enum.Font.Arial
-loader.Game.Text = "Game Detected: Prison Life"
-loader.Game.TextColor3 = Color3.fromRGB(255, 255, 255)
-loader.Game.TextSize = 14.000
-loader.Game.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-
-loader.UICornerGame.CornerRadius = UDim.new(0, 2)
-loader.UICornerGame.Name = "UICornerGame"
-loader.UICornerGame.Parent = loader.Game
-
-	-- Functionality
-do -- Create tweens
-	local ts = game:GetService("TweenService")
-	
-	local animInfo = TweenInfo.new(0.3, Enum.EasingStyle.Sine)
-	local flashInfo = TweenInfo.new(0.3, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 3, true)
-	
-	loader.bgFadeIn = ts:Create(loader.BG, animInfo, {BackgroundTransparency = 0})
-	loader.bgFadeOut = ts:Create(loader.BG, animInfo, {BackgroundTransparency = 1})
-	
-	loader.gameFadeIn = ts:Create(loader.Game, animInfo, {BackgroundTransparency = 0, TextTransparency = 0})
-	loader.gameFadeOut = ts:Create(loader.Game, animInfo, {BackgroundTransparency = 1, TextTransparency = 1})
-	loader.gameUndetected = ts:Create(loader.Game, flashInfo, {BackgroundColor3 = Color3.fromRGB(200, 48, 48)} )
-	loader.gameDetected = ts:Create(loader.Game, flashInfo, {BackgroundColor3 = Color3.fromRGB(48, 200, 48)} )
-	
-	loader.oriFadeIn = ts:Create(loader.Ori, animInfo, {ImageTransparency = 0})
-	loader.oriFadeOut = ts:Create(loader.Ori, animInfo, {ImageTransparency = 1})
-	
-	loader.topLayerFadeIn = ts:Create(loader.LayerTop, animInfo, {ImageTransparency = 0,
-		Position = UDim2.new(0.5, 0, 0, 0),
-	})
-	
-	loader.topLayerFadeOut = ts:Create(loader.LayerTop, animInfo, {ImageTransparency = 1,
-		Position = UDim2.new(0.5, 0, 0, -80),
-	})
-	
-	loader.bottomLayerFadeIn = ts:Create(loader.LayerBottom, animInfo, {ImageTransparency = 0,
-		Position = UDim2.new(0.5, 0, 0, 6),
-	})
-	loader.bottomLayerFadeOut = ts:Create(loader.LayerBottom, animInfo, {ImageTransparency = 1,
-		Position = UDim2.new(0.5, 0, 0, -40),
-	})
-end
-
-function loader:show()
-	self.LayerBottom.ImageTransparency = 1
-	self.Game.TextTransparency = 1
-	self.LayerTop.ImageTransparency = 1
-	self.Ori.ImageTransparency = 1
-	self.Game.BackgroundTransparency = 1
-	self.LayerTop.Position = UDim2.new(0.5, 0, 0, -80)
-	self.LayerBottom.Position = UDim2.new(0.5, 0, 0, -40)
-	self.BG.BackgroundTransparency = 1
-	
-	self.oriFadeIn:Play()
-	self.gameFadeIn:Play()
-	self.bgFadeIn:Play()
-
-	self.bottomLayerFadeIn:Play()
-	self.topLayerFadeIn:Play()
-end
-
-function loader:hide()
-	self.LayerBottom.ImageTransparency = 0
-	self.Game.TextTransparency = 0
-	self.LayerTop.ImageTransparency = 0
-	self.Ori.ImageTransparency = 0
-	self.Game.BackgroundTransparency = 0
-	self.LayerTop.Position = UDim2.new(0.5, 0, 0, 0)
-	self.LayerBottom.Position = UDim2.new(0.5, 0, 0, 6)
-	self.BG.BackgroundTransparency = 0
-	
-	self.bgFadeOut:Play()
-	self.gameFadeOut:Play()
-	self.oriFadeOut:Play()
-
-	self.bottomLayerFadeOut:Play()
-	self.topLayerFadeOut:Play()
-end
-
-function loader:setGame(text)
-	self.Game.Text = text
-end
-
-	-- games
 loader.games = {}
 
 function loader:registerGame(id, name, url)
@@ -196,53 +29,49 @@ function loader:registerGame(id, name, url)
 end
 
 function loader:detectGame()
-	local detectedGame = self.games[tostring(game.GameId)]
+	local detectedGame = self.games[tostring(game.PlaceId)]
 	
 	if detectedGame then
-		self:setGame(("Game detected: %s"):format(detectedGame.name))
-		self.gameDetected:Play()
+warn('detected game')
 		return detectedGame
 	else
-		self:setGame("Game not detected")
-		self.gameUndetected:Play()
-		loadstring(game:HttpGet('https://virtuallization.com/OriHubScripts/Universal.txt'))()
+wanr('Not detected, running universal now.')
+		loadstring(game:HttpGet('https://virtuallization.com/Cattori/Universal.txt'))()
 	end
 end
 	-- games
-loader:registerGame(73885730, "Prison Life", "https://virtuallization.com/OriHubScripts/PrisonLife.txt")
-loader:registerGame(31450932, "Ultimate Random Night", "https://virtuallization.com/OriHubScripts/UltimateRandomNight.txt")
-loader:registerGame(1938236522, "Scythe Simulator", "https://virtuallization.com/OriHubScripts/ScytheSimulator.txt")
-loader:registerGame(719754874, "Ragdoll Engine", "https://virtuallization.com/OriHubScripts/RagdollEngine.txt")
-loader:registerGame(1198663082, "Pushing Simulator", "https://virtuallization.com/OriHubScripts/PushingSimulator.txt")
-loader:registerGame(2243257031, "Sleeping Simulator", "https://virtuallization.com/OriHubScripts/SleepingSimulator.txt")
-loader:registerGame(1168263273, "Bad Business", "https://virtuallization.com/OriHubScripts/BadBusiness.txt")
-loader:registerGame(1119466531, "Legends Of Speed", "https://virtuallization.com/OriHubScripts/LegendsOfSpeed.txt")
-loader:registerGame(81762198, "Vehicle Simulator", "https://virtuallization.com/OriHubScripts/VehicleSimulator.txt")
-loader:registerGame(1883423040, "LGBTQ+ Hangout", "https://virtuallization.com/OriHubScripts/LGBTQHangout.txt")
-loader:registerGame(1058175943, "RPG World", "https://virtuallization.com/OriHubScripts/RPGWorld.txt")
-loader:registerGame(252473722, "Craft Wars Retro", "https://virtuallization.com/OriHubScripts/CraftWarsRetro.txt")
-loader:registerGame(10533488, "Craft Wars", "https://virtuallization.com/OriHubScripts/CraftWars.txt")
-loader:registerGame(1247975681, "Big Paintball", "https://virtuallization.com/OriHubScripts/BigPaintball.txt")
-loader:registerGame(1895958909, "Science Simulator", "https://virtuallization.com/OriHubScripts/ScienceSimulator.txt")
-loader:registerGame(66654135, "Murder Mystery 2", "https://virtuallization.com/OriHubScripts/MurderMystery.txt")
-loader:registerGame(185639929, "Glue Piece", "https://virtuallization.com/OriHubScripts/GluePiece.txt")
-loader:registerGame(1701623492, "Tower of Misery", "https://virtuallization.com/OriHubScripts/TowerofMisery.txt")
-loader:registerGame(2293506912, "Happy Runner", "https://virtuallization.com/OriHubScripts/HappyRunner.txt")
-loader:registerGame(2203488982, "Rage Runner", "https://virtuallization.com/OriHubScripts/RageRunner.txt")
-loader:registerGame(83858907, "Speedrun 4", "https://virtuallization.com/OriHubScripts/Speedrun4.txt")
-loader:registerGame(2387288336, "Basically FNF", "https://virtuallization.com/OriHubScripts/BasicallyFNF.txt")
-loader:registerGame(279565647, "Lucky Block Battlegrounds", "https://virtuallization.com/OriHubScripts/LuckyBlockBG.txt")
-loader:registerGame(1671731888, "Pistol 1v1", "https://virtuallization.com/OriHubScripts/Pistol1v1.txt")
-loader:registerGame(2424336727, "Bee Simulator", "https://virtuallization.com/OriHubScripts/BeeSimulator.txt")
-loader:registerGame(892043755, "Bubblegum Simulator", "https://virtuallization.com/OriHubScripts/BubblegumSimulator.txt")
-loader:registerGame(1959840877, "Psycho 100: Infinity", "https://virtuallization.com/OriHubScripts/Psycho100Infinity.txt")
-loader:registerGame(2272767413, "Zero Two Dance", "https://virtuallization.com/OriHubScripts/ZeroTwoDance.txt")
-loader:registerGame(2404080894, "Funky friday", "https://virtuallization.com/OriHubScripts/FunkyFriday.txt")
+loader:registerGame(73885730, "Prison Life", "https://virtuallization.com/Cattori/PrisonLife.txt")
+loader:registerGame(31450932, "Ultimate Random Night", "https://virtuallization.com/Cattori/UltimateRandomNight.txt")
+loader:registerGame(1938236522, "Scythe Simulator", "https://virtuallization.com/Cattori/ScytheSimulator.txt")
+loader:registerGame(719754874, "Ragdoll Engine", "https://virtuallization.com/Cattori/RagdollEngine.txt")
+loader:registerGame(1198663082, "Pushing Simulator", "https://virtuallization.com/Cattori/PushingSimulator.txt")
+loader:registerGame(2243257031, "Sleeping Simulator", "https://virtuallization.com/Cattori/SleepingSimulator.txt")
+loader:registerGame(1168263273, "Bad Business", "https://virtuallization.com/Cattori/BadBusiness.txt")
+loader:registerGame(1119466531, "Legends Of Speed", "https://virtuallization.com/Cattori/LegendsOfSpeed.txt")
+loader:registerGame(81762198, "Vehicle Simulator", "https://virtuallization.com/Cattori/VehicleSimulator.txt")
+loader:registerGame(1883423040, "LGBTQ+ Hangout", "https://virtuallization.com/Cattori/LGBTQHangout.txt")
+loader:registerGame(1058175943, "RPG World", "https://virtuallization.com/Cattori/RPGWorld.txt")
+loader:registerGame(252473722, "Craft Wars Retro", "https://virtuallization.com/Cattori/CraftWarsRetro.txt")
+loader:registerGame(10533488, "Craft Wars", "https://virtuallization.com/Cattori/CraftWars.txt")
+loader:registerGame(1247975681, "Big Paintball", "https://virtuallization.com/Cattori/BigPaintball.txt") --V2
+loader:registerGame(1895958909, "Science Simulator", "https://virtuallization.com/Cattori/ScienceSimulator.txt")
+loader:registerGame(66654135, "Murder Mystery 2", "https://virtuallization.com/Cattori/MurderMystery.txt")
+loader:registerGame(185639929, "Glue Piece", "https://virtuallization.com/Cattori/GluePiece.txt")
+loader:registerGame(1701623492, "Tower of Misery", "https://virtuallization.com/Cattori/TowerofMisery.txt")
+loader:registerGame(2293506912, "Happy Runner", "https://virtuallization.com/Cattori/HappyRunner.txt")
+loader:registerGame(2203488982, "Rage Runner", "https://virtuallization.com/Cattori/RageRunner.txt")
+loader:registerGame(83858907, "Speedrun 4", "https://virtuallization.com/Cattori/Speedrun4.txt")
+loader:registerGame(2387288336, "Basically FNF", "https://virtuallization.com/Cattori/BasicallyFNF.txt")
+loader:registerGame(279565647, "Lucky Block Battlegrounds", "https://virtuallization.com/Cattori/LuckyBlockBG.txt")
+loader:registerGame(1671731888, "Pistol 1v1", "https://virtuallization.com/Cattori/Pistol1v1.txt") --V2
+loader:registerGame(2424336727, "Bee Simulator", "https://virtuallization.com/Cattori/BeeSimulator.txt")
+loader:registerGame(892043755, "Bubblegum Simulator", "https://virtuallization.com/Cattori/BubblegumSimulator.txt")
+loader:registerGame(1959840877, "Psycho 100: Infinity", "https://virtuallization.com/Cattori/Psycho100Infinity.txt") --V2
+loader:registerGame(2272767413, "Zero Two Dance", "https://virtuallization.com/Cattori/ZeroTwoDance.txt") --V2
+loader:registerGame(2404080894, "Funky friday", "https://virtuallization.com/Cattori/FunkyFriday.txt") --V2
 
 	-- end
-loader:show()
 local detectedGame = loader:detectGame()
-loader:hide()
 
 if detectedGame then
 if not ({pcall(function()
