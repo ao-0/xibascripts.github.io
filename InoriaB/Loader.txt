@@ -19,7 +19,7 @@ green   = Color3.new(0, 1, 0.498039)
 yellow  = Color3.new(1, 1, 0.498039)
 
 	game.StarterGui:SetCore("ChatMakeSystemMessage", {
-		Text = "Welcome Inoria B, "..game:GetService("Players").LocalPlayer.Name.."!",
+		Text = "Welcome Inoria B (Cracked Kraken Hub), "..game:GetService("Players").LocalPlayer.Name.."!",
 		Color = green,
 	})
 	game.StarterGui:SetCore("ChatMakeSystemMessage", {
