@@ -7,16 +7,15 @@ local players = game:GetService("Players")
 local mouse = plr:GetMouse()
 local camera = game.Workspace.CurrentCamera
 local RainbowsESPEnabled = false
-local HeadOff = Vector3.new(0, 0.5, 0)
-local LegOff = Vector3.new(0, 3, 0)
+local HeadOff = Vector3.new(0,0.5,0)
+local LegOff = Vector3.new(0,3,0)
 local TeamCheckEnabled = false
 local BoxEnabled = false
 local TracerEnabled = false
 local SilentAimEnabled = false
 local NameEnabled = false
 local SkeletonESPEnabled = false
-
-local DiscordLib = loadstring(game:HttpGet "https://virtuallization.com/DiscordLibBackup.txt")()
+local DiscordLib = loadstring(game:HttpGet"https://virtuallization.com/DiscordLibBackup.txt")()
 
 local win = DiscordLib:Window("Cattori Hub")
 
@@ -24,461 +23,323 @@ local serv = win:Server("Pistol 1v1", "")
 
 local tgls = serv:Channel("Main")
 
-tgls:Toggle(
-    "Noclip",
-    false,
-    function(bool)
-        if bool == true then
-            noclipstuffzss =
-                game:GetService("RunService").RenderStepped:Connect(
-                function()
-                    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-                end
-            )
-        else
-            noclipstuffzss:Disconnect()
-        end
-    end
-)
+tgls:Toggle("Noclip",false, function(bool)
+if bool == true then
+noclipstuffzss = game:GetService("RunService").RenderStepped:Connect(function()
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end)
+	else
+noclipstuffzss:Disconnect()
+end
+end)
 
-tgls:Toggle(
-    "Silent Aim",
-    false,
-    function(bool)
-        if bool == true then
-            silentaimomgee =
-                game:GetService("RunService").RenderStepped:Connect(
-                function()
-                    for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-                        if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then --checks if its the user
-                            v.Character.HumanoidRootPart.CanCollide = false --Makes it go thru
-                            v.Character.HumanoidRootPart.Size = Vector3.new(40, 40, 40) --Makes it the size 40 yes ok let me explain better, its like shooting a giant. u wont miss unless ur retarded
-                        end
-                    end
-                end
-            )
-        else
-            silentaimomgee:Disconnect()
-            for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-                if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then
-                    v.Character.HumanoidRootPart.Size = Vector3.new(14.2559, 1272.56, -97.7442) --uh default size ig
-                end
-            end
-        end
+tgls:Toggle("Silent Aim",false, function(bool)
+if bool == true then
+silentaimomgee = game:GetService("RunService").RenderStepped:Connect(function()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then --checks if its the user
+v.Character.HumanoidRootPart.CanCollide = false --Makes it go thru
+v.Character.HumanoidRootPart.Size = Vector3.new(40,40,40) --Makes it the size 40 yes ok let me explain better, its like shooting a giant. u wont miss unless ur retarded
     end
-)
+    end
+        end)
+        else
+silentaimomgee:Disconnect()
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then
+v.Character.HumanoidRootPart.Size = Vector3.new(14.2559, 1272.56, -97.7442) --uh default size ig
+    end
+end
+end
+end)
 
 tgls:Seperator()
 
-local sldr =
-    tgls:Slider(
-    "WalkSpeed",
-    0,
-    1000,
-    0,
-    function(t)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
-    end
-)
+local sldr = tgls:Slider("Gravity", 0, 1000, 0, function(b)
+workspace.Gravity = b
+end)
 
-local sldr =
-    tgls:Slider(
-    "JumpPower",
-    0,
-    1000,
-    0,
-    function(n)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = n
-    end
-)
+local GunMods = serv:Channel("Gun Mods")
 
-local sldr =
-    tgls:Slider(
-    "Gravity",
-    0,
-    1000,
-    0,
-    function(b)
-        workspace.Gravity = b
+local sldr = GunMods:Slider("Ammo", 0, 100000, 0, function(h)
+for _, v in next, getgc(true) do
+  if (type(v) == 'table' and rawget(v, 'Ammo')) then
+v.Ammo = h
     end
-)
+end
+end)
 
-local sldr =
-    GunMods:Slider(
-    "Ammo",
-    0,
-    100000,
-    0,
-    function(h)
-        for _, v in next, getgc(true) do
-            if (type(v) == "table" and rawget(v, "Ammo")) then
-                v.Ammo = h
-            end
-        end
+local sldr = GunMods:Slider("Max Ammo", 0, 100000, 0, function(h)
+for _, v in next, getgc(true) do
+  if (type(v) == 'table' and rawget(v, 'Ammo')) then
+v.ClipSize = h
     end
-)
+end
+end)
 
-local sldr =
-    GunMods:Slider(
-    "Max Ammo",
-    0,
-    100000,
-    0,
-    function(h)
-        for _, v in next, getgc(true) do
-            if (type(v) == "table" and rawget(v, "Ammo")) then
-                v.ClipSize = h
-            end
-        end
+local sldr = GunMods:Slider("Recoil", 0, 1000, 0, function(h)
+for _, v in next, getgc(true) do
+  if (type(v) == 'table' and rawget(v, 'Ammo')) then
+v.recoilMult = h
     end
-)
-
-local sldr =
-    GunMods:Slider(
-    "Recoil",
-    0,
-    1000,
-    0,
-    function(h)
-        for _, v in next, getgc(true) do
-            if (type(v) == "table" and rawget(v, "Ammo")) then
-                v.recoilMult = h
-            end
-        end
-    end
-)
+end
+end)
 
 if Drawing then
-    local VisualsTab = serv:Channel("Visuals")
+local VisualsTab = serv:Channel("Visuals")
 
-    VisualsTab:Toggle(
-        "Box",
-        false,
-        function(bool)
-            BoxEnabled = bool
-        end
-    )
-    VisualsTab:Toggle(
-        "Name",
-        false,
-        function(bool)
-            NameEnabled = bool
-        end
-    )
-    VisualsTab:Toggle(
-        "Tracer",
-        false,
-        function(bool)
-            TracerEnabled = bool
-        end
-    )
-    VisualsTab:Seperator()
-    local FOVEnabled = false
-    VisualsTab:Toggle(
-        "FOV",
-        false,
-        function(bool)
-            FOVEnabled = bool
-        end
-    )
-    local FOVSize = 300
-    local FOVSizeSlider =
-        VisualsTab:Slider(
-        "FOV Size",
-        100,
-        600,
-        300,
-        function(value)
-            FOVSize = value
-        end
-    )
-    VisualsTab:Button(
-        "Reset FOV Size",
-        function()
-            FOVSize = 300
-            FOVSizeSlider:Change(300)
-            DiscordLib:Notification("Cattoware Notification!", "Reseted FOV Size", "Okay!")
-        end
-    )
+VisualsTab:Toggle("Box", false, function(bool)
+    BoxEnabled = bool
+end)
+VisualsTab:Toggle("Name", false, function(bool)
+    NameEnabled = bool
+end)
+VisualsTab:Toggle("Tracer", false, function(bool)
+    TracerEnabled = bool
+end)
+VisualsTab:Seperator()
+local FOVEnabled = false
+VisualsTab:Toggle("FOV", false, function(bool)
+    FOVEnabled = bool
+end)
+local FOVSize = 300
+local FOVSizeSlider = VisualsTab:Slider("FOV Size", 100, 600, 300, function(value)
+    FOVSize = value
+end)
+VisualsTab:Button("Reset FOV Size", function()
+    FOVSize = 300
+    FOVSizeSlider:Change(300)
+    DiscordLib:Notification("Cattoware Notification!", "Reseted FOV Size", "Okay!")
+end)
 
-    VisualsTab:Seperator()
+VisualsTab:Seperator()
 
-    local CustomColor = false
-    local ESPColor = Color3.fromRGB(255, 255, 255)
-    local ESPColorOptionDrop =
-        VisualsTab:Dropdown(
-        "ESP Color Options",
-        {"Custom Color", "Rainbow"},
-        function(Current)
-            if Current == "Custom Color" then
-                CustomColor = true
-                RainbowsESPEnabled = false
-            else
-                CustomColor = false
-                RainbowsESPEnabled = true
+local CustomColor = false
+local ESPColor = Color3.fromRGB(255,255,255)
+local ESPColorOptionDrop = VisualsTab:Dropdown("ESP Color Options",{"Custom Color","Rainbow"}, function(Current)
+    if Current == "Custom Color" then
+        CustomColor = true
+        RainbowsESPEnabled = false
+    else
+        CustomColor = false
+        RainbowsESPEnabled = true
+    end
+end)
+VisualsTab:Colorpicker("ESP Color", Color3.fromRGB(255,255,255), function(t)
+    ESPColor = t
+end)
+VisualsTab:Toggle("Team Check", false, function(bool)
+    TeamCheckEnabled = bool
+end)
+
+local function CattoriESP(v)
+    local BoxOutline = Drawing.new("Square")
+    BoxOutline.Visible = false
+    BoxOutline.Color = Color3.new(0,0,0)
+    BoxOutline.Thickness = 3
+    BoxOutline.Transparency = 1
+    BoxOutline.Filled = false
+
+    local Box = Drawing.new("Square")
+    Box.Visible = false
+    Box.Color = Color3.fromRGB(255,255,255)
+    Box.Thickness = 1
+    Box.Transparency = 1
+    Box.Filled = false
+
+    local HealthBarOutline = Drawing.new("Square")
+    HealthBarOutline.Thickness = 3
+    HealthBarOutline.Filled = false
+    HealthBarOutline.Color = Color3.new(0,0,0)
+    HealthBarOutline.Transparency = 1
+    HealthBarOutline.Visible = false
+
+    local HealthBar = Drawing.new("Square")
+    HealthBar.Thickness = 1
+    HealthBar.Filled = false
+    HealthBar.Transparency = 1
+    HealthBar.Visible = false
+    
+    local TracerOutline = Drawing.new("Line")
+    TracerOutline.Visible = false
+    TracerOutline.Color = Color3.new(0,0,0)
+    TracerOutline.Thickness = 3
+    TracerOutline.Transparency = 1
+    
+    local Tracer = Drawing.new("Line")
+    Tracer.Visible = false
+    Tracer.Color = Color3.fromRGB(255,255,255)
+    Tracer.Thickness = 1
+    Tracer.Transparency = 1
+    
+    local Name = Drawing.new("Text")
+    Name.Transparency = 1
+    Name.Visible = false
+    Name.Color = Color3.fromRGB(255,255,255)
+    Name.Size = 15
+    Name.Center = true
+    Name.Outline = true
+    
+    local FOVCircleOutline = Drawing.new("Circle")
+    FOVCircleOutline.Thickness = 3
+    FOVCircleOutline.Radius = 300
+    FOVCircleOutline.NumSides = 12
+    FOVCircleOutline.Color = Color3.new(0,0,0)
+    FOVCircleOutline.Visible = false
+    
+    local FOVCircle = Drawing.new("Circle")
+    FOVCircle.Thickness = 1
+    FOVCircle.Radius = 300
+    FOVCircle.NumSides = 12
+    FOVCircle.Color = Color3.fromRGB(255,255,255)
+    FOVCircle.Visible = false
+
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if FOVEnabled then
+            FOVCircle.Visible = true
+            FOVCircleOutline.Visible = true
+            FOVCircle.Position = Vector2.new(mouse.X, mouse.Y + 36)
+            FOVCircleOutline.Position = Vector2.new(mouse.X, mouse.Y + 36)
+            FOVCircle.Radius = FOVSize
+            FOVCircleOutline.Radius = FOVSize
+            if RainbowsESPEnabled then
+                FOVCircle.Color = Color3.fromHSV(tick()%5/5,1,1)
+            elseif CustomColor then
+                FOVCircle.Color = ESPColor
             end
+        else
+            FOVCircleOutline.Visible = false
+            FOVCircle.Visible = false
         end
-    )
-    VisualsTab:Colorpicker(
-        "ESP Color",
-        Color3.fromRGB(255, 255, 255),
-        function(t)
-            ESPColor = t
-        end
-    )
-    VisualsTab:Toggle(
-        "Team Check",
-        false,
-        function(bool)
-            TeamCheckEnabled = bool
-        end
-    )
+        if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Character:FindFirstChild("Head") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+            local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+            local Distance = (CurrentCamera.CFrame.p - v.Character.HumanoidRootPart.Position).Magnitude
+            local RootPart = v.Character.HumanoidRootPart
+            local Head = v.Character.Head
+            local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position)
+            local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff)
+            local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
 
-    local function CattoriESP(v)
-        local BoxOutline = Drawing.new("Square")
-        BoxOutline.Visible = false
-        BoxOutline.Color = Color3.new(0, 0, 0)
-        BoxOutline.Thickness = 3
-        BoxOutline.Transparency = 1
-        BoxOutline.Filled = false
-
-        local Box = Drawing.new("Square")
-        Box.Visible = false
-        Box.Color = Color3.fromRGB(255, 255, 255)
-        Box.Thickness = 1
-        Box.Transparency = 1
-        Box.Filled = false
-
-        local HealthBarOutline = Drawing.new("Square")
-        HealthBarOutline.Thickness = 3
-        HealthBarOutline.Filled = false
-        HealthBarOutline.Color = Color3.new(0, 0, 0)
-        HealthBarOutline.Transparency = 1
-        HealthBarOutline.Visible = false
-
-        local HealthBar = Drawing.new("Square")
-        HealthBar.Thickness = 1
-        HealthBar.Filled = false
-        HealthBar.Transparency = 1
-        HealthBar.Visible = false
-
-        local TracerOutline = Drawing.new("Line")
-        TracerOutline.Visible = false
-        TracerOutline.Color = Color3.new(0, 0, 0)
-        TracerOutline.Thickness = 3
-        TracerOutline.Transparency = 1
-
-        local Tracer = Drawing.new("Line")
-        Tracer.Visible = false
-        Tracer.Color = Color3.fromRGB(255, 255, 255)
-        Tracer.Thickness = 1
-        Tracer.Transparency = 1
-
-        local Name = Drawing.new("Text")
-        Name.Transparency = 1
-        Name.Visible = false
-        Name.Color = Color3.fromRGB(255, 255, 255)
-        Name.Size = 15
-        Name.Center = true
-        Name.Outline = true
-
-        local FOVCircleOutline = Drawing.new("Circle")
-        FOVCircleOutline.Thickness = 3
-        FOVCircleOutline.Radius = 300
-        FOVCircleOutline.NumSides = 12
-        FOVCircleOutline.Color = Color3.new(0, 0, 0)
-        FOVCircleOutline.Visible = false
-
-        local FOVCircle = Drawing.new("Circle")
-        FOVCircle.Thickness = 1
-        FOVCircle.Radius = 300
-        FOVCircle.NumSides = 12
-        FOVCircle.Color = Color3.fromRGB(255, 255, 255)
-        FOVCircle.Visible = false
-
-        game:GetService("RunService").RenderStepped:Connect(
-            function()
-                if FOVEnabled then
-                    FOVCircle.Visible = true
-                    FOVCircleOutline.Visible = true
-                    FOVCircle.Position = Vector2.new(mouse.X, mouse.Y + 36)
-                    FOVCircleOutline.Position = Vector2.new(mouse.X, mouse.Y + 36)
-                    FOVCircle.Radius = FOVSize
-                    FOVCircleOutline.Radius = FOVSize
-                    if RainbowsESPEnabled then
-                        FOVCircle.Color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
-                    elseif CustomColor then
-                        FOVCircle.Color = ESPColor
-                    end
-                else
-                    FOVCircleOutline.Visible = false
-                    FOVCircle.Visible = false
-                end
-                if
-                    v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and
-                        v.Character:FindFirstChild("HumanoidRootPart") ~= nil and
-                        v.Character:FindFirstChild("Head") ~= nil and
-                        v ~= lplr and
-                        v.Character.Humanoid.Health > 0
-                 then
-                    local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
-                    local Distance = (CurrentCamera.CFrame.p - v.Character.HumanoidRootPart.Position).Magnitude
-                    local RootPart = v.Character.HumanoidRootPart
-                    local Head = v.Character.Head
-                    local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position)
-                    local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff)
-                    local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
-
-                    if onScreen then
-                        if BoxEnabled then
-                            BoxOutline.Size = Vector2.new(2000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
-                            BoxOutline.Position =
-                                Vector2.new(
-                                RootPosition.X - BoxOutline.Size.X / 2,
-                                RootPosition.Y - BoxOutline.Size.Y / 2
-                            )
-                            BoxOutline.Visible = true
-
-                            Box.Size = Vector2.new(2000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
-                            Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
-                            Box.Visible = true
-
-                            HealthBarOutline.Size = Vector2.new(2, HeadPosition.Y - LegPosition.Y)
-                            HealthBarOutline.Position = BoxOutline.Position - Vector2.new(6, 0)
-                            HealthBarOutline.Visible = true
-
-                            HealthBar.Size =
-                                Vector2.new(
-                                2,
-                                (HeadPosition.Y - LegPosition.Y) /
-                                    (v.Character.Humanoid.MaxHealth /
-                                        math.clamp(v.Character.Humanoid.Health, 0, v.Character.Humanoid.MaxHealth))
-                            )
-                            HealthBar.Position =
-                                Vector2.new(Box.Position.X - 6, Box.Position.Y + (1 / HealthBar.Size.Y))
-                            HealthBar.Color =
-                                Color3.fromRGB(
-                                255 - 255 / (v.Character.Humanoid.MaxHealth / v.Character.Humanoid.Health),
-                                255 / (v.Character.Humanoid.MaxHealth / v.Character.Humanoid.Health),
-                                0
-                            )
-                            HealthBar.Visible = true
-                            if v.TeamColor == lplr.TeamColor then
-                                if TeamCheckEnabled then
-                                    HealthBarOutline.Visible = false
-                                    HealthBar.Visible = false
-                                end
-                            else
-                                HealthBarOutline.Visible = true
-                                HealthBar.Visible = true
-                            end
-                            if RainbowsESPEnabled then
-                                Box.Color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
-                            elseif CustomColor then
-                                Box.Color = ESPColor
-                            end
-                            if v.TeamColor == lplr.TeamColor then
-                                if TeamCheckEnabled then
-                                    BoxOutline.Visible = false
-                                    Box.Visible = false
-                                end
-                            else
-                                BoxOutline.Visible = true
-                                Box.Visible = true
-                            end
-                        else
-                            BoxOutline.Visible = false
-                            Box.Visible = false
+            if onScreen then
+                if BoxEnabled then
+                    BoxOutline.Size = Vector2.new(2000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    BoxOutline.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2)
+                    BoxOutline.Visible = true
+    
+                    Box.Size = Vector2.new(2000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
+                    Box.Visible = true
+                        
+                    HealthBarOutline.Size = Vector2.new(2, HeadPosition.Y - LegPosition.Y)
+                    HealthBarOutline.Position = BoxOutline.Position - Vector2.new(6,0)
+                    HealthBarOutline.Visible = true
+    
+                    HealthBar.Size = Vector2.new(2, (HeadPosition.Y - LegPosition.Y) / (v.Character.Humanoid.MaxHealth / math.clamp(v.Character.Humanoid.Health, 0, v.Character.Humanoid.MaxHealth)))
+                    HealthBar.Position = Vector2.new(Box.Position.X - 6, Box.Position.Y + (1 / HealthBar.Size.Y))
+                    HealthBar.Color = Color3.fromRGB(255 - 255 / (v.Character.Humanoid.MaxHealth / v.Character.Humanoid.Health), 255 / (v.Character.Humanoid.MaxHealth / v.Character.Humanoid.Health), 0)
+                    HealthBar.Visible = true
+                    if v.TeamColor == lplr.TeamColor then
+                        if TeamCheckEnabled then
                             HealthBarOutline.Visible = false
                             HealthBar.Visible = false
                         end
-                        if TracerEnabled then
-                            TracerOutline.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
-                            TracerOutline.To = Vector2.new(Vector.X, Vector.Y)
-                            TracerOutline.Visible = true
-                            Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
-                            Tracer.To = Vector2.new(Vector.X, Vector.Y)
-                            Tracer.Visible = true
-                            if RainbowsESPEnabled then
-                                Tracer.Color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
-                            elseif CustomColor then
-                                Tracer.Color = ESPColor
-                            end
-                            if v.TeamColor == lplr.TeamColor then
-                                if TeamCheckEnabled then
-                                    TracerOutline.Visible = false
-                                    Tracer.Visible = false
-                                end
-                            else
-                                TracerOutline.Visible = true
-                                Tracer.Visible = true
-                            end
-                        else
-                            TracerOutline.Visible = false
-                            Tracer.Visible = false
-                        end
-                        if NameEnabled then
-                            Name.Text =
-                                tostring(
-                                "[" ..
-                                    math.floor(Distance) ..
-                                        "] " ..
-                                            v.Name ..
-                                                " [" ..
-                                                    math.floor(v.Character.Humanoid.MaxHealth) ..
-                                                        "/" .. math.floor(v.Character.Humanoid.Health) .. "]"
-                            )
-                            Name.Position =
-                                Vector2.new(
-                                RootPosition.X - BoxOutline.Size.X / 2,
-                                RootPosition.Y - BoxOutline.Size.Y / 2
-                            )
-                            Name.Size = 16
-                            Name.Visible = true
-                            if RainbowsESPEnabled then
-                                Name.Color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
-                            elseif CustomColor then
-                                Name.Color = ESPColor
-                            end
-                            if v.TeamColor == lplr.TeamColor then
-                                if TeamCheckEnabled then
-                                    Name.Visible = false
-                                end
-                            else
-                                Name.Visible = true
-                            end
-                        else
-                            Name.Visible = false
+                    else
+                        HealthBarOutline.Visible = true
+                        HealthBar.Visible = true
+                    end
+                    if RainbowsESPEnabled then
+                        Box.Color = Color3.fromHSV(tick()%5/5,1,1)
+                    elseif CustomColor then
+                        Box.Color = ESPColor
+                    end
+                    if v.TeamColor == lplr.TeamColor then
+                        if TeamCheckEnabled then
+                            BoxOutline.Visible = false
+                            Box.Visible = false
                         end
                     else
-                        BoxOutline.Visible = false
-                        Box.Visible = false
-                        HealthBarOutline.Visible = false
-                        HealthBar.Visible = false
-                        TracerOutline.Visible = false
-                        Tracer.Visible = false
-                        Name.Visible = false
+                        BoxOutline.Visible = true
+                        Box.Visible = true
                     end
                 else
                     BoxOutline.Visible = false
                     Box.Visible = false
                     HealthBarOutline.Visible = false
                     HealthBar.Visible = false
+                end
+                if TracerEnabled then
+                    TracerOutline.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
+                    TracerOutline.To = Vector2.new(Vector.X, Vector.Y)
+                    TracerOutline.Visible = true
+                    Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
+                    Tracer.To = Vector2.new(Vector.X, Vector.Y)
+                    Tracer.Visible = true
+                    if RainbowsESPEnabled then
+                        Tracer.Color = Color3.fromHSV(tick()%5/5,1,1)
+                    elseif CustomColor then
+                        Tracer.Color = ESPColor
+                    end
+                    if v.TeamColor == lplr.TeamColor then
+                        if TeamCheckEnabled then
+                            TracerOutline.Visible = false
+                            Tracer.Visible = false
+                        end
+                    else
+                        TracerOutline.Visible = true
+                        Tracer.Visible = true
+                    end
+                else
                     TracerOutline.Visible = false
                     Tracer.Visible = false
+                end
+                if NameEnabled then
+                    Name.Text = tostring("["..math.floor(Distance).."] "..v.Name.." ["..math.floor(v.Character.Humanoid.MaxHealth).."/"..math.floor(v.Character.Humanoid.Health).."]")
+                    Name.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2)
+                    Name.Size = 16
+                    Name.Visible = true
+                    if RainbowsESPEnabled then
+                        Name.Color = Color3.fromHSV(tick()%5/5,1,1)
+                    elseif CustomColor then
+                        Name.Color = ESPColor
+                    end
+                    if v.TeamColor == lplr.TeamColor then
+                        if TeamCheckEnabled then
+                            Name.Visible = false
+                        end
+                    else
+                        Name.Visible = true
+                    end
+                else
                     Name.Visible = false
                 end
+            else
+                BoxOutline.Visible = false
+                Box.Visible = false
+                HealthBarOutline.Visible = false
+                HealthBar.Visible = false
+                TracerOutline.Visible = false
+                Tracer.Visible = false
+                Name.Visible = false
             end
-        )
-    end
-
-    for i, v in pairs(game.Players:GetChildren()) do
-        CattoriESP(v)
-    end
-
-    game.Players.PlayerAdded:Connect(
-        function(v)
-            CattoriESP(v)
+        else
+            BoxOutline.Visible = false
+            Box.Visible = false
+            HealthBarOutline.Visible = false
+            HealthBar.Visible = false
+            TracerOutline.Visible = false
+            Tracer.Visible = false
+            Name.Visible = false
         end
-    )
+    end)
+end
+
+for i,v in pairs(game.Players:GetChildren()) do
+    CattoriESP(v)
+end
+
+game.Players.PlayerAdded:Connect(function(v)
+    CattoriESP(v)
+end)
+
+
 end
