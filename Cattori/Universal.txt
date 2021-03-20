@@ -47,17 +47,6 @@ local sldr =
     end
 )
 
-local sldr =
-    tgls:Slider(
-    "Gravity",
-    0,
-    1000,
-    0,
-    function(b)
-        workspace.Gravity = b
-    end
-)
-
 if Drawing then
     local lplr = game.Players.LocalPlayer
     local camera = game:GetService("Workspace").CurrentCamera
