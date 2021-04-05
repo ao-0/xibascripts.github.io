@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Discord Server Redirect</title>
+    <style>
+        @keyframes loader {
+            0% {
+                opacity: 0;
+                -webkit-transition: all .5s ease-in-out;
+            }
+            30% {
+                width: 100%;
+                -moz-transition: all .5s ease-in-out;
+            }
+            60% {
+                opacity: 1;
+                -o-transition: all .5s ease-in-out;
+            }
+            100% {
+                width: 100%;
+                transition: all .5s ease-in-out;
+            }
+        }
+
+        @keyframes redirectText {
+            from {
+                background-position: 0%;
+            }
+            to {
+                background-position: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../src/style.css">
+    <meta http-equiv="refresh" content="200; url=https://discord.gg/ahWqfWnQkx">
+</head>
+  
+<body>
+
+<div class="rd-box">
+    <h1 class="tx-count">Please wait 3 seconds, we're redirecting you!</h1>
+    <h5 class="tx-inst"><a class="tx-redir" href="https://discord.gg/ahWqfWnQkx">Click Here</a> for instant</h5>
+</div>
+
+<div class="footer">
+    <ul>
+        <li style="display:inline-block; color:#999999;">Design built by <a class="rimuru" href="https://anilyn.fun/discord">Rimuru</a> <a>@ All Rights Reserved</a></li>
+    </ul>
+</div>
+
+<canvas id="stars" width="1562" height="944">
+  <script src="../src/delaunay.js"></script>
+  <script src="../src/background.js"></script>
+</canvas>
+<script src="../src/improvs.js"></script>
+  
+</body>
+</html>

@@ -1,63 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-  body {
-    font-family: 'Courier New', monospace;
-  }
-  </style>
-  </head>
-  <body>
-    
+    <meta charset="utf-8">
+    <title>Azuri - Terms of Service</title>
+    <style>
+        @keyframes loader {
+            0% {
+                opacity: 0;
+                -webkit-transition: all .5s ease-in-out;
+            }
+            30% {
+                width: 100%;
+                -moz-transition: all .5s ease-in-out;
+            }
+            60% {
+                opacity: 1;
+                -o-transition: all .5s ease-in-out;
+            }
+            100% {
+                width: 100%;
+                transition: all .5s ease-in-out;
+            }
+        }
 
-  <h1 class="center" style="text-align:center;color:rgb(255, 255, 255);font-size:50px;">Virtualization Developer Team</h1>
-  <meta charset="utf-8">
-  <title>Virtualization Developer Team</title>
-  <meta name="description" content="Virtualization Developer Team">
-  <meta name="author" content="Xiba" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" media="screen" href="css/style.css">
+        @keyframes cmsoonanim {
+            from {
+                background-position: 0%;
+            }
+            to {
+                background-position: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../src/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
 </head>
 <body>
+<div class="tt-nav-bar" id="sticky" data-html2canvas-ignore="true">
+    <div class="tt-loading">
+    </div>
+    <div class="nav-btn">
+        <ul>
+            <li>
+                <a href="https://virtuallization.com/buy">Buy Hub</a>
+            </li>
+            <li>
+                <a href="https://virtuallization.com/tos">Terms of Service</a>
+            </li>
+            <li>
+                <a href="https://virtuallization.com/discord">Discord</a>
+            </li>
+        </ul>
+    </div>
+</div>
 
-<!-- count particles -->
-
-
-<!-- particles.js container -->
-<div id="particles-js"></div>
-
-<!-- scripts -->
-<script src="../particles.js"></script>
-<script src="js/app.js"></script>
-
-<!-- stats.js -->
-<script src="js/lib/stats.js"></script>
-<script>
-  var count_particles, stats, update;
-  stats = new Stats;
-  stats.setMode(0);
-  stats.domElement.style.position = 'absolute';
-  stats.domElement.style.left = '0px';
-  stats.domElement.style.top = '0px';
-  document.body.appendChild(stats.domElement);
-  count_particles = document.querySelector('.js-count-particles');
-  update = function() {
-    stats.begin();
-    stats.end();
-    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-    }
-    requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
+<div class="cm-menu">
+    <div class="logo-duo"></div>
+    <div class="logonum"></div>
+    <div class="cm-text">
+        <a>Coming Soon</a>
+    </div>
+</div>
 
 
-</script>
+<canvas id="stars" width="1562" height="944">
+    <script src="../src/delaunay.js"></script>
+    <script src="../src/background.js"></script>
+</canvas>
+<script src="../src/improvs.js"></script>
+
+<div class="section-padding"></div>
+
+<div class="footer">
+    <ul>
+        <li style="display:inline-block; color:#999999;">Design built by <a class="rimuru" href="https://anilyn.fun/discord">Rimuru</a> <a>@ All Rights Reserved</a></li>
+    </ul>
+</div>
+
 </body>
 </html>

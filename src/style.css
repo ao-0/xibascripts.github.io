@@ -1,0 +1,444 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(ellipse at right, hsl(220, 31%, 6%) 0%, #000000 100%);
+    min-height: 90vh;
+    padding: 0;
+}
+
+/*
+-- ToS elements
+*/
+
+.section-padding {
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.box-tos {
+    background: transparent;
+    font-family: Arial;
+    width: 60%;
+    margin-top: 30px;
+    margin-left: 9%;
+    height: 800px;
+    border: 0px solid #5e725e34;
+    border-radius: 12px;
+}
+
+
+/* 
+-- box ToS
+*/
+
+.tx-firs-line {
+    margin-top: 20px;
+}
+.tx-seco-line {
+    margin-top: 20px;
+}
+.tx-thir-line {
+    margin-top: 20px;
+}
+.tx-four-line {
+    margin-top: 20px;
+}
+.tx-five-line {
+    margin-top: 20px;
+}
+
+
+.tx-firs-line .tx-imp-msg {
+    font-size: 16px;
+    margin-left: 20px;
+    color: #fff;
+}
+.tx-seco-line .tx-usg {
+    font-size: 24px;
+    margin-left: 20px;
+    color: #fff;
+}
+.tx-thir-line .tx-pmt {
+    font-size: 24px;
+    margin-left: 20px;
+    color: #fff;
+}
+.tx-four-line .tx-lin {
+    font-size: 24px;
+    margin-left: 20px;
+    color: #fff;
+}
+.tx-five-line .tx-ref {
+    font-size: 24px;
+    margin-left: 20px;
+    color: #fff;
+}
+
+
+.tx-seco-line .tx-msg {
+    margin-top: 20px;
+    width: 1000px;
+    height: 100px;
+    background: transparent;
+    margin-left: 46px;
+}
+.tx-thir-line .tx-msg {
+    margin-top: 20px;
+    width: 1000px;
+    height: 100px;
+    background: transparent;
+    margin-left: 46px;
+}
+.tx-four-line .tx-msg {
+    margin-top: 20px;
+    width: 1000px;
+    height: 100px;
+    background: transparent;
+    margin-left: 46px;
+}
+.tx-five-line .tx-msg {
+    margin-top: 20px;
+    width: 1000px;
+    height: 100px;
+    background: transparent;
+    margin-left: 46px;
+}
+
+
+.tx-firs-line .tx-msg {
+    margin: 0 8px 0;
+    color: #ffffffc5;
+}
+.tx-seco-line .tx-msg a {
+    color: #ffffff80;
+}
+.tx-thir-line .tx-msg a {
+    color: #ffffff80;
+}
+.tx-four-line .tx-msg a {
+    color: #ffffff80;
+}
+.tx-five-line .tx-msg a {
+    color: #ffffff80;
+}
+
+/* Anim part for box ToS side line */
+
+.cnum-1 {
+    position: absolute;
+    margin-top: 22px;
+    margin-left: 23px;
+    width: 6px;
+    height: 84px;
+    background: #000000;
+}
+.cnum-1:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: -2;
+    background: linear-gradient(90deg,#afafaf,#b3e7dc,#818181,#818181,#818181);
+    background-size: 300%;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    z-index: -1;
+    animation: shadowanim 20s linear infinite;
+    filter: blur(8px);
+}
+
+.cnum-2 {
+    position: absolute;
+    margin-top: 22px;
+    margin-left: 23px;
+    width: 6px;
+    height: 51px;
+    background: #000000;
+}
+.cnum-2:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: -2;
+    background: linear-gradient(90deg,#afafaf,#b3e7dc,#818181,#818181,#818181);
+    background-size: 300%;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    z-index: -1;
+    animation: shadowanim 20s linear infinite;
+    filter: blur(8px);
+}
+
+.cnum-3 {
+    position: absolute;
+    margin-top: 22px;
+    margin-left: 23px;
+    width: 6px;
+    height: 51px;
+    background: #000000;
+}
+.cnum-3:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: -2;
+    background: linear-gradient(90deg,#afafaf,#b3e7dc,#818181,#818181,#818181);
+    background-size: 300%;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    z-index: -1;
+    animation: shadowanim 20s linear infinite;
+    filter: blur(8px);
+}
+
+.cnum-4 {
+    position: absolute;
+    margin-top: 22px;
+    margin-left: 23px;
+    width: 6px;
+    height: 140px;
+    background: #000000;
+}
+.cnum-4:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: -2;
+    background: linear-gradient(90deg,#afafaf,#b3e7dc,#818181,#818181,#818181);
+    background-size: 300%;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    z-index: -1;
+    animation: shadowanim 20s linear infinite;
+    filter: blur(8px);
+}
+
+
+/*
+-- Counter for box ToS
+*/
+
+
+
+/* 
+-- navigation top bar
+*/
+
+.nav-btn ul {
+    z-index: 20;
+    float: right;
+    font-size: 17px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin-right: 30px;
+    margin-top: 27px;
+}
+
+ul li {
+    display: inline-block;
+}
+
+.nav-btn ul li a {
+    background-color: transparent;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    text-decoration: none;
+    padding: 7px 22px;
+    margin-left: 15px;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+.nav-btn ul li a:hover {
+    background: transparent;
+    color: #aca8e7;
+    box-shadow: 0 0 5px #375174, 0 0 20px #375174, 0 0 30px #375174, 0 0 85px #375174;
+    opacity: 1;
+}
+
+/* 
+-- Scroll + loading
+*/
+
+::-webkit-scrollbar-track {
+    background-color: #11141a;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #7f88d642;
+    border-radius: 4px;
+}
+
+.tt-loading {
+    position: absolute;
+    background-color: #7487bb;
+    width: 100%;
+    height: 2px;
+    animation: loader 2s ease-in-out;
+    top: 0px;
+    left: -8px;
+    right: 0;
+    box-shadow: 0 0 10px 0;
+    opacity: 0;
+}
+
+/*
+-- discord redirecting...
+*/
+
+.rd-box {
+    background: transparent;
+    text-decoration: none;
+    margin: auto;
+    margin-top: 200px;
+    width: 600px;
+    height: 130px;
+    border: 2px solid #a0a0a04b;
+    border-radius: 20px;
+}
+
+.rd-box .tx-count {
+    background-image: linear-gradient(to right, #787878, #888888, #999999, #787878, #575757);
+    background-size: 300%;
+    color: transparent;
+    margin-top: 30px;
+    text-align: center;
+    font-familY: sans-serif;
+    font-size: 26px;
+    animation: redirectText 3s infinite alternate-reverse;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-position: -100%;
+}
+
+.rd-box .tx-inst {
+    color: #818181;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+}
+
+.rd-box .tx-inst .tx-redir {
+    color: #ffffffc0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.rd-box .tx-inst .tx-redir:hover {
+    color: #b0adbb;
+}
+
+/* */
+
+.rimuru {
+    text-decoration: none;
+    transition: 0.3s;
+    color: #999999;
+}
+
+.rimuru:hover {
+    color: #dddddd;
+    transition: 0.3s;
+}
+
+.footer {
+    background-color: #1d1d1d6b;
+    position: relative;
+    bottom: 0px;
+    height: 90px;
+    width: 100%;
+}
+
+.footer ul {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 50px;
+    margin-top: 33px;;
+}
+
+/*
+-- logo & background
+*/
+
+.logo {
+    width: 40px;
+    height: 40px;
+    background-image: url('./img/logo.png');
+    background-size: 100% 100%;
+    margin-top: 15px;
+    margin-left: 15px;
+    z-index: 10;
+}
+
+.cm-menu {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    margin-bottom: -770px;
+    position: relative;
+    width: 1200px;
+    height: 600px;
+    border: 2px solid #ffffff41;
+    border-radius: 12px;
+}
+.logonum {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    border-radius: 12px;
+}
+.logo-duo {
+    z-index: 2;
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 100px;
+    height:100px;
+    background-image: url('./img/logo.png');
+    background-size: 100% 100%;
+}
+.logonum:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg,#a0a186,#b3e7dc,#6d8581,#af88a0,#818181);
+    background-size: 300%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: cmsoonanim 20s linear infinite;
+    filter: blur(12px);
+}
+.cm-text {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    margin-top: -340px;
+    font-size: 64px;
+    text-align: center;
+}
+
+#stars {
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    pointer-events: none;
+}
+
+/*
+-- Essentials
+*/
+
+div#sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
