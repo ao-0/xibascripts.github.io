@@ -1640,9 +1640,9 @@ end)
             Separator.Name = "Bind"
             Separator.Parent = Tab
             Separator.BackgroundColor3 = Color3.fromRGB(82, 80, 80)
-            Separator.Size = UDim2.new(0, 350, 0, 3)
+            Separator.Size = UDim2.new(0, 330, 0, 3)
 
-            SeparatorCorner.CornerRadius = UDim.new(0, 5)
+            SeparatorCorner.CornerRadius = UDim.new(0, 99)
             SeparatorCorner.Name = "BindCorner"
             SeparatorCorner.Parent = Bind
         end
