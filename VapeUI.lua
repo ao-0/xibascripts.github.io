@@ -374,7 +374,7 @@ end)
         TabLayout.Parent = Tab
         TabLayout.SortOrder = Enum.SortOrder.LayoutOrder
         TabLayout.Padding = UDim.new(0, 6)
-	TabLayout.VerticalAlignment = Center
+	TabLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 
 
         if fs == false then
