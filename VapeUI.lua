@@ -90,7 +90,7 @@ function lib:Window(text, preset, closebind)
     PresetColor = preset or Color3.fromRGB(44, 120, 224)
     fs = false
     local Main = Instance.new("Frame")
-    local TabHold = Instance.new("Frame")
+    local TabHold = Instance.new("ScrollingFrame")
     local TabHoldLayout = Instance.new("UIListLayout")
     local Title = Instance.new("TextLabel")
     local TabFolder = Instance.new("Folder")
@@ -112,6 +112,9 @@ function lib:Window(text, preset, closebind)
     TabHold.BackgroundTransparency = 1.000
     TabHold.Position = UDim2.new(0.0339285731, 0, 0.147335425, 0)
     TabHold.Size = UDim2.new(0, 107, 0, 254)
+    TabHold.Active = true
+    TabHold.CanvasSize = UDim2.new(0, 0, 0, 0)
+    TabHold.ScrollBarThickness = 0
 
     TabHoldLayout.Name = "TabHoldLayout"
     TabHoldLayout.Parent = TabHold
@@ -422,6 +425,7 @@ end)
                 end
             end
         )
+TabHold.CanvasSize = UDim2.new(0, 0, 0, TabHoldLayout.AbsoluteContentSize.Y)
         local tabcontent = {}
         function tabcontent:Button(text, callback)
             local Button = Instance.new("TextButton")
