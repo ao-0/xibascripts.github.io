@@ -427,68 +427,7 @@ end)
             local Button = Instance.new("TextButton")
             local ButtonCorner = Instance.new("UICorner")
             local ButtonTitle = Instance.new("TextLabel")
-
-            Button.Name = "Button"
-            Button.Parent = Tab
-            Button.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-            Button.Size = UDim2.new(0, 363, 0, 42)
-            Button.AutoButtonColor = false
-            Button.Font = Enum.Font.SourceSans
-            Button.Text = ""
-            Button.TextColor3 = Color3.fromRGB(0, 0, 0)
-            Button.TextSize = 14.000
-
-            ButtonCorner.CornerRadius = UDim.new(0, 5)
-            ButtonCorner.Name = "ButtonCorner"
-            ButtonCorner.Parent = Button
-
-            ButtonTitle.Name = "ButtonTitle"
-            ButtonTitle.Parent = Button
-            ButtonTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ButtonTitle.BackgroundTransparency = 1.000
-            ButtonTitle.Position = UDim2.new(0.0358126722, 0, 0, 0)
-            ButtonTitle.Size = UDim2.new(0, 187, 0, 42)
-            ButtonTitle.Font = Enum.Font.Gotham
-            ButtonTitle.Text = text
-            ButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ButtonTitle.TextSize = 14.000
-            ButtonTitle.TextXAlignment = Enum.TextXAlignment.Left
-
-            Button.MouseEnter:Connect(
-                function()
-                    TweenService:Create(
-                        Button,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}
-                    ):Play()
-                end
-            )
-
-            Button.MouseLeave:Connect(
-                function()
-                    TweenService:Create(
-                        Button,
-                        TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}
-                    ):Play()
-                end
-            )
-
-            Button.MouseButton1Click:Connect(
-                function()
-                    pcall(callback)
-                end
-            )
-
-            Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
-        end
-
-        function tabcontent:IButton(text, image, callback)
-            local Button = Instance.new("TextButton")
-            local ButtonCorner = Instance.new("UICorner")
-            local ButtonTitle = Instance.new("TextLabel")
 local ImageLabel = Instance.new("ImageLabel")
-
             Button.Name = "Button"
             Button.Parent = Tab
             Button.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
@@ -498,13 +437,14 @@ local ImageLabel = Instance.new("ImageLabel")
             Button.Text = ""
             Button.TextColor3 = Color3.fromRGB(0, 0, 0)
             Button.TextSize = 14.000
+
 ImageLabel.Parent = Button
 ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ImageLabel.BackgroundTransparency = 1.000
 ImageLabel.Position = UDim2.new(0, 0, 0.5, -20)
 ImageLabel.Size = UDim2.new(0, 40, 0, 40)
 ImageLabel.ZIndex = 2
-ImageLabel.Image = image
+ImageLabel.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
 
             ButtonCorner.CornerRadius = UDim.new(0, 5)
             ButtonCorner.Name = "ButtonCorner"
@@ -845,7 +785,7 @@ ImageLabel.Image = image
                 )
                 CurrentValueFrame:TweenSize(pos1, "Out", "Sine", 0.1, true)
                 SlideCircle:TweenPosition(pos, "Out", "Sine", 0.1, true)
-                local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min)
+                local value = (pos.X.Scale * max) / (max * (max - min) + min)
                 SliderValue.Text = tostring(value)
                 pcall(callback, value)
             end
